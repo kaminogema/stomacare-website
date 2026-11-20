@@ -3,1181 +3,1722 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>StomaCare — Living Confidently with an Ostomy</title>
-  <meta name="description" content="The premier all-in-one companion for colostomy, ileostomy, and urostomy care. Featuring Emergency Medical Restroom Pass, Stoma Wafer Sizing Ruler, Intelligent Nutrition Assistant, and Restroom Radar.">
+  <title data-i18n="metaTitle">StomaCare — Living Confidently with an Ostomy | Medical Pouch & Nutrition Companion</title>
+  <meta name="description" content="StomaCare is the world's most comprehensive medical companion app for colostomy, ileostomy, and urostomy patients. 100% on-device privacy, wafer sizing ruler, blockage prevention AI, and emergency restroom access pass.">
+  <meta name="keywords" content="ostomy app, colostomy companion, ileostomy care, stoma wafer sizing, stoma nutrition, stoma blockage prevention, restroom pass, peristomal skin care">
+  
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <link rel="apple-touch-icon" href="/assets/icon.png">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-0kMrFeB0vyAMLHruNVQ3i.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
 
   <style>
     :root {
-      --bg-primary: #070a13;
-      --bg-secondary: #0d1322;
-      --bg-card: rgba(18, 25, 42, 0.78);
-      --bg-card-hover: rgba(26, 37, 62, 0.88);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(20, 184, 166, 0.35);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --teal-primary: #14b8a6;
-      --teal-glow: #0d9488;
-      --teal-light: #5eead4;
-      --cyan-accent: #06b6d4;
-      --coral-red: #f43f5e;
-      --amber-accent: #f59e0b;
-      --glass-blur: blur(16px);
-      --radius-sm: 10px;
-      --radius-md: 18px;
-      --radius-lg: 28px;
+      --bg-page: #0b0b1d;
+      --bg-surface: #121226;
+      --bg-surface-elevated: #181832;
+      --bg-card: rgba(18, 18, 38, 0.65);
+      --bg-card-hover: rgba(26, 26, 54, 0.85);
+      --bg-contrast-light: #f5f2fe;
+
+      --text-light: #f5f2fe;
+      --text-muted: #8e8ea8;
+      --text-dim: #646482;
+      --text-dark: #0b0b1d;
+      --text-dark-muted: #4a4a68;
+
+      --accent-lavender: #c1c2fa;
+      --accent-lavender-glow: rgba(193, 194, 250, 0.35);
+      --accent-indigo: #3b3bc3;
+      --accent-blue-lotus: #6f70e9;
+      --accent-coral: #f43f5e;
+      --accent-emerald: #10b981;
+
+      --border-hairline: rgba(245, 242, 254, 0.12);
+      --border-focus: rgba(193, 194, 250, 0.4);
+
+      --radius-pill: 9999px;
+      --radius-card: 24px;
+      --radius-subcard: 16px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     html, body {
-      max-width: 100vw;
-      overflow-x: hidden;
       scroll-behavior: smooth;
-      background: var(--bg-primary);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      max-width: 100vw;
+      width: 100%;
     }
 
     body {
-      background: radial-gradient(circle at 50% 0%, #13243a 0%, var(--bg-primary) 50%, #05070d 100%);
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-light);
+      line-height: 1.6;
       min-height: 100vh;
-      line-height: 1.65;
-      position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Ambient Background Glows */
+    /* Ambient Radial Glows */
     .ambient-glow {
       position: absolute;
-      width: min(600px, 90vw);
-      height: min(600px, 90vw);
+      width: 700px;
+      height: 700px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(20, 184, 166, 0.18) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 70%);
-      filter: blur(80px);
+      background: radial-gradient(circle, rgba(111, 112, 233, 0.12) 0%, rgba(11, 11, 29, 0) 70%);
       pointer-events: none;
       z-index: 0;
+      filter: blur(80px);
     }
-    .glow-1 { top: -150px; left: 50%; transform: translateX(-50%); }
-    .glow-2 { top: 1200px; right: -100px; }
-    .glow-3 { top: 2400px; left: -100px; }
+    .glow-hero { top: -100px; left: 50%; transform: translateX(-50%); }
+    .glow-mid { top: 1400px; right: -150px; }
+    .glow-bottom { top: 2800px; left: 50%; transform: translateX(-50%); }
 
-    /* Header & Navigation */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: rgba(7, 10, 19, 0.88);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border-bottom: 1px solid var(--border-subtle);
+    /* Top Announcement Bar */
+    .top-announcement {
+      background: linear-gradient(90deg, #13132e, #222248, #13132e);
+      border-bottom: 1px solid rgba(193, 194, 250, 0.15);
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #e2e8f0;
+      text-align: center;
+      position: relative;
+      z-index: 990;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .nav-container {
+    .top-announcement a {
+      color: var(--accent-lavender);
+      text-decoration: none;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+    .top-announcement a:hover {
+      text-decoration: underline;
+    }
+
+    /* Floating Capsule Navbar */
+    .navbar-wrapper {
+      position: sticky;
+      top: 16px;
+      z-index: 999;
+      padding: 0 16px;
+      margin-top: 14px; /* Generous breathing room from announcement bar */
+      margin-bottom: 24px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .siteheader {
+      max-width: 1140px;
+      margin: 0 auto;
+      background: rgba(11, 11, 29, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 76px;
+      gap: 16px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+      width: 100%;
+      box-sizing: border-box;
     }
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
-      color: var(--text-main);
+      color: var(--text-light);
       flex-shrink: 0;
     }
     .brand-logo-img {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(20, 184, 166, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      box-shadow: 0 0 18px rgba(193, 194, 250, 0.4);
     }
     .brand-text {
-      font-size: 1.3rem;
-      font-weight: 800;
+      font-size: 1.25rem;
+      font-weight: 700;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #ffffff 40%, #99f6e4 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #ffffff;
     }
-    .brand-tag {
-      font-size: 0.65rem;
+    .brand-pill {
+      font-size: 0.62rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--teal-light);
-      background: rgba(20, 184, 166, 0.15);
+      color: var(--accent-lavender);
+      background: rgba(193, 194, 250, 0.15);
       padding: 2px 8px;
-      border-radius: 20px;
-      border: 1px solid var(--border-accent);
-      margin-left: 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(193, 194, 250, 0.3);
     }
 
-    .nav-menu {
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 13px;
       list-style: none;
+      flex-shrink: 0;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
     }
     .nav-link {
       color: var(--text-muted);
       text-decoration: none;
-      font-weight: 600;
-      font-size: 0.92rem;
-      transition: color 0.2s ease;
-      white-space: nowrap;
-    }
-    .nav-link:hover { color: var(--teal-light); }
-
-    .nav-actions {
-      display: flex;
+      font-size: 0.84rem;
+      line-height: 1;
+      display: inline-flex;
       align-items: center;
-      gap: 14px;
-    }
-
-    /* Language Switcher */
-    .lang-switcher-wrapper {
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color 0.2s ease;
       position: relative;
     }
-    .btn-lang-toggle {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      padding: 8px 14px;
-      border-radius: 10px;
-      font-size: 0.88rem;
-      font-weight: 700;
+    .nav-link:hover, .nav-link.active {
+      color: #ffffff;
+    }
+
+    .nav-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Language Switcher Dropdown */
+    .lang-wrapper {
+      position: relative;
+    }
+    .btn-lang-pill {
+      background: rgba(245, 242, 254, 0.08);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-light);
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       transition: all 0.2s;
     }
-    .btn-lang-toggle:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: var(--border-accent);
+    .btn-lang-pill:hover {
+      background: rgba(245, 242, 254, 0.16);
+      border-color: rgba(193, 194, 250, 0.4);
     }
-    .lang-dropdown {
+    .lang-menu-drop {
       position: absolute;
-      top: calc(100% + 8px);
+      top: calc(100% + 10px);
       right: 0;
-      background: #0c1220;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 14px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+      background: #101026;
+      border: 1px solid var(--border-hairline);
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
       padding: 8px;
-      min-width: 170px;
+      min-width: 185px;
       display: none;
       flex-direction: column;
       gap: 4px;
       z-index: 1000;
       backdrop-filter: blur(20px);
     }
-    .lang-dropdown.active {
+    .lang-menu-drop.active {
       display: flex;
     }
-    .lang-opt {
+    .lang-item-btn {
       background: transparent;
       border: none;
       color: var(--text-muted);
       padding: 8px 12px;
       border-radius: 8px;
-      font-size: 0.88rem;
-      font-weight: 600;
+      font-size: 0.86rem;
+      font-weight: 500;
       text-align: left;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 10px;
       transition: all 0.15s;
-      width: 100%;
     }
-    .lang-opt:hover, .lang-opt.active {
-      background: rgba(20, 184, 166, 0.15);
-      color: var(--teal-light);
+    .lang-item-btn:hover, .lang-item-btn.active {
+      background: rgba(193, 194, 250, 0.15);
+      color: #ffffff;
     }
 
-    .btn-nav-download {
-      background: linear-gradient(135deg, var(--teal-primary), var(--teal-glow));
-      color: #ffffff;
-      padding: 9px 18px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.88rem;
+    /* Buttons */
+    .btn-pill-lavender {
+      background: var(--accent-lavender);
+      color: var(--text-dark);
+      padding: 7px 15px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: 0.83rem;
       text-decoration: none;
-      box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
-      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px var(--accent-lavender-glow);
       white-space: nowrap;
     }
-    .btn-nav-download:hover {
+    .btn-pill-lavender:hover {
+      background: #d4d5ff;
       transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(20, 184, 166, 0.5);
+      box-shadow: 0 8px 24px var(--accent-lavender-glow);
     }
 
-    /* Mobile Hamburger */
-    .mobile-menu-btn {
-      display: none;
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 1.3rem;
-      cursor: pointer;
-    }
-
-    /* Mobile Drawer */
-    .mobile-drawer {
-      display: none;
-      position: fixed;
-      top: 76px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(7, 10, 19, 0.98);
-      backdrop-filter: blur(20px);
-      padding: 30px 24px;
-      flex-direction: column;
-      gap: 20px;
-      z-index: 998;
-      overflow-y: auto;
-    }
-    .mobile-drawer.open {
-      display: flex;
-    }
-    .mobile-nav-link {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-main);
-      text-decoration: none;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .mobile-lang-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    /* Hero Section */
-    .hero {
-      position: relative;
-      padding: 80px 0 60px 0;
-      text-align: center;
-      z-index: 1;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 18px;
-      background: rgba(20, 184, 166, 0.12);
-      border: 1px solid var(--border-accent);
-      border-radius: 30px;
-      color: var(--teal-light);
-      font-size: 0.88rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-      box-shadow: 0 0 25px rgba(20, 184, 166, 0.15);
-      max-width: 95%;
-    }
-    .hero-badge-pulse {
-      width: 8px;
-      height: 8px;
-      background: var(--teal-light);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--teal-light);
-      animation: pulse 2s infinite;
-      flex-shrink: 0;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-    .hero-title {
-      font-size: 3.6rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.15;
-      max-width: 900px;
-      margin: 0 auto 24px auto;
-      color: #ffffff;
-    }
-    .hero-title span {
-      background: linear-gradient(135deg, var(--teal-light), var(--cyan-accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      max-width: 740px;
-      margin: 0 auto 36px auto;
-      line-height: 1.6;
-    }
-    .hero-cta-group {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 50px;
-    }
     .btn-hero-primary {
-      background: linear-gradient(135deg, #14b8a6, #0d9488);
-      color: #fff;
-      font-size: 1.05rem;
+      background: var(--accent-lavender);
+      color: var(--text-dark);
+      padding: 14px 28px;
+      border-radius: var(--radius-pill);
       font-weight: 700;
-      padding: 15px 32px;
-      border-radius: 14px;
+      font-size: 1rem;
       text-decoration: none;
-      box-shadow: 0 10px 30px rgba(20, 184, 166, 0.4);
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      box-shadow: 0 8px 30px var(--accent-lavender-glow);
       transition: all 0.25s ease;
-      border: 1px solid rgba(255, 255, 255, 0.15);
     }
     .btn-hero-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(20, 184, 166, 0.6);
+      background: #d8d9ff;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(193, 194, 250, 0.45);
     }
     .btn-hero-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-main);
-      font-size: 1.05rem;
-      font-weight: 700;
-      padding: 15px 28px;
-      border-radius: 14px;
+      background: rgba(245, 242, 254, 0.08);
+      color: var(--text-light);
+      border: 1px solid var(--border-hairline);
+      padding: 14px 26px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: 1rem;
       text-decoration: none;
-      border: 1px solid var(--border-subtle);
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      backdrop-filter: blur(10px);
       transition: all 0.25s ease;
     }
     .btn-hero-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-3px);
+      background: rgba(245, 242, 254, 0.16);
+      border-color: rgba(193, 194, 250, 0.4);
+      transform: translateY(-2px);
     }
 
-    /* Trust Proof Strip */
-    .trust-strip {
-      display: flex;
+    /* Mobile Hamburger Button */
+    .mobile-toggle {
+      display: none;
+      background: rgba(245, 242, 254, 0.08);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-light);
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
       align-items: center;
       justify-content: center;
-      gap: 28px;
-      flex-wrap: wrap;
-      padding: 18px 16px;
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      background: rgba(13, 19, 34, 0.4);
-      margin-bottom: 60px;
+      font-size: 1.25rem;
+      line-height: 1;
+      padding: 0;
+      transition: all 0.2s;
+      flex-shrink: 0;
     }
-    .trust-item {
+    .mobile-toggle:hover {
+      background: rgba(245, 242, 254, 0.16);
+      border-color: rgba(193, 194, 250, 0.4);
+    }
+
+    /* --------------------------------------------------------------------------
+       MOBILE DRAWER WITH ALWAYS-VISIBLE STICKY CLOSE BUTTON
+       -------------------------------------------------------------------------- */
+    .drawer-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+    }
+    .drawer-backdrop.active {
+      display: block;
+    }
+    .mobile-drawer-menu {
+      display: none;
+      position: fixed;
+      top: 14px;
+      left: 12px;
+      right: 12px;
+      max-height: calc(100vh - 28px);
+      background: rgba(13, 13, 33, 0.98);
+      border: 1px solid var(--border-hairline);
+      border-radius: 24px;
+      z-index: 1001;
+      backdrop-filter: blur(32px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .mobile-drawer-menu.open {
+      display: flex;
+    }
+    .drawer-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-hairline);
+      background: rgba(19, 19, 44, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .drawer-header-left {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-muted);
     }
-    .trust-item strong { color: var(--text-main); }
-    .trust-icon { font-size: 1.15rem; }
+    .drawer-logo-img {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+    }
+    .drawer-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .drawer-close-btn {
+      background: rgba(244, 63, 94, 0.18);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      color: #fda4af;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .drawer-close-btn:hover {
+      background: rgba(244, 63, 94, 0.35);
+      color: #ffffff;
+    }
+    .drawer-body {
+      padding: 16px 18px 24px 18px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .mob-link {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.98rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+    .mob-link:hover {
+      background: rgba(193, 194, 250, 0.12);
+    }
 
-    /* App Screen Showcase Mockups */
-    .showcase-wrapper {
-      position: relative;
-      margin: 30px auto 80px auto;
+    /* Container */
+    .container {
       max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .swipe-hint {
-      display: none;
-      font-size: 0.85rem;
-      color: var(--teal-light);
-      margin-bottom: 12px;
+
+    /* Hero Section */
+    .hero-section {
+      padding: 30px 0 60px 0;
+      text-align: center;
+      position: relative;
+    }
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(193, 194, 250, 0.08);
+      border: 1px solid rgba(193, 194, 250, 0.25);
+      padding: 6px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
       font-weight: 600;
+      color: var(--accent-lavender);
+      margin-bottom: 24px;
+      box-shadow: 0 0 20px rgba(193, 194, 250, 0.1);
     }
-    .phone-deck {
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent-lavender);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-lavender);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .hero-display-h1 {
+      font-size: 3.75rem;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      max-width: 900px;
+      margin: 0 auto 24px auto;
+    }
+    .hero-display-h1 span.gradient-text {
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent-lavender) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subheading {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 36px auto;
+      line-height: 1.7;
+    }
+
+    /* Interactive AI Search Demo Bar */
+    .search-demo-container {
+      max-width: 560px;
+      margin: 0 auto 36px auto;
+    }
+    .search-demo-pill {
+      background: rgba(18, 18, 38, 0.85);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      padding: 7px 8px 7px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+    }
+    .search-demo-pill:focus-within {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 25px var(--accent-lavender-glow);
+    }
+    .search-demo-icon {
+      font-size: 1.25rem;
+    }
+    .search-demo-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+    .search-demo-input::placeholder {
+      color: var(--text-dim);
+    }
+    .search-demo-btn {
+      background: var(--accent-lavender);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .phone-frame {
-      width: 260px;
-      height: 540px;
-      background: #000000;
-      border-radius: 40px;
-      padding: 10px;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px rgba(20, 184, 166, 0.15);
-      border: 4px solid #1e293b;
-      position: relative;
-      overflow: hidden;
+      cursor: pointer;
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: all 0.2s;
       flex-shrink: 0;
+    }
+    .search-demo-btn:hover {
+      transform: scale(1.05);
+      background: #ffffff;
+    }
+
+    /* Suggestion Chips */
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .demo-chip {
+      background: rgba(245, 242, 254, 0.05);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.76rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .demo-chip:hover {
+      background: rgba(193, 194, 250, 0.15);
+      color: #ffffff;
+      border-color: rgba(193, 194, 250, 0.3);
+    }
+
+    /* Trust / Proof Bar */
+    .trust-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-hairline);
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* --------------------------------------------------------------------------
+       DEVICE MOCKUPS & CAROUSEL (Centered & Full Text Visible)
+       -------------------------------------------------------------------------- */
+    .showcase-container {
+      margin-top: 36px;
+      width: 100%;
+    }
+    .phone-deck-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 20px 0;
+    }
+    .mockup-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .device-mockup {
+      width: 255px;
+      height: 520px;
+      background: #000000;
+      border-radius: 42px;
+      padding: 8px;
+      border: 3px solid #232338;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px rgba(193, 194, 250, 0.12);
+      position: relative;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
       transition: all 0.3s ease;
     }
-    .phone-frame:hover {
-      transform: translateY(-6px);
-      border-color: var(--teal-primary);
+    .device-mockup:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-lavender);
+      box-shadow: 0 30px 70px -10px var(--accent-lavender-glow);
     }
-    .phone-notch {
+    .device-camera-hole {
       position: absolute;
-      top: 14px;
+      top: 12px;
       left: 50%;
       transform: translateX(-50%);
-      width: 75px;
-      height: 16px;
-      background: #000;
-      border-radius: 12px;
-      z-index: 10;
+      width: 8px;
+      height: 8px;
+      background: #000000;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 15;
     }
-    .phone-img {
+    .device-screen-wrap {
+      width: 100%;
+      height: 100%;
+      border-radius: 34px;
+      overflow: hidden;
+      background: #0b0b1d !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .device-screen-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 30px;
+      object-position: top center;
+      background: #0b0b1d !important;
       display: block;
     }
-    .phone-badge {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(7, 10, 19, 0.92);
-      border: 1px solid var(--border-accent);
+    .device-caption-pill {
+      background: rgba(11, 11, 29, 0.92);
+      border: 1px solid var(--border-hairline);
       backdrop-filter: blur(10px);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--teal-light);
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-lavender);
       white-space: nowrap;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
 
-    /* Section Styling */
-    section {
-      padding: 80px 0;
-      position: relative;
-      z-index: 1;
+    /* Carousel Interactive Dots & Controls (Mobile) */
+    .carousel-controller {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
     }
-    .section-header {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto 50px auto;
-    }
-    .section-eyebrow {
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--teal-light);
-      margin-bottom: 12px;
-      display: inline-block;
-    }
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin-bottom: 16px;
-      color: #ffffff;
-    }
-    .section-desc {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Feature Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 26px;
-    }
-    .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 36px 30px;
-      backdrop-filter: var(--glass-blur);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .feature-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--border-accent);
-      transform: translateY(-4px);
-    }
-    .feature-icon-box {
-      width: 54px;
-      height: 54px;
-      border-radius: 14px;
-      background: rgba(20, 184, 166, 0.12);
-      border: 1px solid var(--border-accent);
+    .carousel-arrow-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(245, 242, 254, 0.08);
+      border: 1px solid var(--border-hairline);
+      color: var(--accent-lavender);
+      font-size: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      line-height: 1;
+    }
+    .carousel-arrow-btn:hover, .carousel-arrow-btn:active {
+      background: rgba(193, 194, 250, 0.2);
+      border-color: var(--accent-lavender);
+    }
+    .carousel-dots-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(245, 242, 254, 0.25);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+    .carousel-dot.active {
+      width: 28px;
+      background: var(--accent-lavender);
+      box-shadow: 0 0 12px var(--accent-lavender-glow);
+    }
+
+    /* Section Headings */
+    .section-head-center {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 50px auto;
+    }
+    .section-label-pill {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent-lavender);
+      background: rgba(193, 194, 250, 0.1);
+      border: 1px solid rgba(193, 194, 250, 0.25);
+      padding: 4px 14px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 16px;
+    }
+    .section-h2-large {
+      font-size: 2.65rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-p-sub {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    /* 3 Steps Process Grid */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-card);
+      padding: 36px 28px;
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .step-card:hover {
+      border-color: rgba(193, 194, 250, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+    }
+    .step-number {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: rgba(193, 194, 250, 0.3);
+      line-height: 1;
       margin-bottom: 20px;
     }
-    .feature-title {
+    .step-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    .step-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+    .bento-cell-8 { grid-column: span 8; }
+    .bento-cell-4 { grid-column: span 4; }
+    .bento-cell-6 { grid-column: span 6; }
+    .bento-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .bento-card:hover {
+      border-color: rgba(193, 194, 250, 0.35);
+      transform: translateY(-4px);
+    }
+    .bento-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(193, 194, 250, 0.12);
+      border: 1px solid rgba(193, 194, 250, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .bento-title {
       font-size: 1.35rem;
       font-weight: 700;
       color: #ffffff;
       margin-bottom: 12px;
     }
-    .feature-text {
+    .bento-desc {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       line-height: 1.65;
-      margin-bottom: 20px;
-    }
-    .feature-tag-list {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .feature-pill {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--teal-light);
-      background: rgba(20, 184, 166, 0.1);
-      padding: 4px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(20, 184, 166, 0.2);
     }
 
-    /* Spotlights */
+    /* Alternating Spotlight Feature Rows */
     .spotlight-row {
+      padding: 70px 0;
+      border-top: 1px solid var(--border-hairline);
+    }
+    .spotlight-wrapper {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 60px;
     }
-    .spotlight-row.reverse {
+    .spotlight-wrapper.reverse {
       flex-direction: row-reverse;
     }
-    .spotlight-content {
+    .spotlight-text-col {
       flex: 1;
+      max-width: 520px;
     }
-    .spotlight-media {
+    .spotlight-img-col {
       flex: 1;
       display: flex;
       justify-content: center;
     }
-    .spotlight-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(244, 63, 94, 0.12);
-      color: #fda4af;
-      border: 1px solid rgba(244, 63, 94, 0.3);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.8rem;
+    .spotlight-badge {
+      display: inline-block;
+      font-size: 0.72rem;
       font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .spotlight-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      line-height: 1.25;
-      color: #ffffff;
-      margin-bottom: 18px;
-    }
-    .spotlight-desc {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 26px;
-    }
-    .spotlight-bullets {
-      list-style: none;
-      margin-bottom: 30px;
-    }
-    .spotlight-bullets li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.96rem;
-      color: #e2e8f0;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
       margin-bottom: 14px;
     }
-    .bullet-check {
-      color: var(--teal-light);
-      font-size: 1.1rem;
-      line-height: 1.4;
-      flex-shrink: 0;
+    .spotlight-h2 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .spotlight-p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .spotlight-checklist {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .spotlight-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #cbd5e1;
+      font-size: 0.94rem;
+      margin-bottom: 10px;
+    }
+    .check-bullet {
+      color: var(--accent-lavender);
+      font-weight: 700;
     }
 
-    /* Comparison Table */
-    .comparison-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 40px;
-      backdrop-filter: var(--glass-blur);
+    /* --------------------------------------------------------------------------
+       COMPARISON SECTION (Desktop Table vs Mobile Zero-Scroll Cards)
+       -------------------------------------------------------------------------- */
+    .desktop-table-wrap {
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      border-radius: 20px;
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      margin-bottom: 60px;
     }
     .comp-table {
       width: 100%;
-      min-width: 600px;
       border-collapse: collapse;
       text-align: left;
     }
-    .comp-table th, .comp-table td {
-      padding: 16px 18px;
-      border-bottom: 1px solid var(--border-subtle);
-    }
     .comp-table th {
-      font-size: 1rem;
+      padding: 20px 24px;
+      font-size: 0.95rem;
       font-weight: 700;
+      border-bottom: 1px solid var(--border-hairline);
       color: #ffffff;
+      background: rgba(255, 255, 255, 0.02);
     }
-    .comp-table th.highlight, .comp-table td.highlight {
-      background: rgba(20, 184, 166, 0.08);
-      color: var(--teal-light);
-      font-weight: 700;
+    .comp-table th.highlight-col {
+      background: rgba(193, 194, 250, 0.12);
+      color: var(--accent-lavender);
     }
     .comp-table td {
-      font-size: 0.92rem;
+      padding: 18px 24px;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border-hairline);
       color: var(--text-muted);
     }
-    .check-yes { color: #34d399; font-weight: 700; font-size: 1.1rem; }
-    .check-no { color: #f43f5e; font-weight: 700; font-size: 1.1rem; }
+    .comp-table td.highlight-col {
+      background: rgba(193, 194, 250, 0.05);
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .comp-table tr:last-child td {
+      border-bottom: none;
+    }
 
-    /* FAQ Section */
-    .faq-container {
-      max-width: 820px;
-      margin: 0 auto;
+    /* Mobile Zero-Scroll Comparison Cards */
+    .mobile-comp-cards-list {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 50px;
     }
-    .faq-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      margin-bottom: 14px;
-      overflow: hidden;
-      transition: all 0.2s ease;
+    .comp-mobile-card {
+      background: rgba(18, 18, 38, 0.7);
+      border: 1px solid var(--border-hairline);
+      border-radius: 18px;
+      padding: 16px;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .faq-item:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    .faq-question {
-      padding: 20px 24px;
+    .comp-card-title {
       font-size: 1.05rem;
       font-weight: 700;
       color: #ffffff;
-      cursor: pointer;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .comp-row-generic {
+      background: rgba(244, 63, 94, 0.08);
+      border: 1px solid rgba(244, 63, 94, 0.2);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      color: #fda4af;
+    }
+    .comp-row-stoma {
+      background: rgba(193, 194, 250, 0.12);
+      border: 1px solid rgba(193, 194, 250, 0.35);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Pre-Footer Light Contrast Panel */
+    .prefooter-wrap {
+      padding: 80px 0;
+    }
+    .prefooter-card {
+      background: var(--bg-contrast-light);
+      border-radius: 36px;
+      padding: 64px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
+      color: var(--text-dark);
+    }
+    .prefooter-left-col {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .prefooter-h2 {
+      font-size: 2.85rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+    .prefooter-p {
+      color: var(--text-dark-muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .btn-prefooter-dark {
+      background: var(--text-dark);
+      color: #ffffff;
+      padding: 16px 32px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 25px rgba(11, 11, 29, 0.3);
+    }
+    .btn-prefooter-dark:hover {
+      background: #1b1b3a;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(11, 11, 29, 0.45);
+    }
+
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 60px 0 80px 0;
+    }
+    .faq-accordion-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: 18px;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+    }
+    .faq-question-btn {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 20px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      user-select: none;
-      gap: 12px;
+      gap: 16px;
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
     }
-    .faq-answer {
+    .faq-icon-toggle {
+      font-size: 1.25rem;
+      color: var(--accent-lavender);
+      transition: transform 0.2s ease;
+    }
+    .faq-answer-panel {
       padding: 0 24px 20px 24px;
       color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.65;
+      font-size: 0.94rem;
+      line-height: 1.7;
     }
 
-    /* Download Banner */
-    .download-card {
-      background: linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(13, 148, 136, 0.05) 50%, rgba(6, 182, 212, 0.15) 100%);
-      border: 1px solid var(--border-accent);
-      border-radius: var(--radius-lg);
-      padding: 60px 30px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 30px 80px -20px rgba(20, 184, 166, 0.25);
+    /* Site Footer */
+    .site-footer {
+      border-top: 1px solid var(--border-hairline);
+      background: rgba(8, 8, 20, 0.85);
+      padding: 50px 0 30px 0;
+      margin-top: auto;
     }
-    .download-title {
-      font-size: 2.6rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 14px;
-      letter-spacing: -0.03em;
-    }
-    .download-desc {
-      font-size: 1.15rem;
-      color: #cbd5e1;
-      max-width: 680px;
-      margin: 0 auto 32px auto;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border-subtle);
-      background: #04060a;
-      padding: 50px 0 36px 0;
-      color: var(--text-dim);
-      font-size: 0.9rem;
-    }
-    .footer-content {
+    .footer-top-row {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
       flex-wrap: wrap;
       gap: 20px;
-      margin-bottom: 30px;
     }
-    .footer-links {
+    .footer-links-list {
       display: flex;
-      gap: 20px;
+      gap: 24px;
       list-style: none;
       flex-wrap: wrap;
     }
-    .footer-link {
+    .footer-links-list a {
       color: var(--text-muted);
       text-decoration: none;
-      transition: color 0.2s ease;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+      transition: color 0.2s;
     }
-    .footer-link:hover { color: var(--teal-light); }
-    .footer-disclaimer {
+    .footer-links-list a:hover {
+      color: var(--accent-lavender);
+    }
+    .footer-disclaimer-text {
+      color: var(--text-dim);
       font-size: 0.8rem;
       line-height: 1.6;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       padding-top: 20px;
-      color: #475569;
     }
 
-    /* Responsive Polish (Zero bugs on Mobile) */
-    @media (max-width: 1024px) {
-      .nav-menu { display: none; }
-      .mobile-menu-btn { display: block; }
-      .hero-title { font-size: 2.8rem; }
-      .spotlight-row, .spotlight-row.reverse {
+    /* Responsive Media Queries */
+    @media (max-width: 1180px) {
+      .nav-links { display: none !important; }
+      .mobile-toggle { display: inline-flex !important; }
+      .siteheader .btn-pill-lavender { display: none !important; }
+      .brand-pill { display: none !important; }
+      .hero-display-h1 { font-size: 3rem; }
+      .spotlight-wrapper, .spotlight-wrapper.reverse {
         flex-direction: column !important;
+        text-align: center;
         gap: 36px;
+      }
+      .spotlight-text-col { max-width: 100%; }
+      .spotlight-checklist li { justify-content: center; }
+      .bento-cell-8, .bento-cell-4, .bento-cell-6 { grid-column: span 12; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .prefooter-card {
+        flex-direction: column;
+        padding: 40px 24px;
         text-align: center;
       }
-      .spotlight-bullets li {
-        text-align: left;
-      }
-      .spotlight-media {
-        width: 100%;
-      }
-      .phone-frame {
-        width: min(280px, 80vw);
-        height: auto;
-        aspect-ratio: 9/19;
-      }
+
     }
 
     @media (max-width: 768px) {
-      .hero { padding: 50px 0 40px 0; }
-      .hero-title { font-size: 2.2rem; }
-      .hero-subtitle { font-size: 1.05rem; }
-      .section-title { font-size: 1.9rem; }
-      .spotlight-title { font-size: 1.75rem; }
-      .download-title { font-size: 1.9rem; }
-      
-      /* Horizontal phone deck on mobile with snap scroll */
-      .swipe-hint { display: block; }
-      .phone-deck {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        padding: 16px 8px 30px 8px;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-        gap: 16px;
+      .top-announcement {
+        font-size: 0.76rem;
+        padding: 10px 14px;
+        line-height: 1.45;
+        flex-wrap: wrap;
+        gap: 6px 12px;
       }
-      .phone-deck .phone-frame {
-        width: 230px;
-        height: 480px;
-        scroll-snap-align: center;
-        flex: 0 0 230px;
+      .top-announcement a {
+        margin-left: 4px;
+        white-space: nowrap;
       }
 
-      .btn-nav-download { display: none; }
+      /* SPACING FIX: Generous margin-top between announcement bar and navbar */
+      .navbar-wrapper {
+        padding: 0 12px;
+        margin-top: 18px; /* Clean, noticeable spacing */
+        margin-bottom: 22px;
+        top: 12px;
+      }
+      .siteheader {
+        padding: 7px 12px 7px 14px;
+        gap: 8px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .brand {
+        margin-right: 0;
+        gap: 8px;
+      }
+      .brand-logo-img {
+        width: 32px;
+        height: 32px;
+      }
+      .brand-text {
+        font-size: 1.15rem;
+      }
+      .brand-pill {
+        display: none !important;
+      }
+      .siteheader .btn-pill-lavender {
+        display: none !important;
+      }
+      .nav-right-actions {
+        gap: 8px;
+      }
+      .btn-lang-pill {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+      }
+      
+      .hero-display-h1 { font-size: 2.2rem; }
+      .hero-subheading { font-size: 1rem; }
+      .section-h2-large { font-size: 1.95rem; }
+      .spotlight-h2 { font-size: 1.75rem; }
+      .prefooter-h2 { font-size: 1.95rem; }
+
+      /* Mobile Mockup Carousel */
+      .showcase-container {
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+      }
+      .phone-deck-row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        gap: 0;
+        padding: 10px 0;
+        width: 100%;
+      }
+      .phone-deck-row::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+      .mockup-slide {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        scroll-snap-align: start !important;
+        scroll-snap-stop: always !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        padding: 0 16px;
+      }
+      .device-mockup {
+        width: 250px;
+        max-width: 82vw;
+        height: 500px;
+      }
+      .carousel-controller {
+        display: flex;
+      }
+
+      /* Zero-Scroll Comparison Cards on Mobile */
+      .desktop-table-wrap { display: none !important; }
+      .mobile-comp-cards-list { display: flex !important; }
+
       .btn-hero-primary, .btn-hero-secondary {
         width: 100%;
         justify-content: center;
       }
-      .trust-strip {
-        gap: 16px;
+      .trust-bar {
+        gap: 14px;
         justify-content: flex-start;
       }
-      .comparison-card { padding: 20px 12px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Glowing Mesh -->
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-  <div class="ambient-glow glow-3"></div>
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <span data-i18n="topBarText">✨ StomaCare 1.0 Release • 100% On-Device Medical Privacy • 10 Languages</span>
+    <a href="#download" data-i18n="navDownload">Download App →</a>
+  </div>
 
-  <!-- Header / Navigation -->
-  <header>
-    <div class="container nav-container">
+  <!-- Ambient Glows -->
+  <div class="ambient-glow glow-hero"></div>
+  <div class="ambient-glow glow-mid"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <!-- Floating Capsule Navbar -->
+  <div class="navbar-wrapper">
+    <header class="siteheader">
       <a href="/" class="brand">
-        <img src="/assets/icon.png" alt="StomaCare Icon" class="brand-logo-img">
+        <img src="/assets/icon.png" alt="StomaCare" class="brand-logo-img">
         <span class="brand-text">StomaCare</span>
-        <span class="brand-tag">v1.0</span>
+        <span class="brand-pill">v1.0</span>
       </a>
 
-      <!-- Desktop Nav -->
-      <ul class="nav-menu">
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links">
         <li><a href="#features" class="nav-link" data-i18n="navFeatures">Features</a></li>
         <li><a href="#medical-pass" class="nav-link" data-i18n="navPass">Emergency Pass</a></li>
         <li><a href="#sizing-ruler" class="nav-link" data-i18n="navRuler">Sizing Ruler</a></li>
         <li><a href="#nutrition" class="nav-link" data-i18n="navNutrition">Nutrition AI</a></li>
         <li><a href="#toilets" class="nav-link" data-i18n="navToilets">Restroom Radar</a></li>
-        <li><a href="/privacy" class="nav-link" data-i18n="navPrivacy">Privacy Policy</a></li>
+        <li><a href="/privacy" class="nav-link" data-i18n="navPrivacy">Privacy</a></li>
       </ul>
 
-      <!-- Action items: Lang Switcher & Download -->
-      <div class="nav-actions">
-        <!-- Language Switcher -->
-        <div class="lang-switcher-wrapper">
-          <button id="langToggleBtn" class="btn-lang-toggle" aria-label="Select Language">
-            <span id="currentLangFlag">🇬🇧</span>
+      <!-- Action items -->
+      <div class="nav-right-actions">
+        <!-- Language Switcher Pill with SVG Flag -->
+        <div class="lang-wrapper">
+          <button id="langToggleBtn" class="btn-lang-pill" aria-label="Select Language">
+            <span id="currentLangFlag"></span>
             <span id="currentLangLabel">EN</span>
             <span style="font-size:0.7rem; opacity:0.7;">▾</span>
           </button>
-          <div id="langDropdown" class="lang-dropdown">
-            <!-- Injected via JavaScript from WEB_I18N.languages -->
-          </div>
+          <div id="langDropdown" class="lang-menu-drop"></div>
         </div>
 
-        <a href="#download" class="btn-nav-download" data-i18n="navDownload">
-          <span>⚡ Download App</span>
+        <a href="#download" class="btn-pill-lavender" data-i18n="navDownload">
+          <span>Get StomaCare</span>
         </a>
 
-        <!-- Hamburger for Mobile -->
-        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open Navigation">☰</button>
+        <!-- Mobile Hamburger Toggle -->
+        <button id="mobileMenuBtn" class="mobile-toggle" aria-label="Open Navigation">☰</button>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 
-  <!-- Mobile Drawer Menu -->
-  <div id="mobileDrawer" class="mobile-drawer">
-    <a href="#features" class="mobile-nav-link" data-i18n="navFeatures" onclick="closeMobileMenu()">Features</a>
-    <a href="#medical-pass" class="mobile-nav-link" data-i18n="navPass" onclick="closeMobileMenu()">Emergency Pass</a>
-    <a href="#sizing-ruler" class="mobile-nav-link" data-i18n="navRuler" onclick="closeMobileMenu()">Sizing Ruler</a>
-    <a href="#nutrition" class="mobile-nav-link" data-i18n="navNutrition" onclick="closeMobileMenu()">Nutrition AI</a>
-    <a href="#toilets" class="mobile-nav-link" data-i18n="navToilets" onclick="closeMobileMenu()">Restroom Radar</a>
-    <a href="/privacy" class="mobile-nav-link" data-i18n="navPrivacy" onclick="closeMobileMenu()">Privacy Policy</a>
-    
-    <div style="margin-top: 14px;">
-      <span style="font-size:0.85rem; font-weight:700; color:var(--teal-light); text-transform:uppercase;">Select Language:</span>
-      <div id="mobileLangGrid" class="mobile-lang-grid">
-        <!-- Injected via JS -->
+  <!-- Dark Backdrop Overlay for Mobile Drawer -->
+  <div id="drawerBackdrop" class="drawer-backdrop" onclick="closeMobileMenu()"></div>
+
+  <!-- Mobile Drawer Menu with ALWAYS-VISIBLE Sticky Header Bar -->
+  <div id="mobileDrawer" class="mobile-drawer-menu">
+    <div class="drawer-header-bar">
+      <div class="drawer-header-left">
+        <img src="/assets/icon.png" alt="StomaCare" class="drawer-logo-img">
+        <span class="drawer-title">Navigation</span>
       </div>
+      <button class="drawer-close-btn" onclick="closeMobileMenu()" aria-label="Close navigation">
+        <span>✕</span> <span>Close</span>
+      </button>
     </div>
-
-    <a href="StomaCare.apk" class="btn-hero-primary" download style="margin-top:20px; justify-content:center;" data-i18n="btnDownloadApk">
-      📥 Download APK for Android
-    </a>
+    <div class="drawer-body">
+      <a href="#features" class="mob-link" data-i18n="navFeatures" onclick="closeMobileMenu()">Features</a>
+      <a href="#medical-pass" class="mob-link" data-i18n="navPass" onclick="closeMobileMenu()">Emergency Pass</a>
+      <a href="#sizing-ruler" class="mob-link" data-i18n="navRuler" onclick="closeMobileMenu()">Sizing Ruler</a>
+      <a href="#nutrition" class="mob-link" data-i18n="navNutrition" onclick="closeMobileMenu()">Nutrition AI</a>
+      <a href="#toilets" class="mob-link" data-i18n="navToilets" onclick="closeMobileMenu()">Restroom Radar</a>
+      <a href="/privacy" class="mob-link" data-i18n="navPrivacy" onclick="closeMobileMenu()">Privacy Policy</a>
+      <div style="margin-top: 14px;">
+        <span style="font-size:0.82rem; font-weight:700; color:var(--accent-lavender); text-transform:uppercase; letter-spacing:0.05em;">Languages:</span>
+        <div id="mobileLangGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;"></div>
+      </div>
+      <a href="StomaCare.apk" class="btn-pill-lavender" download style="margin-top:16px; justify-content:center; display:flex;" data-i18n="btnDownloadApk">
+        📥 Download APK for Android
+      </a>
+    </div>
   </div>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero-section">
     <div class="container">
-      <div class="hero-badge">
-        <div class="hero-badge-pulse"></div>
+      <div class="hero-badge-pill">
+        <span class="badge-dot"></span>
         <span data-i18n="heroBadge">The All-In-One Daily Ostomy Companion • 100% Private</span>
       </div>
 
-      <h1 class="hero-title">
-        <span data-i18n="heroTitle1">Living Confidently</span> <span data-i18n="heroTitle2">With An Ostomy</span>
+      <h1 class="hero-display-h1">
+        <span class="gradient-text" data-i18n="heroTitle">Living Confidently With An Ostomy</span>
       </h1>
 
-      <p class="hero-subtitle" data-i18n="heroSub">
+      <p class="hero-subheading" data-i18n="heroSubtitle">
         Eliminate pouch leaks, diet guesswork, and travel restroom anxiety. StomaCare gives colostomy, ileostomy, and urostomy patients the clinical precision tools needed to thrive every single day.
       </p>
 
-      <div class="hero-cta-group">
-        <a href="StomaCare.apk" class="btn-hero-primary" download data-i18n="btnDownloadApk">
-          <span>📥 Download APK for Android</span>
+      <!-- Interactive Food Search Demo -->
+      <div class="search-demo-container">
+        <div class="search-demo-pill">
+          <span class="search-demo-icon">🥑</span>
+          <input type="text" id="demoFoodInput" class="search-demo-input" placeholder="Ask: Can I eat sweetcorn 3 weeks post-surgery?" aria-label="Ostomy food blockage search">
+          <button class="search-demo-btn" onclick="demoAskAI()" aria-label="Analyze food with AI">→</button>
+        </div>
+        <div class="chips-row">
+          <button class="demo-chip" onclick="setDemoQuery('Can I eat mushrooms?')">🍄 Can I eat mushrooms?</button>
+          <button class="demo-chip" onclick="setDemoQuery('Popcorn blockage risk')">🍿 Popcorn blockage risk</button>
+          <button class="demo-chip" onclick="setDemoQuery('Prevent wafer leaks')">🩹 Prevent wafer leaks</button>
+          <button class="demo-chip" onclick="setDemoQuery('Stage 2 diet tips')">🥗 Stage 2 diet tips</button>
+        </div>
+      </div>
+
+      <!-- Hero Action Buttons -->
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;">
+        <a href="#download" class="btn-hero-primary" data-i18n="btnDownloadFree">
+          <span>Download StomaCare</span>
+          <span>→</span>
         </a>
-        <a href="#features" class="btn-hero-secondary" data-i18n="btnExplore">
-          <span>Explore All Features ↓</span>
+        <a href="#features" class="btn-hero-secondary" data-i18n="btnExploreFeatures">
+          <span>Explore Clinical Tools</span>
         </a>
       </div>
 
-      <!-- Trust Strip -->
-      <div class="trust-strip">
+      <!-- Trust Bar -->
+      <div class="trust-bar">
         <div class="trust-item">
-          <span class="trust-icon">🔒</span>
-          <span><strong data-i18n="trust1Strong">100% On-Device:</strong> <span data-i18n="trust1Text">Zero health tracking or cloud selling</span></span>
+          <span>🔒</span>
+          <span data-i18n="trustNoAccount">100% On-Device • No Account Needed</span>
         </div>
         <div class="trust-item">
-          <span class="trust-icon">🌐</span>
-          <span><strong data-i18n="trust2Strong">10 Languages:</strong> <span data-i18n="trust2Text">Instant 1-tap translation</span></span>
+          <span>🩺</span>
+          <span data-i18n="trustClinical">Clinical Shrinkage Measurement</span>
         </div>
         <div class="trust-item">
-          <span class="trust-icon">⚡</span>
-          <span><strong data-i18n="trust3Strong">Offline-First:</strong> <span data-i18n="trust3Text">Works without reception or internet</span></span>
+          <span>🌐</span>
+          <span data-i18n="trustOffline">Works 100% Offline</span>
         </div>
         <div class="trust-item">
-          <span class="trust-icon">🏥</span>
-          <span><strong data-i18n="trust4Strong">Clinical Protocols:</strong> <span data-i18n="trust4Text">Ally's Law & WOCN standard aligned</span></span>
+          <span>🌍</span>
+          <span data-i18n="trustLanguages">10 Languages Included</span>
         </div>
       </div>
 
-      <!-- App Mockup Showcase -->
-      <div class="showcase-wrapper">
-        <div class="swipe-hint">👉 Swipe horizontally to view all app screens 👈</div>
-        <div class="phone-deck">
-          <!-- Phone 1: Care Dashboard -->
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <img src="/assets/screen-care.png" alt="StomaCare Daily Care Dashboard" class="phone-img">
-            <div class="phone-badge" data-i18n="badgeDeckCare">📏 Sizer & Recovery Timeline</div>
+      <!-- App Mockup Showcase Deck with Interactive Dots & Centered Screens -->
+      <div class="showcase-container">
+        <div class="phone-deck-row" id="mockupCarousel">
+          <!-- Slide 0: Care -->
+          <div class="mockup-slide" id="mockup-slide-0">
+            <div class="device-mockup" id="mockup-0">
+              <div class="device-camera-hole"></div>
+              <div class="device-screen-wrap">
+                <img src="/assets/screen-care.png" alt="Care Dashboard" class="device-screen-img">
+              </div>
+            </div>
+            <div class="device-caption-pill" data-i18n="badgeDeckCare">📏 Sizer & Wear Scheduler</div>
           </div>
 
-          <!-- Phone 2: Emergency Pass (Spotlight) -->
-          <div class="phone-frame" style="border-color: var(--coral-red); box-shadow: 0 30px 70px -10px rgba(244, 63, 94, 0.4);">
-            <div class="phone-notch"></div>
-            <img src="/assets/screen-pass.png" alt="Emergency Medical Restroom Pass" class="phone-img">
-            <div class="phone-badge" style="color: #fda4af; border-color: rgba(244, 63, 94, 0.4);" data-i18n="badgeDeckPass">🚨 Emergency Medical Pass</div>
+          <!-- Slide 1: Emergency Pass (Spotlight) -->
+          <div class="mockup-slide" id="mockup-slide-1">
+            <div class="device-mockup" id="mockup-1" style="border-color: #f43f5e; box-shadow: 0 30px 70px -10px rgba(244, 63, 94, 0.4);">
+              <div class="device-camera-hole"></div>
+              <div class="device-screen-wrap">
+                <img src="/assets/screen-pass.png" alt="Emergency Pass" class="device-screen-img">
+              </div>
+            </div>
+            <div class="device-caption-pill" style="color:#fda4af; border-color:rgba(244,63,94,0.4);" data-i18n="badgeDeckPass">🚨 Medical Restroom Pass</div>
           </div>
 
-          <!-- Phone 3: Smart Food Safety AI -->
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <img src="/assets/screen-food.png" alt="Smart Nutrition AI & Stage Diet" class="phone-img">
-            <div class="phone-badge" data-i18n="badgeDeckFood">🥑 Blockage Prevention AI</div>
+          <!-- Slide 2: Food AI -->
+          <div class="mockup-slide" id="mockup-slide-2">
+            <div class="device-mockup" id="mockup-2">
+              <div class="device-camera-hole"></div>
+              <div class="device-screen-wrap">
+                <img src="/assets/screen-food.png" alt="Nutrition AI" class="device-screen-img">
+              </div>
+            </div>
+            <div class="device-caption-pill" data-i18n="badgeDeckFood">🥑 Blockage Hazard AI</div>
           </div>
 
-          <!-- Phone 4: Restroom Radar -->
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <img src="/assets/screen-toilets.png" alt="Emergency Restroom Radar" class="phone-img">
-            <div class="phone-badge" data-i18n="badgeDeckToilets">🚻 GPS Restroom Radar</div>
+          <!-- Slide 3: Restroom Radar -->
+          <div class="mockup-slide" id="mockup-slide-3">
+            <div class="device-mockup" id="mockup-3">
+              <div class="device-camera-hole"></div>
+              <div class="device-screen-wrap">
+                <img src="/assets/screen-toilets.png" alt="Restroom Radar" class="device-screen-img">
+              </div>
+            </div>
+            <div class="device-caption-pill" data-i18n="badgeDeckToilets">🚻 Restroom Radar</div>
           </div>
+
+          <!-- Slide 4: Clinical Guides -->
+          <div class="mockup-slide" id="mockup-slide-4">
+            <div class="device-mockup" id="mockup-4" style="border-color: #38bdf8;">
+              <div class="device-camera-hole"></div>
+              <div class="device-screen-wrap">
+                <img src="/assets/screen-guides.png" alt="Clinical Emergency Guides" class="device-screen-img">
+              </div>
+            </div>
+            <div class="device-caption-pill" data-i18n="badgeDeckGuides">📖 Emergency Clinical Guides</div>
+          </div>
+
+          <!-- Slide 5: Healing Diary -->
+          <div class="mockup-slide" id="mockup-slide-5">
+            <div class="device-mockup" id="mockup-5" style="border-color: #a855f7;">
+              <div class="device-camera-hole"></div>
+              <div class="device-screen-wrap">
+                <img src="/assets/screen-diary.png" alt="Stoma Healing Diary" class="device-screen-img">
+              </div>
+            </div>
+            <div class="device-caption-pill" data-i18n="badgeDeckDiary">📝 Stoma Healing Diary</div>
+          </div>
+        </div>
+
+        <!-- Interactive Carousel Dots & Controls (Mobile) -->
+        <div class="carousel-controller" id="carouselController">
+          <button class="carousel-arrow-btn" onclick="prevMockup()" aria-label="Previous screenshot">‹</button>
+          <div class="carousel-dots-row" id="carouselDots">
+            <button class="carousel-dot active" onclick="goToMockup(0)" aria-label="Screen 1"></button>
+            <button class="carousel-dot" onclick="goToMockup(1)" aria-label="Screen 2"></button>
+            <button class="carousel-dot" onclick="goToMockup(2)" aria-label="Screen 3"></button>
+            <button class="carousel-dot" onclick="goToMockup(3)" aria-label="Screen 4"></button>
+            <button class="carousel-dot" onclick="goToMockup(4)" aria-label="Screen 5"></button>
+            <button class="carousel-dot" onclick="goToMockup(5)" aria-label="Screen 6"></button>
+          </div>
+          <button class="carousel-arrow-btn" onclick="nextMockup()" aria-label="Next screenshot">›</button>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Core Features Grid -->
-  <section id="features">
+  <!-- 3-Step Section -->
+  <section style="background: rgba(18, 18, 38, 0.4); border-top: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline);">
     <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow" data-i18n="featEyebrow">Engineered For Ostomates</span>
-        <h2 class="section-title" data-i18n="featTitle">Built to Solve Every Post-Op Challenge</h2>
-        <p class="section-desc" data-i18n="featDesc">
-          Generic health apps don't understand wafer sizing, output viscosity, or peristomal skin burns. StomaCare was created specifically for ostomates by ostomy care specialists.
-        </p>
+      <div class="section-head-center">
+        <span class="section-label-pill">Clinical Workflow</span>
+        <h2 class="section-h2-large" data-i18n="stepsTitle">From Hospital Discharge to Active Living</h2>
+        <p class="section-p-sub" data-i18n="stepsSubtitle">Three synchronized steps to protect peristomal skin, optimize digestive transit, and eliminate anxiety.</p>
       </div>
 
-      <div class="features-grid">
-        <!-- Feature 1 -->
-        <div class="feature-card">
-          <div class="feature-icon-box" style="background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.3);">🚨</div>
-          <h3 class="feature-title" data-i18n="f1Title">Emergency Restroom Pass</h3>
-          <p class="feature-text" data-i18n="f1Desc">
-            Never face embarrassing denials at customer-only restrooms. Displays a legally formulated medical card adhering to Ally's Law with verified physician seals and 1-tap translation into 10 world languages.
-          </p>
-          <div class="feature-tag-list">
-            <span class="feature-pill" data-i18n="f1Pill1">Zero-Scroll Display</span>
-            <span class="feature-pill" data-i18n="f1Pill2">Ally's Law Recognized</span>
-            <span class="feature-pill" data-i18n="f1Pill3">10 Languages</span>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3 class="step-title" data-i18n="step1Title">Measure & Cut Wafer</h3>
+          <p class="step-desc" data-i18n="step1Desc">Use the on-screen precision ring gauge to match your stoma's exact swelling curve during the critical 6-8 week post-operative shrinkage window.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3 class="step-title" data-i18n="step2Title">Analyze Every Meal</h3>
+          <p class="step-desc" data-i18n="step2Desc">Query any ingredient or restaurant dish. The dietitian AI flags high-insoluble fiber blockage risks, transit speeds, and chew-safety instructions.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3 class="step-title" data-i18n="step3Title">Step Outside Freely</h3>
+          <p class="step-desc" data-i18n="step3Desc">Travel without fear. Locate accessible toilets instantly and flash legal medical emergency passes in 10 languages when immediate restroom access is required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Grid Features Overview -->
+  <section id="features" style="padding: 80px 0;">
+    <div class="container">
+      <div class="section-head-center">
+        <span class="section-label-pill" data-i18n="bentoLabel">Engineered For Ostomates</span>
+        <h2 class="section-h2-large" data-i18n="bentoHeading">Clinical Precision Across Every Routine</h2>
+        <p class="section-p-sub" data-i18n="bentoSub">Every feature in StomaCare is built to prevent the #1 complications: peristomal skin breakdown and bowel obstruction.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- 8-col card -->
+        <div class="bento-card bento-cell-8">
+          <div>
+            <div class="bento-icon-box">📏</div>
+            <h3 class="bento-title" data-i18n="bento1Title">Wafer Sizing Digital Ruler & Shrinkage Tracker</h3>
+            <p class="bento-desc" data-i18n="bento1Desc">Stomas shrink up to 50% during the first 6 weeks post-surgery. An ill-fitting wafer causes severe skin irritation and painful acid burns. Our calibrated ring gauge helps you cut the exact aperture every single change.</p>
+          </div>
+          <div style="margin-top: 24px; display:flex; gap:12px; flex-wrap:wrap;">
+            <span class="brand-pill">Millimeter Precision</span>
+            <span class="brand-pill">Photo Progress Log</span>
+            <span class="brand-pill">Leak Alert History</span>
           </div>
         </div>
 
-        <!-- Feature 2 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">📏</div>
-          <h3 class="feature-title" data-i18n="f2Title">Stoma Wafer Cut Ruler</h3>
-          <p class="feature-text" data-i18n="f2Desc">
-            Concentric live circles display your exact stoma base alongside an amber +1.5mm to 2mm wafer cut clearance ring. Track post-surgical shrinkage across weeks 1 to 8 to prevent painful acid burns.
-          </p>
-          <div class="feature-tag-list">
-            <span class="feature-pill" data-i18n="f2Pill1">Concentric Guide</span>
-            <span class="feature-pill" data-i18n="f2Pill2">Shrinkage History</span>
-            <span class="feature-pill" data-i18n="f2Pill3">Leak Prevention</span>
+        <!-- 4-col card -->
+        <div class="bento-card bento-cell-4">
+          <div>
+            <div class="bento-icon-box">🚨</div>
+            <h3 class="bento-title" data-i18n="bento2Title">Emergency Restroom Pass</h3>
+            <p class="bento-desc" data-i18n="bento2Desc">Restroom Access Act (Ally's Law) medical emergency card translated into 10 languages. Legally assert immediate restroom access with a single tap.</p>
+          </div>
+          <div style="margin-top: 20px;">
+            <span class="brand-pill" style="color:#f43f5e; border-color:rgba(244,63,94,0.4);">10 Languages</span>
           </div>
         </div>
 
-        <!-- Feature 3 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">🥑</div>
-          <h3 class="feature-title" data-i18n="f3Title">Intelligent Nutrition Assistant</h3>
-          <p class="feature-text" data-i18n="f3Desc">
-            Search hundreds of foods or consult the intelligent clinical assistant. Get instant dietary clarity: chew requirements, transit time impacts, odor neutralizers, and critical bowel obstruction warnings.
-          </p>
-          <div class="feature-tag-list">
-            <span class="feature-pill" data-i18n="f3Pill1">Blockage Hazards</span>
-            <span class="feature-pill" data-i18n="f3Pill2">3-Stage Diet</span>
-            <span class="feature-pill" data-i18n="f3Pill3">Instant Answers</span>
+        <!-- 4-col card -->
+        <div class="bento-card bento-cell-4">
+          <div>
+            <div class="bento-icon-box">🥑</div>
+            <h3 class="bento-title" data-i18n="bento3Title">Blockage Risk AI</h3>
+            <p class="bento-desc" data-i18n="bento3Desc">Instant AI analysis of indigestible fibers, gas-producing items, and chew requirements based on your surgery type and recovery week.</p>
           </div>
         </div>
 
-        <!-- Feature 4 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">🚻</div>
-          <h3 class="feature-title" data-i18n="f4Title">Emergency Restroom Radar</h3>
-          <p class="feature-text" data-i18n="f4Desc">
-            Instant GPS radar pinpoints accessible public, municipal, and commercial restrooms nearby with live distance calculations, opening hours, wheelchair accessibility, and 1-tap navigation.
-          </p>
-          <div class="feature-tag-list">
-            <span class="feature-pill" data-i18n="f4Pill1">Real-Time Distance</span>
-            <span class="feature-pill" data-i18n="f4Pill2">Wheelchair Tags</span>
-            <span class="feature-pill" data-i18n="f4Pill3">Worldwide Maps</span>
+        <!-- 4-col card -->
+        <div class="bento-card bento-cell-4">
+          <div>
+            <div class="bento-icon-box">⏱️</div>
+            <h3 class="bento-title" data-i18n="bento4Title">60s Hydrocolloid Timer</h3>
+            <p class="bento-desc" data-i18n="bento4Desc">Hydrocolloid adhesives require 60 seconds of gentle hand warmth to activate the sealing polymer. Our guided chime guarantees a leak-proof seal.</p>
           </div>
         </div>
 
-        <!-- Feature 5 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">🎒</div>
-          <h3 class="feature-title" data-i18n="f5Title">Departure Go-Bag Checklist</h3>
-          <p class="feature-text" data-i18n="f5Desc">
-            Leave home with absolute peace of mind. Dynamic emergency pack checklist with visual Readiness Score, supply counts, and automatic alerts when your supplies run low.
-          </p>
-          <div class="feature-tag-list">
-            <span class="feature-pill" data-i18n="f5Pill1">Travel Anxiety Relief</span>
-            <span class="feature-pill" data-i18n="f5Pill2">Supply Sync</span>
-            <span class="feature-pill" data-i18n="f5Pill3">Readiness Meter</span>
-          </div>
-        </div>
-
-        <!-- Feature 6 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">⏰</div>
-          <h3 class="feature-title" data-i18n="f6Title">Clinical Care Timers</h3>
-          <p class="feature-text" data-i18n="f6Desc">
-            Built-in 60-second hydrocolloid warm-up timer activates wafer adhesive bonds for maximum seal strength. Fullness reminders alert you when the pouch reaches 1/3 capacity to prevent seal rupture.
-          </p>
-          <div class="feature-tag-list">
-            <span class="feature-pill" data-i18n="f6Pill1">60s Adhesive Warm-Up</span>
-            <span class="feature-pill" data-i18n="f6Pill2">1/3 Fullness Alerts</span>
-            <span class="feature-pill" data-i18n="f6Pill3">Hydration Log</span>
+        <!-- 4-col card -->
+        <div class="bento-card bento-cell-4">
+          <div>
+            <div class="bento-icon-box">🛡️</div>
+            <h3 class="bento-title" data-i18n="bento5Title">Zero Telemetry & 100% Privacy</h3>
+            <p class="bento-desc" data-i18n="bento5Desc">All photos, surgical dates, pouch logs, and notes stay encrypted on your device. Zero servers, zero trackers, zero data sharing.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Spotlight 1: Medical Pass -->
-  <section id="medical-pass" style="background: rgba(13, 19, 34, 0.4); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <!-- Spotlight 1: Medical Restroom Pass -->
+  <section id="medical-pass" class="spotlight-row">
     <div class="container">
-      <div class="spotlight-row">
-        <div class="spotlight-content">
-          <div class="spotlight-pill" data-i18n="spot1Pill">🚨 EMERGENCY MEDICAL RESTROOM PASS</div>
-          <h2 class="spotlight-title" data-i18n="spot1Title">Instant Dignity & Legal Access in Emergencies</h2>
-          <p class="spotlight-desc" data-i18n="spot1Desc">
-            A sudden pouch ballooning or impending seal leak requires immediate restroom access — not debate with retail employees or cashiers. StomaCare provides an official digital medical pass designed to be handed directly to staff without awkward explanations.
-          </p>
-          <ul class="spotlight-bullets">
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot1B1T">Zero-Scroll Viewport:</strong> <span data-i18n="spot1B1D">Formatted cleanly so all medical necessity text, patient name, and doctor contacts fit on screen instantly.</span></span>
-            </li>
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot1B2T">Instant 10-Language Flag Switch:</strong> <span data-i18n="spot1B2D">Traveling abroad? Tap country flags to translate the entire legal statement in 0.1 seconds.</span></span>
-            </li>
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot1B3T">Recognized Medical Wording:</strong> <span data-i18n="spot1B3D">Formulated according to Restroom Access Act regulations (Ally's Law) and clinical stoma care necessity.</span></span>
-            </li>
+      <div class="spotlight-wrapper">
+        <div class="spotlight-text-col">
+          <span class="spotlight-badge" style="background:rgba(244,63,94,0.12); color:#fda4af; border:1px solid rgba(244,63,94,0.3);" data-i18n="spot1Badge">Legal Restroom Access</span>
+          <h2 class="spotlight-h2" data-i18n="spot1Heading">Instant Medical Restroom Pass in 10 Languages</h2>
+          <p class="spotlight-p" data-i18n="spot1Desc">Never face awkward confrontations at locked restaurant or shop doors. Display an authoritative clinical emergency certificate citing Restroom Access legislation in English, Spanish, German, French, Polish, Ukrainian, Italian, Japanese, Chinese, and Hindi.</p>
+          <ul class="spotlight-checklist">
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot1Check1">One-tap full-screen emergency mode with high-contrast text</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot1Check2">Includes patient name, condition, emergency contact, and physician details</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot1Check3">No internet connection required — works on planes and underground</span></li>
           </ul>
-          <a href="#download" class="btn-hero-primary" style="padding: 12px 28px; font-size: 0.95rem;" data-i18n="spot1Btn">Get The Emergency Pass</a>
+          <a href="#download" class="btn-pill-lavender" data-i18n="spot1Btn">Get The Emergency Pass</a>
         </div>
-        <div class="spotlight-media">
-          <div class="phone-frame" style="width: 290px; height: 590px; border-color: rgba(244, 63, 94, 0.4);">
-            <div class="phone-notch"></div>
-            <img src="/assets/screen-pass.png" alt="Medical Pass Screen" class="phone-img">
+        <div class="spotlight-img-col">
+          <div class="device-mockup" style="border-color: #f43f5e; width: 280px; max-width: 85vw; height: 560px;">
+            <div class="device-camera-hole"></div>
+            <div class="device-screen-wrap">
+              <img src="/assets/screen-pass.png" alt="Medical Pass Screen" class="device-screen-img">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Spotlight 2: Stoma Wafer Sizing Ruler -->
-  <section id="sizing-ruler">
+  <!-- Spotlight 2: Wafer Sizing & Shrinkage Ruler -->
+  <section id="sizing-ruler" class="spotlight-row" style="background: rgba(14, 14, 32, 0.4);">
     <div class="container">
-      <div class="spotlight-row reverse">
-        <div class="spotlight-content">
-          <span class="section-eyebrow" style="color: var(--teal-light);" data-i18n="spot2Pill">📏 CLINICAL ACCURACY</span>
-          <h2 class="spotlight-title" data-i18n="spot2Title">Concentric Wafer Cut Precision. Zero Skin Breakdown.</h2>
-          <p class="spotlight-desc" data-i18n="spot2Desc">
-            In the first 6–8 weeks post-surgery, your stoma reduces significantly as surgical edema subsides. An oversized cut exposes raw peristomal skin to caustic digestive enzymes; an undersized cut strangles mucosal blood flow.
-          </p>
-          <ul class="spotlight-bullets">
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot2B1T">Live Concentric Circles:</strong> <span data-i18n="spot2B1D">Solid teal inner ring shows stoma diameter; dashed amber ring displays the recommended +1.5mm to +2mm wafer opening.</span></span>
-            </li>
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot2B2T">Continuous Slider & Stepper:</strong> <span data-i18n="spot2B2D">Micro-adjust from 15mm up to 70mm with 1mm increments or one-tap standard presets (25mm, 32mm, 38mm).</span></span>
-            </li>
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot2B3T">Post-Op Shrinkage Log:</strong> <span data-i18n="spot2B3D">Save measurements directly into your device to observe healing trends and share progress with your stoma nurse.</span></span>
-            </li>
+      <div class="spotlight-wrapper reverse">
+        <div class="spotlight-text-col">
+          <span class="spotlight-badge" style="background:rgba(193,194,250,0.12); color:var(--accent-lavender); border:1px solid rgba(193,194,250,0.3);" data-i18n="spot2Badge">Leak Prevention</span>
+          <h2 class="spotlight-h2" data-i18n="spot2Heading">Calibrated Wafer Sizing & Shrinkage Curve</h2>
+          <p class="spotlight-p" data-i18n="spot2Desc">After stoma creation surgery, peristomal tissue gradually contracts over 6 to 8 weeks. Cutting wafers to an outdated template invites effluent leaks and severe skin erosion. StomaCare lets you measure millimeter circles right against your screen.</p>
+          <ul class="spotlight-checklist">
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot2Check1">Interactive 15mm – 65mm digital concentric circle gauge</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot2Check2">Automatic postoperative recovery week calculation and healing milestones</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot2Check3">Logs wafer size changes over time with photo tracking</span></li>
           </ul>
-          <a href="#download" class="btn-hero-primary" style="padding: 12px 28px; font-size: 0.95rem;" data-i18n="spot2Btn">Protect Your Skin Today</a>
+          <a href="#download" class="btn-pill-lavender" data-i18n="spot2Btn">Protect Your Skin Today</a>
         </div>
-        <div class="spotlight-media">
-          <div class="phone-frame" style="width: 290px; height: 590px; border-color: var(--teal-primary);">
-            <div class="phone-notch"></div>
-            <img src="/assets/screen-care.png" alt="Stoma Sizing Ruler Dashboard" class="phone-img">
+        <div class="spotlight-img-col">
+          <div class="device-mockup" style="border-color: var(--accent-lavender); width: 280px; max-width: 85vw; height: 560px;">
+            <div class="device-camera-hole"></div>
+            <div class="device-screen-wrap">
+              <img src="/assets/screen-care.png" alt="Stoma Sizing Ruler Dashboard" class="device-screen-img">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Spotlight 3: Nutrition AI & Blockage Prevention -->
-  <section id="nutrition" style="background: rgba(13, 19, 34, 0.4); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <!-- Spotlight 3: Nutrition AI -->
+  <section id="nutrition" class="spotlight-row">
     <div class="container">
-      <div class="spotlight-row">
-        <div class="spotlight-content">
-          <span class="section-eyebrow" style="color: var(--cyan-accent);" data-i18n="spot3Pill">🥑 CLINICAL NUTRITION INTELLIGENCE</span>
-          <h2 class="spotlight-title" data-i18n="spot3Title">Eat Safely Without Fear of Bowel Obstruction</h2>
-          <p class="spotlight-desc" data-i18n="spot3Desc">
-            Bowel blockages from indigestible food particles (mushrooms, corn, raw nuts, fruit skins) are the leading cause of emergency hospital readmissions for new ostomates. Our smart nutrition guide keeps you fully protected.
-          </p>
-          <ul class="spotlight-bullets">
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot3B1T">3-Stage Dietary Recovery:</strong> <span data-i18n="spot3B1D">Automated post-op phases guiding you from low-residue gentle foods up to full long-term nutrition.</span></span>
-            </li>
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot3B2T">Instant Food Safety Queries:</strong> <span data-i18n="spot3B2D">Ask questions in plain language and receive clear, clinical recommendations on prep methods, chew counts, and hydration pairing.</span></span>
-            </li>
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot3B3T">Odor & Gas Profiling:</strong> <span data-i18n="spot3B3D">Know in advance which foods cause pouch ballooning, stool thickening, or looseness before dinner.</span></span>
-            </li>
+      <div class="spotlight-wrapper">
+        <div class="spotlight-text-col">
+          <span class="spotlight-badge" style="background:rgba(111,112,233,0.12); color:#c1c2fa; border:1px solid rgba(111,112,233,0.3);" data-i18n="spot3Badge">Clinical Nutrition</span>
+          <h2 class="spotlight-h2" data-i18n="spot3Heading">Ostomy Blockage Hazard Food AI</h2>
+          <p class="spotlight-p" data-i18n="spot3Desc">Ileostomates and colostomates cannot safely digest certain fibrous foods (mushrooms, corn, nuts, raw celery) during early recovery. Ask questions in natural language and receive clinical verdicts: safe, caution, or avoid, with chewing recommendations.</p>
+          <ul class="spotlight-checklist">
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot3Check1">Instant AI risk classification for bowel obstruction hazards</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot3Check2">Stage-by-stage diet progressions (Stage 1 soft to Stage 3 normal)</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot3Check3">Includes hydration calculator and oral rehydration salt (ORS) guide</span></li>
           </ul>
-          <a href="#download" class="btn-hero-primary" style="padding: 12px 28px; font-size: 0.95rem;" data-i18n="spot3Btn">Explore Nutrition Guide</a>
+          <a href="#download" class="btn-pill-lavender" data-i18n="spot3Btn">Explore Nutrition Guide</a>
         </div>
-        <div class="spotlight-media">
-          <div class="phone-frame" style="width: 290px; height: 590px; border-color: var(--cyan-accent);">
-            <div class="phone-notch"></div>
-            <img src="/assets/screen-food.png" alt="Nutrition AI Screen" class="phone-img">
+        <div class="spotlight-img-col">
+          <div class="device-mockup" style="border-color: var(--accent-blue-lotus); width: 280px; max-width: 85vw; height: 560px;">
+            <div class="device-camera-hole"></div>
+            <div class="device-screen-wrap">
+              <img src="/assets/screen-food.png" alt="Nutrition AI Screen" class="device-screen-img">
+            </div>
           </div>
         </div>
       </div>
@@ -1185,205 +1726,294 @@
   </section>
 
   <!-- Spotlight 4: Restroom Radar -->
-  <section id="toilets">
+  <section id="toilets" class="spotlight-row" style="background: rgba(14, 14, 32, 0.4);">
     <div class="container">
-      <div class="spotlight-row reverse">
-        <div class="spotlight-content">
-          <span class="section-eyebrow" style="color: var(--teal-light);" data-i18n="spot4Pill">🚻 RESTROOM RADAR & GPS LOCATOR</span>
-          <h2 class="spotlight-title" data-i18n="spot4Title">Instant Restroom Radar. Never Get Stranded.</h2>
-          <p class="spotlight-desc" data-i18n="spot4Desc">
-            When a pouch is nearing maximum capacity or an adhesive seal begins to compromise, every single minute matters. StomaCare's Restroom Radar instantly scans your immediate surroundings to locate nearby accessible public, municipal, and commercial facilities with zero delay.
-          </p>
-          <ul class="spotlight-bullets">
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot4B1T">Real-Time Walking Distance:</strong> <span data-i18n="spot4B1D">Accurate live metric distances calculated directly from your foreground GPS coordinates.</span></span>
-            </li>
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot4B2T">Wheelchair & Accessibility Filtered:</strong> <span data-i18n="spot4B2D">Flags facilities equipped with accessible dimensions, clean running water, and sink counters suitable for sanitary pouch change procedures.</span></span>
-            </li>
-            <li>
-              <span class="bullet-check">✓</span>
-              <span><strong data-i18n="spot4B3T">1-Tap Turn-by-Turn Navigation:</strong> <span data-i18n="spot4B3D">Open coordinates directly in your preferred navigation maps app to guide you to the door immediately.</span></span>
-            </li>
+      <div class="spotlight-wrapper reverse">
+        <div class="spotlight-text-col">
+          <span class="spotlight-badge" style="background:rgba(193,194,250,0.12); color:var(--accent-lavender); border:1px solid rgba(193,194,250,0.3);" data-i18n="spot4Badge">GPS Navigation</span>
+          <h2 class="spotlight-h2" data-i18n="spot4Heading">Emergency Accessible Restroom Radar</h2>
+          <p class="spotlight-p" data-i18n="spot4Desc">When your pouch fills unexpectedly or an adhesive seal begins to loosen, you need an accessible toilet with a running water sink immediately. StomaCare scans nearby public facilities, gas stations, and accessibility points.</p>
+          <ul class="spotlight-checklist">
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot4Check1">Filtered for wheelchair accessibility, sinks inside cabins, and baby change shelves</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot4Check2">OpenStreetMap global crowd-sourced database</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot4Check3">One-tap directions via Google Maps or Apple Maps</span></li>
           </ul>
-          <a href="#download" class="btn-hero-primary" style="padding: 12px 28px; font-size: 0.95rem;" data-i18n="spot4Btn">Locate Restrooms Anywhere</a>
+          <a href="#download" class="btn-pill-lavender" data-i18n="spot4Btn">Locate Restrooms Anywhere</a>
         </div>
-        <div class="spotlight-media">
-          <div class="phone-frame" style="width: 290px; height: 590px; border-color: var(--teal-primary);">
-            <div class="phone-notch"></div>
-            <img src="/assets/screen-toilets.png" alt="Emergency Restroom Radar Screen" class="phone-img">
+        <div class="spotlight-img-col">
+          <div class="device-mockup" style="border-color: var(--accent-lavender); width: 280px; max-width: 85vw; height: 560px;">
+            <div class="device-camera-hole"></div>
+            <div class="device-screen-wrap">
+              <img src="/assets/screen-toilets.png" alt="Emergency Restroom Radar Screen" class="device-screen-img">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Comparison Section -->
-  <section>
+  <!-- Spotlight 5: Emergency Clinical Guides & Red Flag Protocols -->
+  <section id="clinical-guides" class="spotlight-row">
     <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow" data-i18n="compEyebrow">The Better Choice</span>
-        <h2 class="section-title" data-i18n="compTitle">Generic Trackers vs. StomaCare</h2>
-        <p class="section-desc" data-i18n="compDesc">
-          Compare how StomaCare's specialized clinical architecture outperforms ordinary medication and habit apps.
-        </p>
+      <div class="spotlight-wrapper">
+        <div class="spotlight-text-col">
+          <span class="spotlight-badge" style="background:rgba(56,189,248,0.12); color:#38bdf8; border:1px solid rgba(56,189,248,0.3);" data-i18n="spot5Badge">Clinical Triage</span>
+          <h2 class="spotlight-h2" data-i18n="spot5Heading">Step-by-Step Bedside Emergency Protocols</h2>
+          <p class="spotlight-p" data-i18n="spot5Desc">Active pouch leak in public? Stoma turning dark? Pre-written clinical emergency protocols created with enterostomal therapy nurses guide you calmly through crisis situations before complications escalate.</p>
+          <ul class="spotlight-checklist">
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot5Check1">Active wafer leak containment protocol with barrier repair guide</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot5Check2">Stoma color triage checklist (healthy pink vs necrotic purple/black alert)</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot5Check3">Parastomal hernia prevention rules & 5 kg safe lifting limit</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot5Check4">Airport security TSA clearance guide with carry-on medical supplies</span></li>
+          </ul>
+          <a href="#download" class="btn-pill-lavender" data-i18n="spot5Btn">Explore Emergency Guides</a>
+        </div>
+        <div class="spotlight-img-col">
+          <div class="device-mockup" style="border-color: #38bdf8; width: 280px; max-width: 85vw; height: 560px;">
+            <div class="device-camera-hole"></div>
+            <div class="device-screen-wrap">
+              <img src="/assets/screen-guides.png" alt="Clinical Emergency Guides Screen" class="device-screen-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spotlight 6: Stoma Healing Diary & Output Consistency Log -->
+  <section id="healing-diary" class="spotlight-row" style="background: rgba(14, 14, 32, 0.4);">
+    <div class="container">
+      <div class="spotlight-wrapper reverse">
+        <div class="spotlight-text-col">
+          <span class="spotlight-badge" style="background:rgba(168,85,247,0.12); color:#c084fc; border:1px solid rgba(168,85,247,0.3);" data-i18n="spot6Badge">Daily Health Log</span>
+          <h2 class="spotlight-h2" data-i18n="spot6Heading">Stoma Output Consistency & Skin Healing Diary</h2>
+          <p class="spotlight-p" data-i18n="spot6Desc">Track bowel transit, stool consistency on the Bristol & Ostomy scale, peristomal redness, and bag changes. Export structured data for doctor appointments or stoma nurse consultations.</p>
+          <ul class="spotlight-checklist">
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot6Check1">Visual stool consistency tracker (formed, pasty, liquid, or blockage)</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot6Check2">Peristomal skin redness and ulceration grading</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot6Check3">Automated pouch wear-time history and change frequency logging</span></li>
+            <li><span class="check-bullet">✓</span> <span data-i18n="spot6Check4">100% private and on-device — zero cloud tracking of health data</span></li>
+          </ul>
+          <a href="#download" class="btn-pill-lavender" data-i18n="spot6Btn">Start Daily Diary</a>
+        </div>
+        <div class="spotlight-img-col">
+          <div class="device-mockup" style="border-color: #a855f7; width: 280px; max-width: 85vw; height: 560px;">
+            <div class="device-camera-hole"></div>
+            <div class="device-screen-wrap">
+              <img src="/assets/screen-diary.png" alt="Stoma Healing Diary Screen" class="device-screen-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section: Desktop 3-Column Table vs Mobile Stacked Cards -->
+  <section id="comparison" style="padding: 80px 0;">
+    <div class="container">
+      <div class="section-head-center">
+        <span class="section-label-pill" data-i18n="compBadge">Why StomaCare</span>
+        <h2 class="section-h2-large" data-i18n="compHeading">Generic Health Apps vs. Dedicated Ostomy Care</h2>
+        <p class="section-p-sub" data-i18n="compSubtitle">General bowel tracking apps fail ostomates because they don't understand wafers, peristomal skin, or obstruction hazards.</p>
       </div>
 
-      <div class="comparison-card">
+      <!-- Desktop Table (Screen width > 768px) -->
+      <div class="desktop-table-wrap">
         <table class="comp-table">
           <thead>
             <tr>
-              <th data-i18n="compThCol1">Feature Capability</th>
-              <th data-i18n="compThCol2">Generic Health Apps</th>
-              <th class="highlight" data-i18n="compThCol3">StomaCare Companion</th>
+              <th data-i18n="compThFeature">Feature Capability</th>
+              <th data-i18n="compThGeneric">Generic Health Apps</th>
+              <th class="highlight-col" data-i18n="compThStomaCare">StomaCare Companion</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong data-i18n="compR1Name">Emergency Restroom Medical Pass</strong></td>
-              <td><span class="check-no" data-i18n="compR1Generic">✕ None</span></td>
-              <td class="highlight"><span class="check-yes" data-i18n="compR1Stoma">✓ Ally's Law + 10-Language Instant Pass</span></td>
+              <td><strong data-i18n="compRow1Feat">Stoma Shrinkage & Wafer Sizing Log</strong></td>
+              <td style="color:#f43f5e;" data-i18n="compRow1Gen">✕ Basic notes only</td>
+              <td class="highlight-col" data-i18n="compRow1Stoma">✓ Visual millimeter digital ring gauge, photo progression & auto-shrink curve</td>
             </tr>
             <tr>
-              <td><strong data-i18n="compR2Name">Wafer Cut Concentric Ruler</strong></td>
-              <td><span class="check-no" data-i18n="compR2Generic">✕ None</span></td>
-              <td class="highlight"><span class="check-yes" data-i18n="compR2Stoma">✓ Dual Concentric Guide (+1.5mm Clearance)</span></td>
+              <td><strong data-i18n="compRow2Feat">Ostomy Blockage Hazard Food AI</strong></td>
+              <td style="color:#f43f5e;" data-i18n="compRow2Gen">✕ Generic calories / macros</td>
+              <td class="highlight-col" data-i18n="compRow2Stoma">✓ Clinical ostomy dietitian AI, chewing safety guidelines & transit speeds</td>
             </tr>
             <tr>
-              <td><strong data-i18n="compR3Name">Stoma Shrinkage & Healing Log</strong></td>
-              <td><span class="check-no" data-i18n="compR3Generic">✕ Basic notes only</span></td>
-              <td class="highlight"><span class="check-yes" data-i18n="compR3Stoma">✓ Post-Op Stage 1–8 Weeks History Log</span></td>
+              <td><strong data-i18n="compRow3Feat">Emergency Restroom GPS Radar</strong></td>
+              <td style="color:#f43f5e;" data-i18n="compRow3Gen">✕ None</td>
+              <td class="highlight-col" data-i18n="compRow3Stoma">✓ Instant GPS radius search with sink & accessibility filter tags</td>
             </tr>
             <tr>
-              <td><strong data-i18n="compR4Name">Ostomy Blockage Hazard Food AI</strong></td>
-              <td><span class="check-no" data-i18n="compR4Generic">✕ Generic calories</span></td>
-              <td class="highlight"><span class="check-yes" data-i18n="compR4Stoma">✓ Clinical Bowel Obstruction & Transit Guide</span></td>
+              <td><strong data-i18n="compRow4Feat">Adhesive Hydrocolloid 60s Warm-Up</strong></td>
+              <td style="color:#f43f5e;" data-i18n="compRow4Gen">✕ None</td>
+              <td class="highlight-col" data-i18n="compRow4Stoma">✓ Built-in timer for body-heat adhesive activation & leak prevention</td>
             </tr>
             <tr>
-              <td><strong data-i18n="compR5Name">Emergency Restroom GPS Radar</strong></td>
-              <td><span class="check-no" data-i18n="compR5Generic">✕ None</span></td>
-              <td class="highlight"><span class="check-yes" data-i18n="compR5Stoma">✓ OpenStreetMap GPS Accessible Toilet Finder</span></td>
+              <td><strong data-i18n="compRow5Feat">Data Privacy & Security</strong></td>
+              <td style="color:#f43f5e;" data-i18n="compRow5Gen">✕ Ads & third-party data brokers</td>
+              <td class="highlight-col" data-i18n="compRow5Stoma">✓ 100% on-device local storage, zero telemetry, GDPR & HIPAA grade</td>
             </tr>
             <tr>
-              <td><strong data-i18n="compR6Name">Adhesive Hydrocolloid 60s Warm-Up</strong></td>
-              <td><span class="check-no" data-i18n="compR6Generic">✕ None</span></td>
-              <td class="highlight"><span class="check-yes" data-i18n="compR6Stoma">✓ Built-in Seal Warm-up & 1/3 Fullness Timers</span></td>
+              <td><strong data-i18n="compRow6Feat">Output & Consistency Log</strong></td>
+              <td style="color:#f43f5e;" data-i18n="compRow6Gen">✕ Basic Bristol scale</td>
+              <td class="highlight-col" data-i18n="compRow6Stoma">✓ Dedicated ileostomy/colostomy volume, color & gas consistency tracker</td>
             </tr>
             <tr>
-              <td><strong data-i18n="compR7Name">Data Privacy & Security</strong></td>
-              <td><span class="check-no" data-i18n="compR7Generic">✕ Ads & Data Brokers</span></td>
-              <td class="highlight"><span class="check-yes" data-i18n="compR7Stoma">✓ 100% Local On-Device Storage (Zero Ads)</span></td>
+              <td><strong data-i18n="compRow7Feat">Multi-Language Restroom Pass</strong></td>
+              <td style="color:#f43f5e;" data-i18n="compRow7Gen">✕ None</td>
+              <td class="highlight-col" data-i18n="compRow7Stoma">✓ Instant legal medical access cards in 10 global languages</td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- Mobile Zero-Scroll Comparison Cards (Screen width <= 768px) -->
+      <div class="mobile-comp-cards-list">
+        <!-- Card 1 -->
+        <div class="comp-mobile-card">
+          <div class="comp-card-title">📏 <span data-i18n="compRow1Feat">Stoma Shrinkage & Wafer Sizing Log</span></div>
+          <div class="comp-row-generic">✕ Generic Apps: <span data-i18n="compRow1Gen">Basic notes only</span></div>
+          <div class="comp-row-stoma">✓ StomaCare: <span data-i18n="compRow1Stoma">Visual millimeter digital ring gauge, photo progression & auto-shrink curve</span></div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="comp-mobile-card">
+          <div class="comp-card-title">🥑 <span data-i18n="compRow2Feat">Ostomy Blockage Hazard Food AI</span></div>
+          <div class="comp-row-generic">✕ Generic Apps: <span data-i18n="compRow2Gen">Generic calories / macros</span></div>
+          <div class="comp-row-stoma">✓ StomaCare: <span data-i18n="compRow2Stoma">Clinical ostomy dietitian AI, chewing safety guidelines & transit speeds</span></div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="comp-mobile-card">
+          <div class="comp-card-title">🚻 <span data-i18n="compRow3Feat">Emergency Restroom GPS Radar</span></div>
+          <div class="comp-row-generic">✕ Generic Apps: <span data-i18n="compRow3Gen">None</span></div>
+          <div class="comp-row-stoma">✓ StomaCare: <span data-i18n="compRow3Stoma">Instant GPS radius search with sink & accessibility filter tags</span></div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="comp-mobile-card">
+          <div class="comp-card-title">⏱️ <span data-i18n="compRow4Feat">Adhesive Hydrocolloid 60s Warm-Up</span></div>
+          <div class="comp-row-generic">✕ Generic Apps: <span data-i18n="compRow4Gen">None</span></div>
+          <div class="comp-row-stoma">✓ StomaCare: <span data-i18n="compRow4Stoma">Built-in timer for body-heat adhesive activation & leak prevention</span></div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="comp-mobile-card">
+          <div class="comp-card-title">🔒 <span data-i18n="compRow5Feat">Data Privacy & Security</span></div>
+          <div class="comp-row-generic">✕ Generic Apps: <span data-i18n="compRow5Gen">Ads & third-party data brokers</span></div>
+          <div class="comp-row-stoma">✓ StomaCare: <span data-i18n="compRow5Stoma">100% on-device local storage, zero telemetry, GDPR & HIPAA grade</span></div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="comp-mobile-card">
+          <div class="comp-card-title">💧 <span data-i18n="compRow6Feat">Output & Consistency Log</span></div>
+          <div class="comp-row-generic">✕ Generic Apps: <span data-i18n="compRow6Gen">Basic Bristol scale</span></div>
+          <div class="comp-row-stoma">✓ StomaCare: <span data-i18n="compRow6Stoma">Dedicated ileostomy/colostomy volume, color & gas consistency tracker</span></div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="comp-mobile-card">
+          <div class="comp-card-title">🚨 <span data-i18n="compRow7Feat">Multi-Language Restroom Pass</span></div>
+          <div class="comp-row-generic">✕ Generic Apps: <span data-i18n="compRow7Gen">None</span></div>
+          <div class="comp-row-stoma">✓ StomaCare: <span data-i18n="compRow7Stoma">Instant legal medical access cards in 10 global languages</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pre-Footer Download Panel -->
+  <section id="download" class="prefooter-wrap">
+    <div class="container">
+      <div class="prefooter-card">
+        <div class="prefooter-left-col" style="max-width:680px; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center;">
+          <span class="section-label-pill" style="color:var(--accent-indigo); background:rgba(59,59,195,0.1); border-color:rgba(59,59,195,0.25);" data-i18n="prefooterBadge">Free Android Download</span>
+          <h2 class="prefooter-h2" data-i18n="prefooterHeading">Reclaim Your Freedom and Peace of Mind Today</h2>
+          <p class="prefooter-p" data-i18n="prefooterSub">Download the direct APK now. 100% private, on-device local storage. No signups, no subscriptions, no ads.</p>
+          <div style="display:flex; justify-content:center; width:100%; margin-top:10px;">
+            <a href="StomaCare.apk" class="btn-prefooter-dark" download data-i18n="btnDownloadApk">
+              <span>📥 Download APK for Android</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ Section -->
-  <section id="faq">
+  <section id="faq" class="faq-section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow" data-i18n="faqEyebrow">Frequently Asked Questions</span>
-        <h2 class="section-title" data-i18n="faqTitle">Everything You Need to Know</h2>
+      <div class="section-head-center">
+        <span class="section-label-pill" data-i18n="faqBadge">Support & Answers</span>
+        <h2 class="section-h2-large" data-i18n="faqHeading">Frequently Asked Questions</h2>
+        <p class="section-p-sub" data-i18n="faqSub">Everything you need to know about security, clinical calibration, and device compatibility.</p>
       </div>
 
-      <div class="faq-container">
+      <div class="faq-accordion-list">
+        <!-- Q1 -->
         <div class="faq-item">
-          <div class="faq-question">
-            <span data-i18n="faqQ1">Is my medical and health data private?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-answer" data-i18n="faqA1">
-            Yes, absolutely. StomaCare is built on a privacy-first, offline architecture. Your surgery dates, stoma sizing history, diary entries, and personal emergency contacts are stored solely on your local device. We never sell or share medical data with advertisers, insurance carriers, or data brokers.
+          <button class="faq-question-btn" onclick="toggleFaq(this)">
+            <span data-i18n="faqQ1">Is my medical data shared or uploaded to the cloud?</span>
+            <span class="faq-icon-toggle">+</span>
+          </button>
+          <div class="faq-answer-panel" style="display: none;">
+            <p data-i18n="faqA1">No. StomaCare has no external user accounts, no analytics tracking, and no medical database synchronization. All measurements, surgery dates, photos, and notes are stored strictly inside your phone's encrypted browser sandbox (LocalStorage / IndexedDB). If you delete the app, your data disappears completely.</p>
           </div>
         </div>
 
+        <!-- Q2 -->
         <div class="faq-item">
-          <div class="faq-question">
-            <span data-i18n="faqQ2">Does the Emergency Restroom Pass work in other countries?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-answer" data-i18n="faqA2">
-            Yes! With a single tap on the country flags, the entire medical necessity notice translates instantly into 10 world languages (English, Polish, German, French, Spanish, Italian, Ukrainian, Russian, Belarusian, Portuguese) so you can travel abroad without communication barriers.
+          <button class="faq-question-btn" onclick="toggleFaq(this)">
+            <span data-i18n="faqQ2">Does the digital sizing ruler replace clinical stoma nurse advice?</span>
+            <span class="faq-icon-toggle">+</span>
+          </button>
+          <div class="faq-answer-panel" style="display: none;">
+            <p data-i18n="faqA2">The ruler provides standard millimeter concentric circles designed to help you verify wafer cutting sizes between clinical appointments. Always consult your Stoma Care Nurse or Wound Ostomy Continence Nurse (WOCN) regarding skin complications or rapid tissue changes.</p>
           </div>
         </div>
 
+        <!-- Q3 -->
         <div class="faq-item">
-          <div class="faq-question">
-            <span data-i18n="faqQ3">Can I use the app without an internet connection?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-answer" data-i18n="faqA3">
-            Yes. The core tools — the Emergency Medical Pass, Stoma Sizing Ruler, Care Timers, Go-Bag Checklist, and Stage Diet Guides — work completely offline without needing cellular reception or Wi-Fi.
+          <button class="faq-question-btn" onclick="toggleFaq(this)">
+            <span data-i18n="faqQ3">How does the 10-language medical restroom pass work?</span>
+            <span class="faq-icon-toggle">+</span>
+          </button>
+          <div class="faq-answer-panel" style="display: none;">
+            <p data-i18n="faqA3">When an urgent bathroom need strikes while traveling, tap "Emergency Restroom Pass" and select your country's language. The app renders a formal, legally formatted medical card asserting urgency under Ally's Law / Restroom Access guidelines.</p>
           </div>
         </div>
 
+        <!-- Q4 -->
         <div class="faq-item">
-          <div class="faq-question">
-            <span data-i18n="faqQ4">Which stoma types are supported?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-answer" data-i18n="faqA4">
-            StomaCare provides specialized protocols for Colostomy, Ileostomy, and Urostomy care, tailoring diet suggestions, hydration targets, and change frequency to your specific anatomy.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span data-i18n="faqQ5">Does StomaCare replace my colorectal surgeon or WOCN nurse?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-answer" data-i18n="faqA5">
-            No. StomaCare is an educational and self-management lifestyle companion. It does not provide clinical diagnosis. Always consult certified Wound Ostomy Continence Nurses (WOCN) or colorectal surgeons for medical complications.
+          <button class="faq-question-btn" onclick="toggleFaq(this)">
+            <span data-i18n="faqQ4">Can I use StomaCare on iPhone or PC?</span>
+            <span class="faq-icon-toggle">+</span>
+          </button>
+          <div class="faq-answer-panel" style="display: none;">
+            <p data-i18n="faqA4">Yes! In addition to the native Android APK, StomaCare is a Progressive Web App (PWA). You can open it in Safari on iOS, click "Share" → "Add to Home Screen", and use it just like a native app with full offline support.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Download Banner Section -->
-  <section id="download">
+  <!-- Site Footer -->
+  <footer class="site-footer">
     <div class="container">
-      <div class="download-card">
-        <img src="/assets/icon.png" alt="StomaCare" style="width: 72px; height: 72px; border-radius: 18px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-        <h2 class="download-title" data-i18n="downTitle">Start Living Confidently Today</h2>
-        <p class="download-desc" data-i18n="downDesc">
-          Download StomaCare directly to your Android device or join our upcoming Google Play Store release. 100% free, 100% private.
-        </p>
-
-        <div class="hero-cta-group" style="margin-bottom: 0;">
-          <a href="StomaCare.apk" class="btn-hero-primary" download data-i18n="downBtnApk">
-            <span>📥 Download StomaCare.apk (Direct)</span>
-          </a>
-          <a href="/privacy" class="btn-hero-secondary" data-i18n="downBtnPrivacy">
-            <span>Read Privacy Policy ➔</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
+      <div class="footer-top-row">
         <div class="brand">
-          <img src="/assets/icon.png" alt="StomaCare" class="brand-logo-img" style="width: 32px; height: 32px;">
-          <span class="brand-text" style="font-size: 1.15rem;">StomaCare</span>
+          <img src="/assets/icon.png" alt="StomaCare" class="brand-logo-img" style="width: 28px; height: 28px;">
+          <span class="brand-text" style="font-size: 1.1rem;">StomaCare</span>
         </div>
 
-        <ul class="footer-links">
-          <li><a href="#features" class="footer-link" data-i18n="navFeatures">Features</a></li>
-          <li><a href="#medical-pass" class="footer-link" data-i18n="navPass">Medical Pass</a></li>
-          <li><a href="/privacy" class="footer-link" data-i18n="navPrivacy">Privacy Policy</a></li>
-          <li><a href="mailto:support@stomacare.app" class="footer-link">Contact: support@stomacare.app</a></li>
+        <ul class="footer-links-list">
+          <li><a href="#features" data-i18n="navFeatures">Features</a></li>
+          <li><a href="#medical-pass" data-i18n="navPass">Medical Pass</a></li>
+          <li><a href="/privacy" data-i18n="navPrivacy">Privacy Policy</a></li>
+          <li><a href="mailto:support@stomacare.app">Contact: support@stomacare.app</a></li>
         </ul>
       </div>
 
-      <div class="footer-disclaimer">
+      <div class="footer-disclaimer-text">
         <p data-i18n="footerDisclaimer">
           Medical Disclaimer: StomaCare is designed for informational and daily self-management support. It is not a certified medical device and does not diagnose, treat, or replace professional medical care. In case of suspected bowel obstruction, stoma necrosis, persistent bleeding, or severe abdominal pain, seek emergency medical services immediately.
         </p>
@@ -1394,12 +2024,30 @@
     </div>
   </footer>
 
-  <!-- Web i18n & Client Engine -->
+  <!-- Web i18n & Client Logic Engine -->
   <script src="/assets/web_i18n.js"></script>
   <script>
     (function() {
       const i18n = window.WEB_I18N;
       if (!i18n) return;
+
+      
+      const FLAG_SVGS = {
+        en: '<svg class="flag-icon" viewBox="0 0 60 30" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><clipPath id="s_"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t_"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#s_)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t_)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>',
+        pl: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="7" fill="#ffffff"/><rect y="7" width="20" height="7" fill="#dc143c"/><rect width="20" height="14" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/></svg>',
+        de: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="4.66" fill="#000000"/><rect y="4.66" width="20" height="4.66" fill="#dd0000"/><rect y="9.33" width="20" height="4.66" fill="#ffce00"/></svg>',
+        fr: '<svg class="flag-icon" viewBox="0 0 21 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="7" height="14" fill="#002395"/><rect x="7" width="7" height="14" fill="#ffffff"/><rect x="14" width="7" height="14" fill="#ed2939"/></svg>',
+        es: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="3.5" fill="#aa151b"/><rect y="3.5" width="20" height="7" fill="#f1bf00"/><rect y="10.5" width="20" height="3.5" fill="#aa151b"/></svg>',
+        it: '<svg class="flag-icon" viewBox="0 0 21 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="7" height="14" fill="#009246"/><rect x="7" width="7" height="14" fill="#ffffff"/><rect x="14" width="7" height="14" fill="#ce2b37"/></svg>',
+        uk: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="7" fill="#0057b7"/><rect y="7" width="20" height="7" fill="#ffd700"/></svg>',
+        ru: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="4.66" fill="#ffffff"/><rect y="4.66" width="20" height="4.66" fill="#0039a6"/><rect y="9.33" width="20" height="4.66" fill="#d52b1e"/><rect width="20" height="14" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/></svg>',
+        be: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="9.33" fill="#c8313e"/><rect y="9.33" width="20" height="4.66" fill="#439547"/><rect width="4" height="14" fill="#ffffff"/><path d="M2,1 L3,2.5 L2,4 L1,2.5 Z M2,5 L3,6.5 L2,8 L1,6.5 Z M2,9 L3,10.5 L2,12 L1,10.5 Z" fill="#c8313e"/></svg>',
+        pt: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="8" height="14" fill="#006600"/><rect x="8" width="12" height="14" fill="#ff0000"/><circle cx="8" cy="7" r="3" fill="#ffcc00"/><circle cx="8" cy="7" r="2" fill="#ffffff" stroke="#003399" stroke-width="0.5"/></svg>'
+      };
+      function getFlagHtml(code) {
+        return FLAG_SVGS[code] || '<span style="font-size:1.1rem;">🌐</span>';
+      }
+
 
       const langToggleBtn = document.getElementById('langToggleBtn');
       const langDropdown = document.getElementById('langDropdown');
@@ -1408,30 +2056,34 @@
       const mobileLangGrid = document.getElementById('mobileLangGrid');
       const mobileMenuBtn = document.getElementById('mobileMenuBtn');
       const mobileDrawer = document.getElementById('mobileDrawer');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
 
-      // Detect language preference
       const savedLang = localStorage.getItem('stoma_web_lang');
       const browserLang = (navigator.language || 'en').slice(0, 2).toLowerCase();
       let activeLang = savedLang || (i18n.translations[browserLang] ? browserLang : 'en');
 
-      // Populate dropdown & mobile grid
       function buildLangMenus() {
         langDropdown.innerHTML = '';
         mobileLangGrid.innerHTML = '';
 
         i18n.languages.forEach(l => {
-          // Desktop item
+          // Desktop Dropdown item
           const opt = document.createElement('button');
-          opt.className = 'lang-opt' + (l.code === activeLang ? ' active' : '');
-          opt.innerHTML = '<span style="font-size:1.15rem;">' + l.flag + '</span> <span>' + l.native + '</span>';
+          opt.className = 'lang-item-btn' + (l.code === activeLang ? ' active' : '');
+          opt.innerHTML = getFlagHtml(l.code) + '<span style="font-weight:500;">' + l.native + '</span>';
           opt.onclick = () => setLanguage(l.code);
           langDropdown.appendChild(opt);
 
-          // Mobile item
+          // Mobile Drawer Grid button
           const mOpt = document.createElement('button');
-          mOpt.className = 'lang-opt' + (l.code === activeLang ? ' active' : '');
-          mOpt.style.border = '1px solid var(--border-subtle)';
-          mOpt.innerHTML = '<span style="font-size:1.1rem;">' + l.flag + '</span> <span>' + l.native + '</span>';
+          mOpt.className = 'lang-item-btn' + (l.code === activeLang ? ' active' : '');
+          mOpt.style.border = '1px solid var(--border-hairline)';
+          mOpt.style.display = 'flex';
+          mOpt.style.alignItems = 'center';
+          mOpt.style.gap = '8px';
+          mOpt.style.padding = '8px 10px';
+          mOpt.style.borderRadius = '10px';
+          mOpt.innerHTML = getFlagHtml(l.code) + '<span style="font-weight:500; font-size:0.86rem;">' + l.native + '</span>';
           mOpt.onclick = () => {
             setLanguage(l.code);
             closeMobileMenu();
@@ -1447,7 +2099,7 @@
         document.documentElement.lang = langCode;
 
         const langMeta = i18n.languages.find(l => l.code === langCode) || i18n.languages[0];
-        currentLangFlag.textContent = langMeta.flag;
+        currentLangFlag.innerHTML = getFlagHtml(langCode);
         currentLangLabel.textContent = langMeta.code.toUpperCase();
 
         const dict = i18n.translations[langCode];
@@ -1462,7 +2114,6 @@
         langDropdown.classList.remove('active');
       }
 
-      // Event Listeners
       langToggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         langDropdown.classList.toggle('active');
@@ -1473,20 +2124,100 @@
       });
 
       mobileMenuBtn.addEventListener('click', () => {
-        mobileDrawer.classList.toggle('open');
-        mobileMenuBtn.textContent = mobileDrawer.classList.contains('open') ? '✕' : '☰';
+        const isOpen = mobileDrawer.classList.contains('open');
+        if (isOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
       });
+
+      window.openMobileMenu = function() {
+        mobileDrawer.classList.add('open');
+        drawerBackdrop.classList.add('active');
+        mobileMenuBtn.textContent = '✕';
+      };
 
       window.closeMobileMenu = function() {
         mobileDrawer.classList.remove('open');
+        drawerBackdrop.classList.remove('active');
         mobileMenuBtn.textContent = '☰';
       };
 
-      // Initialize
+      window.toggleFaq = function(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon-toggle');
+        const isOpen = answer.style.display !== 'none';
+        answer.style.display = isOpen ? 'none' : 'block';
+        icon.textContent = isOpen ? '+' : '−';
+        icon.style.transform = isOpen ? 'none' : 'rotate(180deg)';
+      };
+
+      window.setDemoQuery = function(q) {
+        const inp = document.getElementById('demoFoodInput');
+        if (inp) inp.value = q;
+      };
+
+      window.demoAskAI = function() {
+        const inp = document.getElementById('demoFoodInput');
+        const q = inp ? inp.value.trim() : '';
+        if (!q) return;
+        window.location.href = '#nutrition';
+      };
+
+      // ----------------------------------------------------------------------
+      // Mobile Mockup Carousel Controls (Dots + Arrows)
+      // ----------------------------------------------------------------------
+      let currentMockupIdx = 0;
+      const totalMockups = 6;
+      const carousel = document.getElementById('mockupCarousel');
+
+      window.goToMockup = function(idx) {
+        if (idx < 0) idx = 0;
+        if (idx >= totalMockups) idx = totalMockups - 1;
+        currentMockupIdx = idx;
+        if (carousel) {
+          carousel.scrollTo({
+            left: idx * carousel.clientWidth,
+            behavior: 'smooth'
+          });
+        }
+        updateMockupDots(idx);
+      };
+
+      window.prevMockup = function() {
+        goToMockup((currentMockupIdx - 1 + totalMockups) % totalMockups);
+      };
+
+      window.nextMockup = function() {
+        goToMockup((currentMockupIdx + 1) % totalMockups);
+      };
+
+      function updateMockupDots(activeIndex) {
+        const dots = document.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === activeIndex);
+        });
+      }
+
+      if (carousel) {
+        let isScrolling = null;
+        carousel.addEventListener('scroll', () => {
+          clearTimeout(isScrolling);
+          isScrolling = setTimeout(() => {
+            const slideWidth = carousel.clientWidth || 1;
+            const idx = Math.round(carousel.scrollLeft / slideWidth);
+            if (idx !== currentMockupIdx && idx >= 0 && idx < totalMockups) {
+              currentMockupIdx = idx;
+              updateMockupDots(idx);
+            }
+          }, 50);
+        }, { passive: true });
+      }
+
       buildLangMenus();
       setLanguage(activeLang);
     })();
   </script>
-
 </body>
 </html>

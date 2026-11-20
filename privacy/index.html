@@ -2,197 +2,742 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Privacy Policy & Medical Data Safety — StomaCare</title>
-  <meta name="description" content="StomaCare Privacy Policy, Data Safety disclosure for Google Play, and Medical Disclaimer.">
+  <meta name="description" content="StomaCare Privacy Policy, Data Safety disclosure for Google Play, and Medical Disclaimer. 100% on-device medical data isolation.">
   <link rel="icon" type="image/png" href="/assets/icon.png">
   <link rel="apple-touch-icon" href="/assets/icon.png">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-0kMrFeB0vyAMLHruNVQ3i.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+
   <style>
     :root {
-      --bg-primary: #070a13;
-      --bg-card: #0e1526;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(20, 184, 166, 0.35);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --teal-primary: #14b8a6;
-      --teal-light: #5eead4;
-      --coral-red: #f43f5e;
+      --bg-page: #0b0b1d;
+      --bg-surface: #121226;
+      --bg-card: rgba(18, 18, 38, 0.65);
+      --text-light: #f5f2fe;
+      --text-muted: #8e8ea8;
+      --text-dim: #646482;
+      --accent-lavender: #c1c2fa;
+      --accent-lavender-glow: rgba(193, 194, 250, 0.35);
+      --border-hairline: rgba(245, 242, 254, 0.12);
+      --radius-pill: 9999px;
+      --radius-card: 24px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+      width: 100%;
+    }
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(circle at 50% 0%, #13243a 0%, var(--bg-primary) 60%, #05070d 100%);
-      color: var(--text-main);
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-light);
       line-height: 1.75;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
-    header {
-      background: rgba(7, 10, 19, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 18px 0;
+
+    /* Top Announcement Bar */
+    .top-announcement {
+      background: linear-gradient(90deg, #13132e, #222248, #13132e);
+      border-bottom: 1px solid rgba(193, 194, 250, 0.15);
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #e2e8f0;
+      text-align: center;
+      position: relative;
+      z-index: 990;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .top-announcement a {
+      color: var(--accent-lavender);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* Floating Capsule Navbar */
+    .navbar-wrapper {
       position: sticky;
-      top: 0;
-      z-index: 100;
+      top: 16px;
+      z-index: 999;
+      padding: 0 16px;
+      margin-top: 14px;
+      margin-bottom: 24px;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .nav-wrap {
+    .siteheader {
+      max-width: 1140px;
+      margin: 0 auto;
+      background: rgba(11, 11, 29, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+      width: 100%;
+      box-sizing: border-box;
     }
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
-      color: var(--text-main);
-      font-weight: 800;
-      font-size: 1.25rem;
+      color: var(--text-light);
+      flex-shrink: 0;
     }
     .brand-logo-img {
       width: 36px;
       height: 36px;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(20, 184, 166, 0.3);
+      box-shadow: 0 0 18px rgba(193, 194, 250, 0.4);
     }
-    .back-link {
-      color: var(--teal-light);
-      text-decoration: none;
+    .brand-text {
+      font-size: 1.25rem;
       font-weight: 700;
-      font-size: 0.95rem;
-      transition: opacity 0.2s;
+      letter-spacing: -0.02em;
+      color: #ffffff;
     }
-    .back-link:hover { opacity: 0.8; text-decoration: underline; }
-    .content-card {
-      background: var(--bg-card);
+    .brand-pill {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-lavender);
+      background: rgba(193, 194, 250, 0.15);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(193, 194, 250, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      list-style: none;
+      flex-shrink: 0;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+    }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #ffffff;
+    }
+    .nav-link.active {
+      color: var(--accent-lavender);
+    }
+
+    .nav-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Language Switcher Dropdown */
+    .lang-wrapper {
+      position: relative;
+    }
+    .btn-lang-pill {
+      background: rgba(245, 242, 254, 0.08);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-light);
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-lang-pill:hover {
+      background: rgba(245, 242, 254, 0.16);
+      border-color: rgba(193, 194, 250, 0.4);
+    }
+    .lang-menu-drop {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: #101026;
+      border: 1px solid var(--border-hairline);
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
+      padding: 8px;
+      min-width: 185px;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+    }
+    .lang-menu-drop.active {
+      display: flex;
+    }
+    .lang-item-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.15s;
+    }
+    .lang-item-btn:hover, .lang-item-btn.active {
+      background: rgba(193, 194, 250, 0.15);
+      color: #ffffff;
+    }
+
+    .btn-pill-lavender {
+      background: var(--accent-lavender);
+      color: #0b0b1d;
+      padding: 7px 15px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: 0.83rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px var(--accent-lavender-glow);
+      white-space: nowrap;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: rgba(245, 242, 254, 0.08);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-light);
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      line-height: 1;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    /* Mobile Drawer with Always-Visible Sticky Header */
+    .drawer-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+    }
+    .drawer-backdrop.active {
+      display: block;
+    }
+    .mobile-drawer-menu {
+      display: none;
+      position: fixed;
+      top: 14px;
+      left: 12px;
+      right: 12px;
+      max-height: calc(100vh - 28px);
+      background: rgba(13, 13, 33, 0.98);
+      border: 1px solid var(--border-hairline);
       border-radius: 24px;
-      padding: 48px;
-      margin: 40px 0 80px 0;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-      border: 1px solid var(--border-subtle);
+      z-index: 1001;
+      backdrop-filter: blur(32px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
+      flex-direction: column;
+      overflow: hidden;
     }
-    h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; color: #ffffff; }
-    .meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 32px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 16px; }
-    h2 { font-size: 1.4rem; font-weight: 700; margin-top: 36px; margin-bottom: 14px; color: var(--teal-light); }
-    p, ul, ol { margin-bottom: 18px; color: #cbd5e1; font-size: 1rem; }
+    .mobile-drawer-menu.open {
+      display: flex;
+    }
+    .drawer-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-hairline);
+      background: rgba(19, 19, 44, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .drawer-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .drawer-logo-img {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+    }
+    .drawer-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .drawer-close-btn {
+      background: rgba(244, 63, 94, 0.18);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      color: #fda4af;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .drawer-close-btn:hover {
+      background: rgba(244, 63, 94, 0.35);
+      color: #ffffff;
+    }
+    .drawer-body {
+      padding: 16px 18px 24px 18px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .mob-link {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.98rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 12px;
+    }
+    .mob-link:hover {
+      background: rgba(193, 194, 250, 0.12);
+    }
+
+    /* Content Styling */
+    .container { max-width: 880px; margin: 0 auto; padding: 0 24px; width: 100%; box-sizing: border-box; }
+    .content-panel {
+      background: var(--bg-surface);
+      border-radius: var(--radius-card);
+      padding: 48px;
+      margin: 20px 0 80px 0;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      border: 1px solid var(--border-hairline);
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    h1 { font-size: 2.3rem; font-weight: 800; margin-bottom: 8px; color: #ffffff; letter-spacing: -0.02em; }
+    .meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 32px; border-bottom: 1px solid var(--border-hairline); padding-bottom: 16px; }
+    h2 { font-size: 1.35rem; font-weight: 700; margin-top: 36px; margin-bottom: 14px; color: var(--accent-lavender); }
+    p, ul, ol { margin-bottom: 18px; color: #cbd5e1; font-size: 0.98rem; }
     ul, ol { padding-left: 24px; }
     li { margin-bottom: 10px; }
     .callout {
-      background: rgba(20, 184, 166, 0.1);
-      border-left: 4px solid var(--teal-primary);
-      padding: 20px 24px;
-      border-radius: 0 14px 14px 0;
-      margin: 28px 0;
-      color: #e2e8f0;
+      background: rgba(193, 194, 250, 0.08);
+      border-left: 4px solid var(--accent-lavender);
+      padding: 18px 22px;
+      border-radius: 0 16px 16px 0;
+      margin: 24px 0;
     }
-    .callout-alert {
-      background: rgba(244, 63, 94, 0.1);
-      border-left: 4px solid var(--coral-red);
-      padding: 20px 24px;
-      border-radius: 0 14px 14px 0;
-      margin: 28px 0;
-      color: #fecdd3;
+    .badge-privacy {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
-    footer {
-      border-top: 1px solid var(--border-subtle);
-      padding: 30px 0;
-      text-align: center;
-      font-size: 0.85rem;
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border-hairline);
+      background: rgba(8, 8, 20, 0.85);
+      padding: 40px 0 30px 0;
+      margin-top: auto;
+    }
+    .footer-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-links-list {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .footer-links-list a {
       color: var(--text-muted);
-      background: #04060a;
+      text-decoration: none;
+      font-size: 0.88rem;
     }
-    @media(max-width: 640px) {
-      .content-card { padding: 24px; }
-      h1 { font-size: 1.8rem; }
+    .footer-disclaimer-text {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 16px;
+    }
+
+    @media (max-width: 1180px) {
+      .nav-links { display: none !important; }
+      .mobile-toggle { display: inline-flex !important; }
+      .siteheader .btn-pill-lavender { display: none !important; }
+      .brand-pill { display: none !important; }
+    }
+
+    @media (max-width: 768px) {
+      .top-announcement {
+        padding: 10px 14px;
+        font-size: 0.76rem;
+        line-height: 1.45;
+        gap: 6px 12px;
+      }
+      .navbar-wrapper {
+        padding: 0 12px;
+        margin-top: 18px;
+        margin-bottom: 22px;
+        top: 12px;
+      }
+      .siteheader { padding: 7px 12px 7px 14px; width: 100%; box-sizing: border-box; }
+      .brand-pill { display: none !important; }
+      .nav-links { display: none !important; }
+      .siteheader .btn-pill-lavender { display: none !important; }
+      .mobile-toggle { display: inline-flex !important; }
+      .btn-lang-pill { padding: 6px 10px; font-size: 0.8rem; }
+      .content-panel { padding: 24px 16px; margin: 16px 0 40px 0; }
+      h1 { font-size: 1.85rem; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container nav-wrap">
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <span data-i18n="topBarText">✨ StomaCare 1.0 Release • 100% On-Device Medical Privacy • 10 Languages</span>
+    <a href="/#download" data-i18n="navDownload">Download App →</a>
+  </div>
+
+  <!-- Floating Capsule Navbar (Exact Same as Main Page) -->
+  <div class="navbar-wrapper">
+    <header class="siteheader">
       <a href="/" class="brand">
         <img src="/assets/icon.png" alt="StomaCare" class="brand-logo-img">
-        <span>StomaCare</span>
+        <span class="brand-text">StomaCare</span>
+        <span class="brand-pill">v1.0</span>
       </a>
-      <a href="/" class="back-link">← Back to Overview</a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links">
+        <li><a href="/#features" class="nav-link" data-i18n="navFeatures">Features</a></li>
+        <li><a href="/#medical-pass" class="nav-link" data-i18n="navPass">Emergency Pass</a></li>
+        <li><a href="/#sizing-ruler" class="nav-link" data-i18n="navRuler">Sizing Ruler</a></li>
+        <li><a href="/#nutrition" class="nav-link" data-i18n="navNutrition">Nutrition AI</a></li>
+        <li><a href="/#toilets" class="nav-link" data-i18n="navToilets">Restroom Radar</a></li>
+        <li><a href="/privacy" class="nav-link active" data-i18n="navPrivacy">Privacy</a></li>
+      </ul>
+
+      <!-- Action items -->
+      <div class="nav-right-actions">
+        <!-- Language Switcher Pill with SVG Flag -->
+        <div class="lang-wrapper">
+          <button id="langToggleBtn" class="btn-lang-pill" aria-label="Select Language">
+            <span id="currentLangFlag"></span>
+            <span id="currentLangLabel">EN</span>
+            <span style="font-size:0.7rem; opacity:0.7;">▾</span>
+          </button>
+          <div id="langDropdown" class="lang-menu-drop"></div>
+        </div>
+
+        <a href="/#download" class="btn-pill-lavender" data-i18n="navDownload">
+          <span>Get StomaCare</span>
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button id="mobileMenuBtn" class="mobile-toggle" aria-label="Open Navigation">☰</button>
+      </div>
+    </header>
+  </div>
+
+  <!-- Dark Backdrop Overlay for Mobile Drawer -->
+  <div id="drawerBackdrop" class="drawer-backdrop" onclick="closeMobileMenu()"></div>
+
+  <!-- Mobile Drawer Menu with ALWAYS-VISIBLE Sticky Header Bar -->
+  <div id="mobileDrawer" class="mobile-drawer-menu">
+    <div class="drawer-header-bar">
+      <div class="drawer-header-left">
+        <img src="/assets/icon.png" alt="StomaCare" class="drawer-logo-img">
+        <span class="drawer-title">Navigation</span>
+      </div>
+      <button class="drawer-close-btn" onclick="closeMobileMenu()" aria-label="Close navigation">
+        <span>✕</span> <span>Close</span>
+      </button>
     </div>
-  </header>
+    <div class="drawer-body">
+      <a href="/#features" class="mob-link" data-i18n="navFeatures" onclick="closeMobileMenu()">Features</a>
+      <a href="/#medical-pass" class="mob-link" data-i18n="navPass" onclick="closeMobileMenu()">Emergency Pass</a>
+      <a href="/#sizing-ruler" class="mob-link" data-i18n="navRuler" onclick="closeMobileMenu()">Sizing Ruler</a>
+      <a href="/#nutrition" class="mob-link" data-i18n="navNutrition" onclick="closeMobileMenu()">Nutrition AI</a>
+      <a href="/#toilets" class="mob-link" data-i18n="navToilets" onclick="closeMobileMenu()">Restroom Radar</a>
+      <a href="/privacy" class="mob-link" data-i18n="navPrivacy" onclick="closeMobileMenu()">Privacy Policy</a>
+      <div style="margin-top: 14px;">
+        <span style="font-size:0.82rem; font-weight:700; color:var(--accent-lavender); text-transform:uppercase; letter-spacing:0.05em;">Languages:</span>
+        <div id="mobileLangGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;"></div>
+      </div>
+      <a href="/StomaCare.apk" class="btn-pill-lavender" download style="margin-top:16px; justify-content:center; display:flex;" data-i18n="btnDownloadApk">
+        📥 Download APK for Android
+      </a>
+    </div>
+  </div>
 
   <main class="container">
-    <div class="content-card">
+    <div class="content-panel">
+      <span class="badge-privacy">Zero-Cloud Medical Privacy</span>
       <h1>Privacy Policy & Data Safety</h1>
-      <div class="meta">Effective Date: November 2026 | Last Updated: November 19, 2026</div>
+      <div class="meta">Effective Date: November 2026 | Last Updated: November 20, 2026</div>
 
       <div class="callout">
-        <strong>Privacy-First Guarantee:</strong> StomaCare was engineered from the ground up to protect ostomates. Your health diary entries, stoma sizes, and emergency medical contacts are stored strictly on your local device. We never sell your personal data.
+        <strong>Privacy-First Guarantee:</strong> StomaCare was created with a zero-knowledge architecture. We do NOT require user accounts, email addresses, phone numbers, or passwords. <strong>100% of your personal health information remains exclusively on your physical device.</strong>
       </div>
 
-      <h2>1. Information We Collect and How We Use It</h2>
-      <p>
-        The StomaCare mobile application operates primarily on an offline-first architecture to protect sensitive health metrics:
-      </p>
+      <h2>1. Google Play Data Safety Disclosure</h2>
+      <p>In compliance with Google Play Store policies and international medical data protection frameworks (including GDPR, HIPAA guidelines, and CCPA):</p>
       <ul>
-        <li>
-          <strong>Health Diary & Logged Metrics:</strong> Your stoma diameter history, wafer sizing logs, bag change timestamps, hydration tracking, and skin inspection notes are stored solely inside your phone's local storage (IndexedDB/LocalStorage). This data never leaves your device unless you manually export or backup your phone.
-        </li>
-        <li>
-          <strong>Emergency Restroom Pass Data:</strong> Patient name, surgery condition, emergency telephone numbers, and physician contacts inputted into the Emergency Pass modal remain securely on your device.
-        </li>
-        <li>
-          <strong>Location Information (Restroom Radar):</strong> When you search for nearby accessible or public restrooms, the app requests one-time foreground location permission. Your geographic coordinates (GPS latitude/longitude) are used exclusively to calculate distance to nearby facilities via OpenStreetMap (Overpass API) and are never stored or tracked over time.
-        </li>
-        <li>
-          <strong>Food Consultation Assistant:</strong> When using the Food Safety Assistant, the text query (e.g., "Can I eat sweetcorn 3 weeks post-op?") is transmitted securely via HTTPS to our dedicated clinical nutrition query endpoint strictly to generate the educational response. No personal medical history, patient names, or contact information are attached to the query.
-        </li>
+        <li><strong>Data Collected:</strong> None. StomaCare does not collect, harvest, transmit, or monetize any user data.</li>
+        <li><strong>Data Shared:</strong> None. Zero personal data or device identifiers are shared with third parties, analytics companies, or advertising networks.</li>
+        <li><strong>Security Practices:</strong> All patient data entered into the app (such as surgery date, stoma wafer measurements, hydration intake, and pouch change reminders) is stored locally using sandboxed Web Storage (LocalStorage and IndexedDB).</li>
       </ul>
 
-      <h2>2. Google Play Data Safety Summary</h2>
-      <p>In accordance with Google Play's Data Safety Declaration policies:</p>
+      <h2>2. What Information StomaCare Processes Locally</h2>
+      <p>All of the following information is processed <strong>strictly on your device</strong> and never leaves your phone:</p>
       <ul>
-        <li><strong>Data Collection:</strong> We do NOT collect personally identifiable data (PID) or share health data with third-party advertising or analytics networks.</li>
-        <li><strong>Location:</strong> Ephemeral, used only while the Restroom Radar is actively queried.</li>
-        <li><strong>Data Deletion:</strong> You have full control over your data. Clearing app storage or uninstalling the app permanently purges all local logs, diary notes, and patient pass details.</li>
-        <li><strong>Security Practices:</strong> All network communications use industry-standard HTTPS encryption in transit.</li>
+        <li><strong>Surgical & Health Timeline:</strong> Surgery date, recovery stage, and days post-operation.</li>
+        <li><strong>Wafer Sizing Data:</strong> Digital ring measurements (mm), photos taken through your device camera for personal progression monitoring, and leak incident logs.</li>
+        <li><strong>Emergency Pass Information:</strong> Patient name, physician contact, and emergency phone numbers entered into the Medical Restroom Pass card.</li>
+        <li><strong>Nutrition & Diet Queries:</strong> When searching for foods and blockage risks, queries are answered using the embedded on-device food risk database or processed through our secured server proxy without storing identity.</li>
       </ul>
 
-      <h2>3. Medical Disclaimer & Non-Diagnostic Purpose</h2>
-      <div class="callout-alert">
-        <strong>Important Medical Notice:</strong> StomaCare is an educational, self-management, and lifestyle companion. It is NOT a certified medical device and does NOT offer medical diagnosis, clinical treatment plans, or emergency triage.
-      </div>
-      <p>
-        Always adhere to the specific instructions provided by your colorectal surgeon, certified Wound Ostomy Continence Nurse (WOCN), or gastroenterology clinical team.
-      </p>
-      <p>
-        If you experience severe abdominal cramping lasting over 2 hours without stoma output, abnormal stoma retraction or prolapse, discoloration (dark purple/black), or persistent bleeding, immediately seek emergency medical attention or contact your hospital stoma helpline.
-      </p>
+      <h2>3. Device Permissions & Why They Are Used</h2>
+      <p>StomaCare requests only the minimum necessary permissions required for clinical features to operate:</p>
+      <ul>
+        <li><strong>Camera / Storage (Optional):</strong> Required only if you choose to take or upload a photo of your stoma to monitor peristomal skin recovery over time. Photos remain inside your device's isolated storage and are never uploaded to any remote server.</li>
+        <li><strong>Location / GPS (Optional):</strong> Used exclusively within the Emergency Restroom Radar to calculate distances to nearby public toilets via OpenStreetMap. Your coordinates are never tracked, logged, or saved.</li>
+        <li><strong>Notifications (Optional):</strong> Used locally to chime reminders for pouch changes and water intake.</li>
+      </ul>
 
-      <h2>4. Third-Party Services & Links</h2>
-      <p>
-        StomaCare may provide links to public mapping providers (OpenStreetMap, Google Maps, Apple Maps) for restroom turn-by-turn navigation. Please consult their respective privacy policies when opening external navigation apps.
-      </p>
+      <h2>4. Third-Party Trackers & Advertising</h2>
+      <p>StomaCare contains <strong>zero third-party advertising SDKs</strong>, zero commercial trackers, and zero marketing pixels. Our website uses privacy-friendly, cookieless analytics (Plausible) solely to measure aggregate page visits without collecting cookies or IP addresses.</p>
 
-      <h2>5. Contact Us</h2>
+      <h2>5. Medical Disclaimer</h2>
+      <p>StomaCare is designed for daily self-management and educational assistance. It is not a certified medical device and is not intended to diagnose, treat, cure, or prevent any medical condition. Always seek the advice of your colorectal surgeon, Stoma Care Nurse (SCN), or Wound Ostomy Continence Nurse (WOCN) regarding any medical concerns or complications.</p>
+
+      <h2>6. Contact Us</h2>
+      <p>If you have any questions or inquiries regarding our privacy practices or medical disclosures, please contact:</p>
       <p>
-        If you have questions, feedback, or inquiries regarding our privacy practices or the app, please contact our team:
-      </p>
-      <p>
-        <strong>Email:</strong> <a href="mailto:support@stomacare.app" style="color:var(--teal-light); font-weight:600;">support@stomacare.app</a><br>
-        <strong>Project Website:</strong> <a href="https://stomacare.app" style="color:var(--teal-light); font-weight:600;">https://stomacare.app</a>
+        <strong>StomaCare Developer Team</strong><br>
+        Email: <a href="mailto:support@stomacare.app" style="color:var(--accent-lavender);">support@stomacare.app</a><br>
+        Website: <a href="https://stomacare.app" style="color:var(--accent-lavender);">https://stomacare.app</a>
       </p>
     </div>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="container">
-      &copy; 2026 StomaCare. All rights reserved. | <a href="/" style="color:inherit; text-decoration:underline;">Home</a>
+      <div class="footer-top-row">
+        <div class="brand">
+          <img src="/assets/icon.png" alt="StomaCare" class="brand-logo-img" style="width: 28px; height: 28px;">
+          <span class="brand-text" style="font-size: 1.1rem;">StomaCare</span>
+        </div>
+
+        <ul class="footer-links-list">
+          <li><a href="/#features" data-i18n="navFeatures">Features</a></li>
+          <li><a href="/#medical-pass" data-i18n="navPass">Medical Pass</a></li>
+          <li><a href="/privacy" data-i18n="navPrivacy">Privacy Policy</a></li>
+          <li><a href="mailto:support@stomacare.app">Contact: support@stomacare.app</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-disclaimer-text">
+        <p data-i18n="footerDisclaimer">
+          Medical Disclaimer: StomaCare is designed for informational and daily self-management support. It is not a certified medical device and does not diagnose, treat, or replace professional medical care.
+        </p>
+        <p style="margin-top: 10px;" data-i18n="footerCopy">
+          &copy; 2026 StomaCare. All rights reserved. Hosted securely on stomacare.app.
+        </p>
+      </div>
     </div>
   </footer>
 
+  <script src="/assets/web_i18n.js"></script>
+  <script>
+    (function() {
+      const i18n = window.WEB_I18N;
+      if (!i18n) return;
+
+      
+      const FLAG_SVGS = {
+        en: '<svg class="flag-icon" viewBox="0 0 60 30" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><clipPath id="s_"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t_"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#s_)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t_)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>',
+        pl: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="7" fill="#ffffff"/><rect y="7" width="20" height="7" fill="#dc143c"/><rect width="20" height="14" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/></svg>',
+        de: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="4.66" fill="#000000"/><rect y="4.66" width="20" height="4.66" fill="#dd0000"/><rect y="9.33" width="20" height="4.66" fill="#ffce00"/></svg>',
+        fr: '<svg class="flag-icon" viewBox="0 0 21 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="7" height="14" fill="#002395"/><rect x="7" width="7" height="14" fill="#ffffff"/><rect x="14" width="7" height="14" fill="#ed2939"/></svg>',
+        es: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="3.5" fill="#aa151b"/><rect y="3.5" width="20" height="7" fill="#f1bf00"/><rect y="10.5" width="20" height="3.5" fill="#aa151b"/></svg>',
+        it: '<svg class="flag-icon" viewBox="0 0 21 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="7" height="14" fill="#009246"/><rect x="7" width="7" height="14" fill="#ffffff"/><rect x="14" width="7" height="14" fill="#ce2b37"/></svg>',
+        uk: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="7" fill="#0057b7"/><rect y="7" width="20" height="7" fill="#ffd700"/></svg>',
+        ru: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="4.66" fill="#ffffff"/><rect y="4.66" width="20" height="4.66" fill="#0039a6"/><rect y="9.33" width="20" height="4.66" fill="#d52b1e"/><rect width="20" height="14" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/></svg>',
+        be: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="20" height="9.33" fill="#c8313e"/><rect y="9.33" width="20" height="4.66" fill="#439547"/><rect width="4" height="14" fill="#ffffff"/><path d="M2,1 L3,2.5 L2,4 L1,2.5 Z M2,5 L3,6.5 L2,8 L1,6.5 Z M2,9 L3,10.5 L2,12 L1,10.5 Z" fill="#c8313e"/></svg>',
+        pt: '<svg class="flag-icon" viewBox="0 0 20 14" width="20" height="14" style="border-radius:2px; display:inline-block; vertical-align:middle; flex-shrink:0; box-shadow:0 1px 3px rgba(0,0,0,0.4);"><rect width="8" height="14" fill="#006600"/><rect x="8" width="12" height="14" fill="#ff0000"/><circle cx="8" cy="7" r="3" fill="#ffcc00"/><circle cx="8" cy="7" r="2" fill="#ffffff" stroke="#003399" stroke-width="0.5"/></svg>'
+      };
+      function getFlagHtml(code) {
+        return FLAG_SVGS[code] || '<span style="font-size:1.1rem;">🌐</span>';
+      }
+
+
+      const langToggleBtn = document.getElementById('langToggleBtn');
+      const langDropdown = document.getElementById('langDropdown');
+      const currentLangFlag = document.getElementById('currentLangFlag');
+      const currentLangLabel = document.getElementById('currentLangLabel');
+      const mobileLangGrid = document.getElementById('mobileLangGrid');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
+
+      const savedLang = localStorage.getItem('stoma_web_lang');
+      const browserLang = (navigator.language || 'en').slice(0, 2).toLowerCase();
+      let activeLang = savedLang || (i18n.translations[browserLang] ? browserLang : 'en');
+
+      function buildLangMenus() {
+        langDropdown.innerHTML = '';
+        mobileLangGrid.innerHTML = '';
+
+        i18n.languages.forEach(l => {
+          const opt = document.createElement('button');
+          opt.className = 'lang-item-btn' + (l.code === activeLang ? ' active' : '');
+          opt.innerHTML = getFlagHtml(l.code) + '<span style="font-weight:500;">' + l.native + '</span>';
+          opt.onclick = () => setLanguage(l.code);
+          langDropdown.appendChild(opt);
+
+          const mOpt = document.createElement('button');
+          mOpt.className = 'lang-item-btn' + (l.code === activeLang ? ' active' : '');
+          mOpt.style.border = '1px solid var(--border-hairline)';
+          mOpt.style.display = 'flex';
+          mOpt.style.alignItems = 'center';
+          mOpt.style.gap = '8px';
+          mOpt.style.padding = '8px 10px';
+          mOpt.style.borderRadius = '10px';
+          mOpt.innerHTML = getFlagHtml(l.code) + '<span style="font-weight:500; font-size:0.86rem;">' + l.native + '</span>';
+          mOpt.onclick = () => {
+            setLanguage(l.code);
+            closeMobileMenu();
+          };
+          mobileLangGrid.appendChild(mOpt);
+        });
+      }
+
+      function setLanguage(langCode) {
+        if (!i18n.translations[langCode]) langCode = 'en';
+        activeLang = langCode;
+        localStorage.setItem('stoma_web_lang', langCode);
+        document.documentElement.lang = langCode;
+
+        const langMeta = i18n.languages.find(l => l.code === langCode) || i18n.languages[0];
+        currentLangFlag.innerHTML = getFlagHtml(langCode);
+        currentLangLabel.textContent = langMeta.code.toUpperCase();
+
+        const dict = i18n.translations[langCode];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) {
+            el.innerHTML = dict[key];
+          }
+        });
+
+        buildLangMenus();
+        langDropdown.classList.remove('active');
+      }
+
+      langToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        langDropdown.classList.toggle('active');
+      });
+
+      document.addEventListener('click', () => {
+        langDropdown.classList.remove('active');
+      });
+
+      mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = mobileDrawer.classList.contains('open');
+        if (isOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      });
+
+      window.openMobileMenu = function() {
+        mobileDrawer.classList.add('open');
+        drawerBackdrop.classList.add('active');
+        mobileMenuBtn.textContent = '✕';
+      };
+
+      window.closeMobileMenu = function() {
+        mobileDrawer.classList.remove('open');
+        drawerBackdrop.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+      };
+
+      buildLangMenus();
+      setLanguage(activeLang);
+    })();
+  </script>
 </body>
 </html>
