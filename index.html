@@ -1400,6 +1400,9 @@
     }
 
     @media (max-width: 768px) {
+      .steps-workflow-section {
+        padding: 58px 0 68px 0 !important;
+      }
       .top-announcement {
         font-size: 0.76rem;
         padding: 10px 14px;
@@ -1762,10 +1765,10 @@
   </section>
 
   <!-- 3-Step Section -->
-  <section style="background: rgba(18, 18, 38, 0.4); border-top: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline);">
+  <section class="steps-workflow-section" style="background: rgba(18, 18, 38, 0.4); border-top: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline); padding: 75px 0 85px 0;">
     <div class="container">
-      <div class="section-head-center">
-        <span class="section-label-pill" data-i18n="stepLabel">Clinical Workflow</span>
+      <div class="section-head-center" style="margin-top: 10px;">
+        <span class="section-label-pill" data-i18n="stepLabel" style="margin-top: 6px; margin-bottom: 18px;">Clinical Workflow</span>
         <h2 class="section-h2-large" data-i18n="stepsTitle">From Hospital Discharge to Active Living</h2>
         <p class="section-p-sub" data-i18n="stepsSubtitle">Three synchronized steps to protect peristomal skin, optimize digestive transit, and eliminate anxiety.</p>
       </div>
@@ -2402,80 +2405,695 @@
       };
 
       // ----------------------------------------------------------------------
-      // Food AI Knowledge Engine & Interactive Search Experience
+      // Food AI Knowledge Engine (Multilingual in 10 Languages)
       // ----------------------------------------------------------------------
-      const FOOD_AI_KNOWLEDGE = {
-        "mushroom": {
-          query: "Mushrooms (All Varieties)",
-          badge: "⚠️ High Obstruction Risk (Stage 1)",
-          badgeClass: "badge-high-risk",
-          desc: "Mushrooms contain dense insoluble chitin fibers that gastric acid cannot break down. They pass whole and can cluster at the narrow stoma lumen, forming an acute mechanical blockage (bezoar). Avoid completely during recovery weeks 1–6.",
-          rules: "• Puree in soups or dice into micro-pieces &lt; 4mm<br>• Cook thoroughly until soft and tender<br>• Chew each mouthful at least 30 times"
-        },
-        "popcorn": {
-          query: "Popcorn & Corn Kernels",
-          badge: "🚫 Severe Emergency Hazard",
-          badgeClass: "badge-high-risk",
-          desc: "Popcorn is the #1 leading cause of emergency hospital admissions for ileostomy food blockages. Tough outer hulls and unpopped seeds do not digest and form a solid plug behind the stoma base.",
-          rules: "• Strictly avoid during recovery Stages 1 & 2<br>• Never swallow unpopped kernels<br>• Try hull-less puffed corn snacks as a safe alternative"
-        },
-        "sweetcorn": {
-          query: "Sweetcorn & Maize",
-          badge: "🚫 High Blockage Hazard",
-          badgeClass: "badge-high-risk",
-          desc: "The cellulose outer skin of sweetcorn cannot be digested by human digestive enzymes. Kernels pass completely intact through the small bowel and pack tightly against the abdominal wall.",
-          rules: "• Avoid on the cob and whole-kernel sweetcorn<br>• If craving corn flavor, use strained corn soup or creamed corn blended smooth"
-        },
-        "corn": {
-          query: "Sweetcorn & Maize",
-          badge: "🚫 High Blockage Hazard",
-          badgeClass: "badge-high-risk",
-          desc: "The cellulose outer skin of sweetcorn cannot be digested by human digestive enzymes. Kernels pass completely intact through the small bowel and pack tightly against the abdominal wall.",
-          rules: "• Avoid on the cob and whole-kernel sweetcorn<br>• If craving corn flavor, use strained corn soup or creamed corn blended smooth"
-        },
-        "leak": {
-          query: "Wafer Leak Prevention",
-          badge: "🛡️ Clinical Adhesive Protocol",
-          badgeClass: "badge-protocol",
-          desc: "Peristomal skin burns occur when acidic stoma output leaks beneath an oversized wafer aperture. Weekly millimeter measurement with concentric guides prevents tissue erosion.",
-          rules: "• Leave only +1.5mm to 2mm clearance from stoma base<br>• Warm hydrocolloid adhesive with palms for 60 seconds before applying<br>• Empty pouch when 1/3 full to reduce gravitational peel"
-        },
-        "wafer": {
-          query: "Wafer Leak Prevention",
-          badge: "🛡️ Clinical Adhesive Protocol",
-          badgeClass: "badge-protocol",
-          desc: "Peristomal skin burns occur when acidic stoma output leaks beneath an oversized wafer aperture. Weekly millimeter measurement with concentric guides prevents tissue erosion.",
-          rules: "• Leave only +1.5mm to 2mm clearance from stoma base<br>• Warm hydrocolloid adhesive with palms for 60 seconds before applying<br>• Empty pouch when 1/3 full to reduce gravitational peel"
-        },
-        "stage 2": {
-          query: "Stage 2 Post-Op Diet Progression",
-          badge: "🥗 Weeks 4–8 Expansion Phase",
-          badgeClass: "badge-safe",
-          desc: "Transitioning from Stage 1 soft foods to everyday nutrition. Focus on gently widening digestive tolerance while keeping stool output thick and predictable.",
-          rules: "• Introduce only ONE new food every 48 hours to assess tolerance<br>• Peel all fruits and root vegetables<br>• Drink 2.0L–2.5L fluids daily with oral rehydration salts (ORS)"
-        },
-        "diet": {
-          query: "Stage 2 Post-Op Diet Progression",
-          badge: "🥗 Weeks 4–8 Expansion Phase",
-          badgeClass: "badge-safe",
-          desc: "Transitioning from Stage 1 soft foods to everyday nutrition. Focus on gently widening digestive tolerance while keeping stool output thick and predictable.",
-          rules: "• Introduce only ONE new food every 48 hours to assess tolerance<br>• Peel all fruits and root vegetables<br>• Drink 2.0L–2.5L fluids daily with oral rehydration salts (ORS)"
-        },
-        "nut": {
-          query: "Nuts & Whole Seeds",
-          badge: "⚠️ High Mechanical Obstruction Hazard",
-          badgeClass: "badge-high-risk",
-          desc: "Whole almonds, walnuts, peanuts, and seeds do not dissolve in the small intestine. Swallowed chunks create acute blockage points.",
-          rules: "• Replace whole nuts with creamy smooth nut butters (peanut butter, almond butter)<br>• Avoid seeded breads and granola"
-        },
-        "celery": {
-          query: "Raw Celery & Stringy Vegetables",
-          badge: "⚠️ Stringy Fiber Obstruction Hazard",
-          badgeClass: "badge-caution",
-          desc: "Tough longitudinal fiber strings act like thread, wrapping around bowel contents and snagging on the stoma aperture.",
-          rules: "• De-string celery completely before consumption<br>• Finely chop or cook in stocks and stews until soft"
+      const MULTILINGUAL_FOOD_AI = {
+  "en": {
+    "labels": {
+      "analyzedQuery": "Analyzed Query",
+      "rulesTitle": "Clinical Preparation & Safety Guidelines",
+      "inputPlaceholder": "Ask about another food (e.g. popcorn, celery, nuts)...",
+      "checkBtn": "Check Food AI →"
+    },
+    "items": {
+      "mushroom": {
+        "query": "Mushrooms (All Varieties)",
+        "badge": "⚠️ High Obstruction Risk (Stage 1)",
+        "badgeClass": "badge-high-risk",
+        "desc": "Mushrooms contain dense insoluble chitin fibers that gastric acid cannot break down. They pass whole and can cluster at the narrow stoma lumen, forming an acute mechanical blockage (bezoar). Avoid completely during recovery weeks 1–6.",
+        "rules": "• Puree in soups or dice into micro-pieces &lt; 4mm<br>• Cook thoroughly until soft and tender<br>• Chew each mouthful at least 30 times"
+      },
+      "popcorn": {
+        "query": "Popcorn & Corn Kernels",
+        "badge": "🚫 Severe Emergency Hazard",
+        "badgeClass": "badge-high-risk",
+        "desc": "Popcorn is the #1 leading cause of emergency hospital admissions for ileostomy food blockages. Tough outer hulls and unpopped seeds do not digest and form a solid plug behind the stoma base.",
+        "rules": "• Strictly avoid during recovery Stages 1 & 2<br>• Never swallow unpopped kernels<br>• Try hull-less puffed corn snacks as a safe alternative"
+      },
+      "corn": {
+        "query": "Sweetcorn & Maize",
+        "badge": "🚫 High Blockage Hazard",
+        "badgeClass": "badge-high-risk",
+        "desc": "The cellulose outer skin of sweetcorn cannot be digested by human digestive enzymes. Kernels pass completely intact through the small bowel and pack tightly against the abdominal wall.",
+        "rules": "• Avoid on the cob and whole-kernel sweetcorn<br>• If craving corn flavor, use strained corn soup or creamed corn blended smooth"
+      },
+      "leak": {
+        "query": "Wafer Leak Prevention",
+        "badge": "🛡️ Clinical Adhesive Protocol",
+        "badgeClass": "badge-protocol",
+        "desc": "Peristomal skin burns occur when acidic stoma output leaks beneath an oversized wafer aperture. Weekly millimeter measurement with concentric guides prevents tissue erosion.",
+        "rules": "• Leave only +1.5mm to 2mm clearance from stoma base<br>• Warm hydrocolloid adhesive with palms for 60 seconds before applying<br>• Empty pouch when 1/3 full to reduce gravitational peel"
+      },
+      "diet": {
+        "query": "Stage 2 Post-Op Diet Progression",
+        "badge": "🥗 Weeks 4–8 Expansion Phase",
+        "badgeClass": "badge-safe",
+        "desc": "Transitioning from Stage 1 soft foods to everyday nutrition. Focus on gently widening digestive tolerance while keeping stool output thick and predictable.",
+        "rules": "• Introduce only ONE new food every 48 hours to assess tolerance<br>• Peel all fruits and root vegetables<br>• Drink 2.0L–2.5L fluids daily with oral rehydration salts (ORS)"
+      },
+      "nut": {
+        "query": "Nuts & Whole Seeds",
+        "badge": "⚠️ High Mechanical Obstruction Hazard",
+        "badgeClass": "badge-high-risk",
+        "desc": "Whole almonds, walnuts, peanuts, and seeds do not dissolve in the small intestine. Swallowed chunks create acute blockage points.",
+        "rules": "• Replace whole nuts with creamy smooth nut butters (peanut butter, almond butter)<br>• Avoid seeded breads and granola"
+      },
+      "celery": {
+        "query": "Raw Celery & Stringy Vegetables",
+        "badge": "⚠️ Stringy Fiber Obstruction Hazard",
+        "badgeClass": "badge-caution",
+        "desc": "Tough longitudinal fiber strings act like thread, wrapping around bowel contents and snagging on the stoma aperture.",
+        "rules": "• De-string celery completely before consumption<br>• Finely chop or cook in stocks and stews until soft"
+      },
+      "fallback": {
+        "badge": "ℹ️ Clinical Dietary Guidance",
+        "badgeClass": "badge-caution",
+        "desc": "For newly introduced foods during post-operative recovery, evaluate fibrous residue, transit speed, and gas potential. Ileostomates should avoid large fibrous boluses; colostomates should ensure progressive fiber adaptation.",
+        "rules": "• Chew thoroughly into smooth paste before swallowing<br>• Test tolerance with small sample (2–3 bites) first<br>• Wait 24–48 hours before consuming full portions"
+      }
+    }
+  },
+  "pl": {
+    "labels": {
+      "analyzedQuery": "Przeanalizowane Zapytanie",
+      "rulesTitle": "Kliniczne Zasady Przygotowania i Bezpieczeństwa",
+      "inputPlaceholder": "Zapytaj o inny produkt (np. popcorn, seler, orzechy)...",
+      "checkBtn": "Sprawdź w AI →"
+    },
+    "items": {
+      "mushroom": {
+        "query": "Grzyby (Wszystkie Odmiany)",
+        "badge": "⚠️ Wysokie Ryzyko Niedrożności (Etap 1)",
+        "badgeClass": "badge-high-risk",
+        "desc": "Grzyby zawierają gęste, nierozpuszczalne włókna chitynowe, których kwas żołądkowy nie rozkłada. Przechodzą w całości i mogą zbijać się w wąskim świetle stomii, wywołując ostrą niedrożność mechaniczną (bezoar). Unikaj całkowicie w 1–6 tygodniu po operacji.",
+        "rules": "• Miksuj na gładki krem w zupach lub siekaj na drobiny &lt; 4 mm<br>• Gotuj do całkowitej miękkości<br>• Przeżuwaj każdy kęs minimum 30 razy"
+      },
+      "popcorn": {
+        "query": "Popcorn i Ziarna Kukurydzy",
+        "badge": "🚫 Ciężkie Zagrożenie Niedrożnością",
+        "badgeClass": "badge-high-risk",
+        "desc": "Popcorn jest najczęstszą przyczyną nagłych hospitalizacji z powodu zablokowania ileostomii. Twarde łupiny i nieupieczone ziarna nie trawią się i tworzą zbity czop tuż za płytką.",
+        "rules": "• Bezwzględnie unikaj w 1 i 2 etapie rekonwalescencji<br>• Nigdy nie połykaj twardych łupin<br>• Jako bezpieczny zamiennik wybierz chrupki kukurydziane bez łusek"
+      },
+      "corn": {
+        "query": "Kukurydza Cukrowa",
+        "badge": "🚫 Wysokie Ryzyko Zablokowania",
+        "badgeClass": "badge-high-risk",
+        "desc": "Celulozowa osłonka kukurydzy nie jest trawiona przez ludzkie enzymy. Całe ziarna przechodzą bez zmian przez jelito cienkie i zbijają się przy otworze stomii.",
+        "rules": "• Unikaj kolb i całych ziaren kukurydzy<br>• Do smaku stosuj zblendowaną zupę krem lub przetarte purée"
+      },
+      "leak": {
+        "query": "Zapobieganie Podciekaniu Płytki",
+        "badge": "🛡️ Protokół Przylepca Hydrokoloidowego",
+        "badgeClass": "badge-protocol",
+        "desc": "Odparzenia skóry peristomijnej powstają, gdy kwaśna treść podcieka pod zbyt duży otwór w płytce. Cotygodniowy pomiar linijką zapobiega uszkodzeniom naskórka.",
+        "rules": "• Pozostaw tylko 1,5–2 mm odstępu od nasady stomii<br>• Rozgrzewaj płytkę ciepłem dłoni przez 60 sekund przed naklejeniem<br>• Opróżniaj worek przy wypełnieniu w 1/3, aby zmniejszyć obciążenie grawitacyjne"
+      },
+      "diet": {
+        "query": "Dieta Pooperacyjna Etap 2",
+        "badge": "🥗 Faza Rozszerzania (4–8 Tydzień)",
+        "badgeClass": "badge-safe",
+        "desc": "Przejście z papkowatej diety lekkostrawnej do posiłków codziennych. Skup się na łagodnym sprawdzaniu tolerancji przy zachowaniu zwartej konsystencji treści.",
+        "rules": "• Wprowadzaj tylko JEDEN nowy produkt co 48 godzin<br>• Obieraj owoce i warzywa ze skórki<br>• Pij 2,0–2,5 l płynów dziennie i uzupełniaj elektrolity"
+      },
+      "nut": {
+        "query": "Orzechy i Całe Nasiona",
+        "badge": "⚠️ Ryzyko Niedrożności Mechanicznej",
+        "badgeClass": "badge-high-risk",
+        "desc": "Całe migdały, orzechy włoskie i nasiona nie ulegają rozpuszczeniu w jelicie cienkim. Połknięte kawałki tworzą zatory.",
+        "rules": "• Zastąp całe orzechy gładkim masłem orzechowym (np. z orzeszków ziemnych)<br>• Unikaj pieczywa z całymi ziarnami"
+      },
+      "celery": {
+        "query": "Seler Naciowy i Warzywa Włókniste",
+        "badge": "⚠️ Ryzyko Włókien Oplatających",
+        "badgeClass": "badge-caution",
+        "desc": "Długie, twarde włókna selera działają jak nici, owijając treść jelitową i klinując się w stomii.",
+        "rules": "• Dokładnie zdejmuj włókna przed spożyciem<br>• Drobno siekaj lub gotuj w wywarach do miękkości"
+      },
+      "fallback": {
+        "badge": "ℹ️ Kliniczne Wskazówki Dietetyczne",
+        "badgeClass": "badge-caution",
+        "desc": "Podczas wprowadzania nowych potraw po operacji stomii oceniaj zawartość nierozpuszczalnego błonnika, szybkość pasażu i gazotwórczość.",
+        "rules": "• Dokładnie przeżuwaj każdy kęs na gładką papkę<br>• Zacznij od małej porcji (2–3 kęsy) na próbę<br>• Odczekaj 24–48 godzin przed zjedzeniem pełnego posiłku"
+      }
+    }
+  },
+  "de": {
+    "labels": {
+      "analyzedQuery": "Analysierte Anfrage",
+      "rulesTitle": "Klinische Zubereitungs- & Sicherheitsregeln",
+      "inputPlaceholder": "Frage zu anderem Lebensmittel (z.B. Popcorn, Sellerie)...",
+      "checkBtn": "Mit KI prüfen →"
+    },
+    "items": {
+      "mushroom": {
+        "query": "Pilze (Alle Sorten)",
+        "badge": "⚠️ Hohes Blockaderisiko (Stufe 1)",
+        "badgeClass": "badge-high-risk",
+        "desc": "Pilze enthalten dichte Chitinfasern, die von der Magensäure nicht aufgespalten werden. Sie passieren den Darm unverdaut und können sich an der Stomaöffnung zu einem Bezoar verklumpen. In den Wochen 1–6 postoperativ meiden.",
+        "rules": "• In Suppen pürieren oder &lt; 4 mm fein hacken<br>• Vollständig weich kochen<br>• Jeden Bissen mindestens 30 Mal kauen"
+      },
+      "popcorn": {
+        "query": "Popcorn & Maiskörner",
+        "badge": "🚫 Akute Notfall-Gefahr",
+        "badgeClass": "badge-high-risk",
+        "desc": "Popcorn ist die häufigste Ursache für notfallmäßige Krankenhauseinweisungen bei Ileostomie-Blockaden. Harte Schalen verstopfen das Stoma.",
+        "rules": "• In Stufe 1 & 2 streng meiden<br>• Niemals unaufgeplatzte Körner schlucken<br>• Auf schalenfreie Mais-Snacks ausweichen"
+      },
+      "corn": {
+        "query": "Zuckermais",
+        "badge": "🚫 Hohes Verschlussrisiko",
+        "badgeClass": "badge-high-risk",
+        "desc": "Die Zellulosehülle von Maiskörnern ist unverdaulich. Ganze Körner wandern intakt durch den Dünndarm und stauen sich vor der Öffnung.",
+        "rules": "• Ganzen Mais und Maiskolben meiden<br>• Pürierte Maissuppe als Alternative nutzen"
+      },
+      "leak": {
+        "query": "Plattenunterwanderung verhindern",
+        "badge": "🛡️ Hydrokolloid-Schutzprotokoll",
+        "badgeClass": "badge-protocol",
+        "desc": "Hautreizungen entstehen, wenn aggressive Verdauungssäfte unter eine zu große Plattenöffnung laufen. Wöchentliches Nachmessen schützt die Haut.",
+        "rules": "• Nur 1,5–2 mm Abstand zum Stomarand lassen<br>• Basisplatte vor dem Aufkleben 60 Sekunden mit den Handflächen anwärmen<br>• Beutel bei 1/3 Füllung leeren"
+      },
+      "diet": {
+        "query": "Kostaufbau Stufe 2",
+        "badge": "🥗 Erweiterungsphase (Woche 4–8)",
+        "badgeClass": "badge-safe",
+        "desc": "Übergang von Schonkost zu ausgewogener Ernährung. Neue Lebensmittel schrittweise auf Verträglichkeit und Stuhlkonsistenz testen.",
+        "rules": "• Nur EIN neues Lebensmittel alle 48 Stunden einführen<br>• Obst und Gemüse stets schälen<br>• 2,0–2,5 Liter trinken mit Elektrolytausgleich"
+      },
+      "nut": {
+        "query": "Nüsse & Saaten",
+        "badge": "⚠️ Mechanisches Blockaderisiko",
+        "badgeClass": "badge-high-risk",
+        "desc": "Ganze Nüsse werden im Dünndarm nicht zersetzt und können Engstellen verstopfen.",
+        "rules": "• Auf cremige Nussmuse (Erdnussbutter, Mandelmus) zurückgreifen<br>• Körnerbrot meiden"
+      },
+      "celery": {
+        "query": "Staudensellerie & Faseriges",
+        "badge": "⚠️ Gefahr durch zähe Fasern",
+        "badgeClass": "badge-caution",
+        "desc": "Lange Fasern können sich wie Fäden verknäueln und den Stomaausgang blockieren.",
+        "rules": "• Fasern vor dem Verzehr abziehen<br>• Sehr fein schneiden oder weich dünsten"
+      },
+      "fallback": {
+        "badge": "ℹ️ Klinische Ernährungshinweise",
+        "badgeClass": "badge-caution",
+        "desc": "Prüfen Sie bei neuen Speisen Ballaststoffgehalt, Passagedauer und Gasbildung zur sicheren Stomaversorgung.",
+        "rules": "• Zu feinem Brei kauen<br>• Zunächst mit 2–3 Bissen testen<br>• 24–48 Stunden Reaktion abwarten"
+      }
+    }
+  },
+  "fr": {
+    "labels": {
+      "analyzedQuery": "Requête Analysée",
+      "rulesTitle": "Consignes de Préparation et Sécurité Clinique",
+      "inputPlaceholder": "Interrogez l'IA sur un autre aliment (ex. pop-corn, céleri)...",
+      "checkBtn": "Vérifier avec l'IA →"
+    },
+    "items": {
+      "mushroom": {
+        "query": "Champignons (Toutes Variétés)",
+        "badge": "⚠️ Risque d'Occlusion Élevé (Phase 1)",
+        "badgeClass": "badge-high-risk",
+        "desc": "Les champignons renferment des fibres de chitine insolubles indestructibles par l'acide gastrique. Ils transitent entiers et s'accumulent au niveau de la stomie. À proscrire lors des 6 premières semaines.",
+        "rules": "• Mixer en velouté ou hacher très fin (&lt; 4 mm)<br>• Cuire longuement jusqu'à consistance tendre<br>• Mâcher 30 fois minimum par bouchée"
+      },
+      "popcorn": {
+        "query": "Pop-corn et Grains de Maïs",
+        "badge": "🚫 Risque d'Urgence Majeur",
+        "badgeClass": "badge-high-risk",
+        "desc": "Le pop-corn est la première cause d'occlusion aiguë conduisant aux urgences chez les personnes iléostomisées. Les peaux rigides forment un bouchon hermétique.",
+        "rules": "• Éviter strictement en phases 1 et 2<br>• Ne jamais avaler de grains durs<br>• Privilégier les biscuits soufflés au maïs sans péricarpe"
+      },
+      "corn": {
+        "query": "Maïs Doux",
+        "badge": "🚫 Risque d'Obstruction Élevé",
+        "badgeClass": "badge-high-risk",
+        "desc": "L'enveloppe cellulosique du maïs n'est pas digérée par les sucs gastriques. Les grains passent entiers et colmatent la stomie.",
+        "rules": "• Proscrire les épis et grains entiers<br>• Consommer exclusivement sous forme de crème filtrée"
+      },
+      "leak": {
+        "query": "Prévention des Fuites de Support",
+        "badge": "🛡️ Protocole Protecteur Cutané",
+        "badgeClass": "badge-protocol",
+        "desc": "Les brûlures péristomiales sont provoquées par l'infiltration de selles acides sous un orifice trop large. Un calibrage hebdomadaire protège la peau.",
+        "rules": "• Ne laisser que 1,5 à 2 mm de marge autour de la stomie<br>• Chauffer l'adhésif 60 s avec les paumes avant la pose<br>• Vider la poche dès qu'elle est au tiers pleine"
+      },
+      "diet": {
+        "query": "Progression Alimentaire Phase 2",
+        "badge": "🥗 Phase d'Élargissement (Semaines 4–8)",
+        "badgeClass": "badge-safe",
+        "desc": "Transition de l'alimentation mixée vers des repas variés. Tester la tolérance digestive tout en maintenant un transit régulier.",
+        "rules": "• Introduire UN seul aliment nouveau toutes les 48 h<br>• Éplucher systématiquement fruits et légumes<br>• Boire 2,0 à 2,5 L par jour avec solutés de réhydratation"
+      },
+      "nut": {
+        "query": "Fruits à Coque & Graines",
+        "badge": "⚠️ Risque de Blocage Mécanique",
+        "badgeClass": "badge-high-risk",
+        "desc": "Les amandes et noix entières ne sont pas dégradées dans l'intestin grêle et peuvent obstruer la stomie.",
+        "rules": "• Préférer les beurres d'oléagineux onctueux (beurre de cacahuète lisse)<br>• Éviter les pains aux graines"
+      },
+      "celery": {
+        "query": "Céleri Branche & Légumes Filandreux",
+        "badge": "⚠️ Risque de Fibres Filamenteuses",
+        "badgeClass": "badge-caution",
+        "desc": "Les longs filaments de céleri s'entremêlent et forment un amas occlusif dans la lumière de la stomie.",
+        "rules": "• Retirer soigneusement tous les fils avant consommation<br>• Émincer finement ou cuire en bouillon"
+      },
+      "fallback": {
+        "badge": "ℹ️ Conseil Diététique Clinique",
+        "badgeClass": "badge-caution",
+        "desc": "Lors de la découverte d'un aliment, évaluez les fibres insolubles et le transit pour préserver votre stomie.",
+        "rules": "• Mastiquer soigneusement jusqu'à consistance liquide<br>• Tester d'abord 2 ou 3 petites bouchées<br>• Attendre 24 à 48 heures pour vérifier la tolérance"
+      }
+    }
+  },
+  "es": {
+    "labels": {
+      "analyzedQuery": "Consulta Analizada",
+      "rulesTitle": "Pautas Clínicas de Preparación y Seguridad",
+      "inputPlaceholder": "Pregunte por otro alimento (ej. palomitas, apio, nueces)...",
+      "checkBtn": "Consultar IA →"
+    },
+    "items": {
+      "mushroom": {
+        "query": "Setas y Champiñones (Todas las variedades)",
+        "badge": "⚠️ Alto Riesgo de Obstrucción (Fase 1)",
+        "badgeClass": "badge-high-risk",
+        "desc": "Las setas contienen quitina insoluble que el estómago no descompone. Transitan intactas y pueden bloquear el estoma provocando una oclusión aguda. Evitar en las primeras 6 semanas.",
+        "rules": "• Triturar en crema o picar a trozos &lt; 4 mm<br>• Cocinar muy bien hasta ablandar<br>• Masticar al menos 30 veces cada bocado"
+      },
+      "popcorn": {
+        "query": "Palomitas de Maíz",
+        "badge": "🚫 Peligro Grave de Urgencia",
+        "badgeClass": "badge-high-risk",
+        "desc": "Las palomitas son la principal causa de ingreso hospitalario por obstrucción en ileostomías. La cáscara dura forma un tapón compacto.",
+        "rules": "• Evitar absolutamente en fases 1 y 2<br>• No tragar nunca granos enteros<br>• Optar por aperitivos de maíz horneados sin cáscara"
+      },
+      "corn": {
+        "query": "Maíz Dulce",
+        "badge": "🚫 Alto Riesgo de Atascamiento",
+        "badgeClass": "badge-high-risk",
+        "desc": "La piel de celulosa del maíz no se digiere. Pasa entera por el intestino delgado y se acumula frente a la apertura del disco.",
+        "rules": "• Evitar mazorcas y maíz en grano<br>• Tomar únicamente triturado y colado en crema"
+      },
+      "leak": {
+        "query": "Prevención de Fugas en el Disco",
+        "badge": "🛡️ Protocolo Adhesivo Periestomal",
+        "badgeClass": "badge-protocol",
+        "desc": "Las quemaduras químicas ocurren cuando las heces se filtran bajo una apertura demasiado holgada. Medir el estoma previene lesiones.",
+        "rules": "• Dejar solo 1,5 a 2 mm de margen respecto al borde del estoma<br>• Calentar el disco con las manos 60 s antes de colocarlo<br>• Vaciar la bolsa al tercio de su capacidad"
+      },
+      "diet": {
+        "query": "Progresión de Dieta Fase 2",
+        "badge": "🥗 Fase de Ampliación (Semanas 4–8)",
+        "badgeClass": "badge-safe",
+        "desc": "Paso de alimentos suaves a una dieta variada. Introducir alimentos con calma verificando consistencia y tolerancia.",
+        "rules": "• Añadir solo UN alimento nuevo cada 48 horas<br>• Pelar siempre frutas y verduras<br>• Tomar de 2 a 2,5 litros de líquido con sales de rehidratación"
+      },
+      "nut": {
+        "query": "Frutos Secos y Semillas",
+        "badge": "⚠️ Riesgo de Obstrucción Mecánica",
+        "badgeClass": "badge-high-risk",
+        "desc": "Las nueces y almendras enteras no se disuelven en el intestino delgado y pueden atascarse.",
+        "rules": "• Sustituir por cremas de frutos secos suaves sin trozos<br>• Evitar panes con semillas"
+      },
+      "celery": {
+        "query": "Apio y Vegetales Fibrosos",
+        "badge": "⚠️ Riesgo de Fibras Largas",
+        "badgeClass": "badge-caution",
+        "desc": "Las hebras longitudinales del apio se enredan con el contenido fecal y obstruyen el orificio.",
+        "rules": "• Quitar todas las hebras antes de comer<br>• Picar muy fino o cocer en caldos"
+      },
+      "fallback": {
+        "badge": "ℹ️ Orientación Nutricional Clínica",
+        "badgeClass": "badge-caution",
+        "desc": "Al probar alimentos nuevos, valore fibra insoluble y digestibilidad para proteger su ostomía.",
+        "rules": "• Masticar hasta convertir en puré suave<br>• Empezar con 2 o 3 bocados de prueba<br>• Esperar de 24 a 48 horas para ver la respuesta"
+      }
+    }
+  },
+  "it": {
+    "labels": {
+      "analyzedQuery": "Richiesta Analizzata",
+      "rulesTitle": "Linee Guida di Preparazione e Sicurezza",
+      "inputPlaceholder": "Chiedi di un altro alimento (es. popcorn, sedano, noci)...",
+      "checkBtn": "Verifica con l'IA →"
+    },
+    "items": {
+      "mushroom": {
+        "query": "Funghi (Tutte le Varietà)",
+        "badge": "⚠️ Alto Rischio Occlusione (Fase 1)",
+        "badgeClass": "badge-high-risk",
+        "desc": "I funghi contengono chitina insolubile indigeribile per i succhi gastrici. Passano intatti e possono formare un bezoario che occlude il lume dello stoma. Evitare nelle prime 6 settimane.",
+        "rules": "• Frullare in vellutate o tritare a pezzi &lt; 4 mm<br>• Cuocere a lungo fino a completa morbidezza<br>• Masticare ciascun boccone almeno 30 volte"
+      },
+      "popcorn": {
+        "query": "Popcorn e Chicchi di Mais",
+        "badge": "🚫 Grave Pericolo di Blocco",
+        "badgeClass": "badge-high-risk",
+        "desc": "Il popcorn è la prima causa di ricovero d'urgenza per occlusione intestinale nei portatori di ileostomia. Le pellicole dure creano un tappo compatto.",
+        "rules": "• Evitare rigorosamente nelle Fasi 1 e 2<br>• Non deglutire mai chicchi non scoppiati<br>• Scegliere snack di mais soffiato senza buccia"
+      },
+      "corn": {
+        "query": "Mais Dolce",
+        "badge": "🚫 Rischio Occlusivo Elevato",
+        "badgeClass": "badge-high-risk",
+        "desc": "La cuticola di cellulosa del mais non viene digerita. I chicchi passano interi nell'intestino tenue e si accumulano all'uscita dello stoma.",
+        "rules": "• Evitare pannocchie e mais in chicchi interi<br>• Consumare solo sotto forma di crema filtrata"
+      },
+      "leak": {
+        "query": "Prevenzione Perdite della Placca",
+        "badge": "🛡️ Protocollo Idrocolloidale",
+        "badgeClass": "badge-protocol",
+        "desc": "Le irritazioni della cute peristomale si verificano quando le feci acide filtrano sotto un foro troppo largo. La misurazione millimetrica protegge la cute.",
+        "rules": "• Lasciare solo 1,5–2 mm di tolleranza dal bordo dello stoma<br>• Riscaldare la placca tra i palmi per 60 secondi prima dell'applicazione<br>• Svuotare la sacca quando è piena a un terzo"
+      },
+      "diet": {
+        "query": "Dieta Fase 2 Post-Intervento",
+        "badge": "🥗 Fase di Ampliamento (Settimane 4–8)",
+        "badgeClass": "badge-safe",
+        "desc": "Passaggio da cibi morbidi a un'alimentazione varia. Valutare la tolleranza un alimento alla volta mantenendo le feci dense.",
+        "rules": "• Introdurre solo UN nuovo alimento ogni 48 ore<br>• Sbucciare sempre frutta e verdura<br>• Bere 2,0–2,5 L di liquidi al giorno con sali reidratanti"
+      },
+      "nut": {
+        "query": "Frutta Secca e Semi Interi",
+        "badge": "⚠️ Rischio Occlusione Meccanica",
+        "badgeClass": "badge-high-risk",
+        "desc": "Noci e mandorle intere non si sciolgono nell'intestino tenue e possono incunearsi nello stoma.",
+        "rules": "• Sostituire con burri di frutta secca lisci (es. burro d'arachidi morbido)<br>• Evitare pane con semi"
+      },
+      "celery": {
+        "query": "Sedano e Ortaggi Filamentosi",
+        "badge": "⚠️ Rischio da Fibre Filamentose",
+        "badgeClass": "badge-caution",
+        "desc": "I filamenti longitudinali del sedano si aggrovigliano alle feci formando un cordone occlusivo.",
+        "rules": "• Sfilarlo completamente prima dell'uso<br>• Tritare finemente o stufare nei brodi"
+      },
+      "fallback": {
+        "badge": "ℹ️ Guida Nutrizionale Clinica",
+        "badgeClass": "badge-caution",
+        "desc": "Quando sperimenti nuovi alimenti, considera fibre e velocità di transito per non affaticare lo stoma.",
+        "rules": "• Masticare fino a creare una purea liquida<br>• Assaggiare 2 o 3 piccoli bocconi di prova<br>• Attendere 24–48 ore per verificare la tolleranza"
+      }
+    }
+  },
+  "uk": {
+    "labels": {
+      "analyzedQuery": "Аналіз Запиту",
+      "rulesTitle": "Клінічні Правила Приготування та Безпеки",
+      "inputPlaceholder": "Запитайте про інший продукт (напр., попкорн, селера, горіхи)...",
+      "checkBtn": "Перевірити в ШІ →"
+    },
+    "items": {
+      "mushroom": {
+        "query": "Гриби (Усі Види)",
+        "badge": "⚠️ Високий Ризик Непрохідності (Етап 1)",
+        "badgeClass": "badge-high-risk",
+        "desc": "Гриби містять щільний нерозчинний хітин, який не перетравлюється шлунковим соком. Вони проходять цілими та накопичуються у просвіті стоми, викликаючи механічну непрохідність (безоар). Уникайте у перші 6 тижнів після операції.",
+        "rules": "• Подрібнюйте у блендері на суп-пюре або ріжте шматочками &lt; 4 мм<br>• Ретельно відварюйте до повної м'якості<br>• Пережовуйте кожен шматочок щонайменше 30 разів"
+      },
+      "popcorn": {
+        "query": "Попкорн та Кукурудзяні Зерна",
+        "badge": "🚫 Критична Небезпека Блокади",
+        "badgeClass": "badge-high-risk",
+        "desc": "Попкорн є головною причиною термінових госпіталізацій пацієнтів з ілеостомою через закоркування. Тверді оболонки зерен збиваються у щільний корок.",
+        "rules": "• Суворо уникайте на 1 та 2 етапах відновлення<br>• Ніколи не ковтайте цілі зерна<br>• Вживайте безпечні кукурудзяні палички без лушпиння"
+      },
+      "corn": {
+        "query": "Цукрова Кукурудза",
+        "badge": "🚫 Високий Ризик Закоркування",
+        "badgeClass": "badge-high-risk",
+        "desc": "Оболонка кукурудзяного зерна не розщеплюється людськими ферментами. Зерна проходять незмінними та щільно блокують вихід зі стоми.",
+        "rules": "• Уникайте качанів та цільних зерен кукурудзи<br>• Вживайте лише у вигляді перетертого супу-крему"
+      },
+      "leak": {
+        "query": "Профілактика Підтікання Пластини",
+        "badge": "🛡️ Протокол Гідроколоїдного Захисту",
+        "badgeClass": "badge-protocol",
+        "desc": "Опіки перистомальної шкіри виникають, коли їдкі виділення потрапляють під завеликий отвір пластини. Регулярний замір захищає шкіру.",
+        "rules": "• Залишайте лише 1,5–2 мм відступу від краю стоми<br>• Прогрівайте пластину долонями 60 секунд перед наклеюванням<br>• Спорожнюйте мішок при заповненні на 1/3 для зменшення ваги"
+      },
+      "diet": {
+        "query": "Дієта 2-го Етапу Після Операції",
+        "badge": "🥗 Етап Розширення Раціону (4–8 Тижні)",
+        "badgeClass": "badge-safe",
+        "desc": "Перехід від протертої їжі до щоденного харчування. Поступово перевіряйте переносність продуктів, зберігаючи кашкоподібний стілець.",
+        "rules": "• Вводьте лише ОДИН новий продукт кожні 48 годин<br>• Обов'язково очищуйте фрукти й овочі від шкірки<br>• Пийте 2,0–2,5 л рідини на день із сольовими розчинами"
+      },
+      "nut": {
+        "query": "Горіхи та Цілісне Насіння",
+        "badge": "⚠️ Механічна Загроза Непрохідності",
+        "badgeClass": "badge-high-risk",
+        "desc": "Цілісний мигдаль, волоські горіхи та насіння не розчиняються в тонкому кишківнику та можуть спричинити застій.",
+        "rules": "• Замінюйте цільні горіхи однорідною арахісовою або горіховою пастою<br>• Уникайте хліба з насінням"
+      },
+      "celery": {
+        "query": "Селера та Волокнисті Овочі",
+        "badge": "⚠️ Небезпека Волокнистих Ниток",
+        "badgeClass": "badge-caution",
+        "desc": "Поздовжні волокна селери діють як нитки, зв'язуючи вміст кишківника в щільний вузол.",
+        "rules": "• Знімайте всі волокна перед вживанням<br>• Дрібно нарізайте або варіть у супах до м'якості"
+      },
+      "fallback": {
+        "badge": "ℹ️ Клінічні Поради щодо Раціону",
+        "badgeClass": "badge-caution",
+        "desc": "Оцінюйте вміст грубої клітковини та швидкість транзиту кожного нового продукту для захисту стоми.",
+        "rules": "• Ретельно пережовуйте їжу до рідкого стану<br>• Починайте з 2–3 пробних шматочків<br>• Зачекайте 24–48 годин для оцінки реакції"
+      }
+    }
+  },
+  "ru": {
+    "labels": {
+      "analyzedQuery": "Анализ Запроса",
+      "rulesTitle": "Клинические Правила Приготовления и Безопасности",
+      "inputPlaceholder": "Спросите о другом продукте (напр., попкорн, сельдерей, орехи)...",
+      "checkBtn": "Проверить в ИИ →"
+    },
+    "items": {
+      "mushroom": {
+        "query": "Грибы (Все Разновидности)",
+        "badge": "⚠️ Высокий Риск Непроходимости (Этап 1)",
+        "badgeClass": "badge-high-risk",
+        "desc": "Грибы содержат плотный нерастворимый хитин, который не расщепляется желудочным соком. Они выходят целиком и могут сбиваться в узком отверстии стомы, вызывая острую механическую блокаду (безоар). Полностью исключите в первые 6 недель.",
+        "rules": "• Измельчайте блендером в крем-суп или режьте кусочками &lt; 4 мм<br>• Тщательно отваривайте до мягкости<br>• Пережевывайте каждый кусочек не менее 30 раз"
+      },
+      "popcorn": {
+        "query": "Попкорн и Кукурузные Зерна",
+        "badge": "🚫 Острая Опасность Закупорки",
+        "badgeClass": "badge-high-risk",
+        "desc": "Попкорн — ведущая причина экстренных госпитализаций пациентов с илеостомой. Твердая шелуха не переваривается и образует плотную пробку в стоме.",
+        "rules": "• Строго исключите на 1 и 2 этапах восстановления<br>• Никогда не глотайте нераскрывшиеся зерна<br>• Выбирайте кукурузные палочки без шелухи как безопасную замену"
+      },
+      "corn": {
+        "query": "Сладкая Кукуруза",
+        "badge": "🚫 Высокий Риск Закупорки",
+        "badgeClass": "badge-high-risk",
+        "desc": "Оболочка кукурузного зерна не переваривается пищеварительными ферментами. Зерна выходят неповрежденными и забивают отверстие стомы.",
+        "rules": "• Избегайте початков и консервированных зерен<br>• Употребляйте только в виде протертого крем-супа"
+      },
+      "leak": {
+        "query": "Защита от Протекания Пластины",
+        "badge": "🛡️ Протокол Гидроколлоидного Барьера",
+        "badgeClass": "badge-protocol",
+        "desc": "Ожоги перистомальной кожи происходят, когда едкое кишечное отделяемое попадает под слишком широкий вырез пластины. Еженедельный замер защищает кожу.",
+        "rules": "• Оставляйте зазор всего 1,5–2 мм от основания стомы<br>• Прогревайте пластину ладонями 60 секунд перед фиксацией<br>• Опорожняйте мешок при наполнении на 1/3"
+      },
+      "diet": {
+        "query": "Диета 2-го Этапа После Операции",
+        "badge": "🥗 Этап Расширения Рациона (4–8 Недели)",
+        "badgeClass": "badge-safe",
+        "desc": "Переход от протертой диеты к обычному рациону. Вводите продукты постепенно, сохраняя кашицеобразную консистенцию стула.",
+        "rules": "• Вводите только ОДИН новый продукт каждые 48 часов<br>• Обязательно очищайте фрукты и овощи от кожуры<br>• Пейте 2,0–2,5 л жидкости в день с растворами регидратации"
+      },
+      "nut": {
+        "query": "Орехи и Цельные Семена",
+        "badge": "⚠️ Риск Механической Непроходимости",
+        "badgeClass": "badge-high-risk",
+        "desc": "Цельный миндаль, грецкие орехи и семечки не растворяются в тонком кишечнике и могут вызвать затор.",
+        "rules": "• Заменяйте цельные орехи однородной пастой (арахисовой, ореховой)<br>• Избегайте хлеба с семенами"
+      },
+      "celery": {
+        "query": "Сельдерей и Волокнистые Овощи",
+        "badge": "⚠️ Опасность Волокнистых Нитей",
+        "badgeClass": "badge-caution",
+        "desc": "Длинные жесткие волокна сельдерея действуют как нити, связывая каловые массы в плотный комок.",
+        "rules": "• Снимайте продольные волокна перед едой<br>• Мелко рубите или тушите в супах до мягкости"
+      },
+      "fallback": {
+        "badge": "ℹ️ Клиническое Руководство по Питанию",
+        "badgeClass": "badge-caution",
+        "desc": "При введении новых блюд оценивайте содержание нерастворимой клетчатки и время транзита для безопасности стомы.",
+        "rules": "• Тщательно пережевывайте пищу до консистенции пюре<br>• Пробуйте сначала 2–3 небольших кусочка<br>• Подождите 24–48 часов для проверки переносимости"
+      }
+    }
+  },
+  "be": {
+    "labels": {
+      "analyzedQuery": "Аналіз Запыту",
+      "rulesTitle": "Клінічныя Правілы Прыгатавання і Бяспекі",
+      "inputPlaceholder": "Спытайце пра іншы прадукт (напр., папкорн, сельдэрэй, арэхі)...",
+      "checkBtn": "Праверыць у ШІ →"
+    },
+    "items": {
+      "mushroom": {
+        "query": "Грыбы (Усе Гатункі)",
+        "badge": "⚠️ Высокая Рызыка Непраходнасці (Этап 1)",
+        "badgeClass": "badge-high-risk",
+        "desc": "Грыбы ўтрымліваюць шчыльны хіцін, які не ператраўліваецца страўнікам. Яны праходзяць цэлымі і могуць збівацца ў вузкай адтуліне стомы, выклікаючы непраходнасць (безаар). Пазбягайце ў першыя 6 тыдняў.",
+        "rules": "• Збівайце блэндарам у суп-пюрэ або рэжце кавалачкамі &lt; 4 мм<br>• Добра адварвайце да мяккасці<br>• Перажоўвайце кожны кавалачак не меней за 30 разоў"
+      },
+      "popcorn": {
+        "query": "Папкорн і Зерне Кукурузы",
+        "badge": "🚫 Вострая Небяспека Закаркавання",
+        "badgeClass": "badge-high-risk",
+        "desc": "Папкорн з'яўляецца галоўнай прычынай шпіталізацыі са стомай праз закаркаванне. Цвёрдае лушпінне ўтварае корак.",
+        "rules": "• Строга пазбягайце на 1 і 2 этапах аднаўлення<br>• Ніколі не праглынайце цвёрдае зерне<br>• Абірайце бяспечныя кукурузныя палачкі без лушпіння"
+      },
+      "corn": {
+        "query": "Салодкая Кукуруза",
+        "badge": "🚫 Высокая Рызыка Закаркавання",
+        "badgeClass": "badge-high-risk",
+        "desc": "Цэлюлозная абалонка кукурузы не ператраўліваецца. Зерне выклікае затор у стоме.",
+        "rules": "• Пазбягайце качаноў і цэльнага зерня<br>• Ужывайце толькі ў выглядзе працёртага супу-крэму"
+      },
+      "leak": {
+        "query": "Ахова ад Падцякання Пласціны",
+        "badge": "🛡️ Пратакол Гідракалоіднага Бар'ера",
+        "badgeClass": "badge-protocol",
+        "desc": "Апёкі перыстамальнай скуры ўзнікаюць пры занадта вялікім выразе пласціны. Рэгулярны замер ратуе скуру.",
+        "rules": "• Пакідайце зазор толькі 1,5–2 мм ад асновы стомы<br>• Прагравайце пласціну далонямі 60 секунд перад наклейваннем<br>• Апарожвайце мяшок пры запаўненні на 1/3"
+      },
+      "diet": {
+        "query": "Дыета 2-га Этапу Пасля Аперацыі",
+        "badge": "🥗 Этап Пашырэння Рацыёну (4–8 Тыдні)",
+        "badgeClass": "badge-safe",
+        "desc": "Пераход ад простай ежы да штодзённага харчавання з захаваннем кашападобнага крэсла.",
+        "rules": "• Уводзьце толькі АДЗІН новы прадукт кожныя 48 гадзін<br>• Ачышчайце садавіну і гародніну ад лупіны<br>• Піце 2,0–2,5 л вадкасці на дзень"
+      },
+      "nut": {
+        "query": "Арэхі і Насенне",
+        "badge": "⚠️ Механічная Пагроза Непраходнасці",
+        "badgeClass": "badge-high-risk",
+        "desc": "Цэлы міндаль і арэхі не раствараюцца і могуць заблакаваць выхад са стомы.",
+        "rules": "• Замяняйце аднароднай арэхавай пастай<br>• Пазбягайце хлеба з насеннем"
+      },
+      "celery": {
+        "query": "Сельдэрэй і Валакністая Гародніна",
+        "badge": "⚠️ Небяспека Валакністых Нітак",
+        "badgeClass": "badge-caution",
+        "desc": "Цвёрдыя валокны сельдэрэю звязваюць змесціва кішэчніка ў шчыльны вузел.",
+        "rules": "• Здымайце валокны перад ежай<br>• Дробна сячыце або варыце да мяккасці"
+      },
+      "fallback": {
+        "badge": "ℹ️ Клінічныя Парады па Харчаванні",
+        "badgeClass": "badge-caution",
+        "desc": "Ацэньвайце ўтрыманне нерастваральнай клятчаткі для бяспекі вашай стомы.",
+        "rules": "• Добра перажоўвайце ежу да вадкага стану<br>• Спытайце спачатку 2–3 невялікія кавалачкі<br>• Пачакайце 24–48 гадзін для праверкі"
+      }
+    }
+  },
+  "pt": {
+    "labels": {
+      "analyzedQuery": "Consulta Analisada",
+      "rulesTitle": "Diretrizes Clínicas de Preparo e Segurança",
+      "inputPlaceholder": "Pergunte sobre outro alimento (ex. pipoca, aipo, nozes)...",
+      "checkBtn": "Verificar com a IA →"
+    },
+    "items": {
+      "mushroom": {
+        "query": "Cogumelos (Todas as Variedades)",
+        "badge": "⚠️ Alto Risco de Obstrução (Fase 1)",
+        "badgeClass": "badge-high-risk",
+        "desc": "Os cogumelos possuem fibras insolúveis de quitina que o ácido gástrico não consegue digerir. Eles passam intactos e podem se agrupar na abertura do estoma, gerando uma obstrução aguda. Evite nas primeiras 6 semanas pós-cirúrgicas.",
+        "rules": "• Bata em sopas cremosas ou corte em pedaços &lt; 4 mm<br>• Cozinhe até ficarem completamente macios<br>• Mastigue cada bocado no mínimo 30 vezes"
+      },
+      "popcorn": {
+        "query": "Pipoca e Grãos de Milho",
+        "badge": "🚫 Perigo Severo de Emergência",
+        "badgeClass": "badge-high-risk",
+        "desc": "A pipoca é a principal causa de internações hospitalares por obstrução em ileostomias. As cascas duras não se decompõem e formam um tampão sólido.",
+        "rules": "• Evite estritamente nas Fases 1 e 2<br>• Nunca engula milho não estourado<br>• Escolha salgadinhos de milho assados sem casca como opção segura"
+      },
+      "corn": {
+        "query": "Milho Verde",
+        "badge": "🚫 Alto Risco de Bloqueio",
+        "badgeClass": "badge-high-risk",
+        "desc": "A película de celulose do milho não é digerida pelo intestino humano. Os grãos passam inteiros e entopem a passagem do estoma.",
+        "rules": "• Evite espigas e milho em conserva inteiro<br>• Consuma apenas na forma de creme de milho batido e coado"
+      },
+      "leak": {
+        "query": "Prevenção de Vazamento da Placa",
+        "badge": "🛡️ Protocolo de Barreira Hidrocoloide",
+        "badgeClass": "badge-protocol",
+        "desc": "Queimaduras químicas na pele acontecem quando o efluente ácido vaza sob um recorte muito largo. Medir o estoma semanalmente protege a pele.",
+        "rules": "• Deixe apenas 1,5 a 2 mm de folga em torno da base do estoma<br>• Aqueça a placa com as palmas das mãos por 60 segundos antes de aplicar<br>• Esvazie a bolsa quando atingir 1/3 da capacidade"
+      },
+      "diet": {
+        "query": "Evolução de Dieta Fase 2",
+        "badge": "🥗 Fase de Expansão (Semanas 4–8)",
+        "badgeClass": "badge-safe",
+        "desc": "Transição da dieta pastosa para alimentos sólidos rotineiros. Avalie a tolerância de cada alimento mantendo o efluente consistente.",
+        "rules": "• Adicione apenas UM alimento novo a cada 48 horas<br>• Descasque sempre frutas e legumes<br>• Beba de 2,0 a 2,5 L de líquidos com sais de hidratação oral"
+      },
+      "nut": {
+        "query": "Castanhas, Nozes e Sementes",
+        "badge": "⚠️ Risco de Obstrução Mecânica",
+        "badgeClass": "badge-high-risk",
+        "desc": "Castanhas e nozes inteiras não se dissolvem no intestino delgado e podem travar no orifício.",
+        "rules": "• Substitua por pastas cremosas sem pedaços (pasta de amendoim lisa)<br>• Evite pães com sementes inteiras"
+      },
+      "celery": {
+        "query": "Aipo / Salsão e Fibras Duras",
+        "badge": "⚠️ Risco de Fibras Longas",
+        "badgeClass": "badge-caution",
+        "desc": "Os fios longitudinais do aipo agem como cordas, prendendo os resíduos fecais e bloqueando o estoma.",
+        "rules": "• Retire todos os fios antes de consumir<br>• Pique bem fino ou cozinhe em caldos até amolecer"
+      },
+      "fallback": {
+        "badge": "ℹ️ Orientação Nutricional Clínica",
+        "badgeClass": "badge-caution",
+        "desc": "Ao testar novos alimentos, avalie o teor de fibras insolúveis e a velocidade de trânsito para a segurança do seu estoma.",
+        "rules": "• Mastigue até virar uma pasta homogênea<br>• Experimente 2 ou 3 pequenas porções primeiro<br>• Aguarde 24 a 48 horas para verificar a resposta"
+      }
+    }
+  }
+};
+
+      // Language detection keywords for user prompts
+      const LANG_PROMPT_PATTERNS = [
+        { lang: 'pl', pattern: /grzyb|kukurydz|popcorn|przeciek|wyciek|płytk|etap|seler|orzech|jeść|czy mogę|brzuch|stomi/i },
+        { lang: 'de', pattern: /pilz|mais|popcorn|unterwander|platte|stufe|sellerie|nüss|essen|darf ich|bauch|stoma/i },
+        { lang: 'fr', pattern: /champignon|maïs|pop-corn|fuite|support|phase|céleri|noix|manger|puis-je|ventre|stomie/i },
+        { lang: 'es', pattern: /seta|champiñ|maíz|palomita|fuga|disco|fase|apio|nuez|nueces|comer|puedo|estoma/i },
+        { lang: 'it', pattern: /fungh|mais|popcorn|perdit|placca|fase|sedano|noci|mangiare|posso|stomia/i },
+        { lang: 'uk', pattern: /гриб|кукурудз|попкорн|підтікан|пластин|етап|селер|горіх|їсти|чи можна|живіт|стома/i },
+        { lang: 'ru', pattern: /гриб|кукуруз|попкорн|протекан|пластин|этап|сельдерей|орех|есть|можно ли|живот|стома/i },
+        { lang: 'be', pattern: /грыб|кукуруз|папкорн|падцякан|пласцін|этап|сельдэрэй|арэх|есці|ці можна|жывот|стома/i },
+        { lang: 'pt', pattern: /cogumelo|milho|pipoca|vazament|placa|fase|aipo|salsão|noz|nozes|comer|posso|estoma/i }
+      ];
+
+      function detectPromptLanguage(queryText) {
+        if (!queryText) return document.documentElement.lang || activeLang || 'en';
+        for (const p of LANG_PROMPT_PATTERNS) {
+          if (p.pattern.test(queryText)) {
+            return p.lang;
+          }
         }
-      };
+        return document.documentElement.lang || activeLang || 'en';
+      }
+
+      function detectFoodCategory(queryText) {
+        const q = (queryText || '').toLowerCase();
+        if (/mushroom|grzyb|pilz|champignon|seta|fungh|гриб|грыб|cogumelo/i.test(q)) return 'mushroom';
+        if (/popcorn|pop-corn|palomita|папкорн|pipoca/i.test(q)) return 'popcorn';
+        if (/sweetcorn|corn|kukurydz|mais|maïs|кукурудз|кукуруз|milho/i.test(q)) return 'corn';
+        if (/leak|wafer|podciek|wyciek|unterwander|platte|fuite|support|fuga|disco|perdit|placca|підтікан|протекан|падцякан|vazament|placa/i.test(q)) return 'leak';
+        if (/stage 2|etap 2|stufe 2|phase 2|fase 2|етап 2|этап 2|diet|dieta|ernährung|alimentation/i.test(q)) return 'diet';
+        if (/nut|seed|orzech|nüss|noix|nuez|noci|горіх|орех|арэх|castanha/i.test(q)) return 'nut';
+        if (/celery|seler|sellerie|céleri|apio|sedano|селер|сельдерей|сельдэрэй|aipo/i.test(q)) return 'celery';
+        return 'fallback';
+      }
 
       window.setDemoQuery = function(q) {
         const inp = document.getElementById('demoFoodInput');
@@ -2494,32 +3112,43 @@
         const q = (customQuery || (inp ? inp.value.trim() : '')) || 'Can I eat mushrooms?';
         if (inp) inp.value = q;
 
-        const qLower = q.toLowerCase();
-        let match = null;
-        for (const [key, val] of Object.entries(FOOD_AI_KNOWLEDGE)) {
-          if (qLower.includes(key)) {
-            match = val;
-            break;
-          }
-        }
+        // 1. Detect language of the query or use currently selected language
+        const lang = detectPromptLanguage(q);
+        const langPack = MULTILINGUAL_FOOD_AI[lang] || MULTILINGUAL_FOOD_AI['en'];
 
-        if (!match) {
-          match = {
-            query: q,
-            badge: "ℹ️ Clinical Dietary Guidance",
-            badgeClass: "badge-caution",
-            desc: "For newly introduced foods during post-operative recovery, evaluate fibrous residue, transit speed, and gas potential. Ileostomates should avoid large fibrous boluses; colostomates should ensure progressive fiber adaptation.",
-            rules: "• Chew thoroughly into smooth paste before swallowing<br>• Test tolerance with small sample (2–3 bites) first<br>• Wait 24–48 hours before consuming full portions"
-          };
-        }
+        // 2. Detect category
+        const category = detectFoodCategory(q);
+        let match = langPack.items[category] || langPack.items['fallback'];
 
+        // If fallback, use query as title
+        let displayTitle = match.query || q;
+
+        // 3. Update Live Food AI Card UI
         const card = document.getElementById('foodAiLiveCard');
         const titleEl = document.getElementById('foodAiResultQuery');
         const badgeEl = document.getElementById('foodAiResultBadge');
         const descEl = document.getElementById('foodAiResultDesc');
         const rulesEl = document.getElementById('foodAiResultRules');
 
-        if (titleEl) titleEl.textContent = match.query;
+        // Update card subheaders in detected language
+        const subHeaderEl = card ? card.querySelector('.food-ai-card-header div div') : null;
+        if (subHeaderEl && langPack.labels && langPack.labels.analyzedQuery) {
+          subHeaderEl.textContent = langPack.labels.analyzedQuery;
+        }
+        const rulesTitleEl = card ? card.querySelector('.food-ai-rules-title') : null;
+        if (rulesTitleEl && langPack.labels && langPack.labels.rulesTitle) {
+          rulesTitleEl.textContent = langPack.labels.rulesTitle;
+        }
+        const sectionInputEl = document.getElementById('foodAiSectionInput');
+        if (sectionInputEl && langPack.labels && langPack.labels.inputPlaceholder) {
+          sectionInputEl.placeholder = langPack.labels.inputPlaceholder;
+        }
+        const sectionBtnEl = card ? card.querySelector('.food-ai-mini-btn') : null;
+        if (sectionBtnEl && langPack.labels && langPack.labels.checkBtn) {
+          sectionBtnEl.textContent = langPack.labels.checkBtn;
+        }
+
+        if (titleEl) titleEl.textContent = displayTitle;
         if (badgeEl) {
           badgeEl.textContent = match.badge;
           badgeEl.className = 'food-ai-badge ' + (match.badgeClass || 'badge-high-risk');
@@ -2527,13 +3156,13 @@
         if (descEl) descEl.innerHTML = match.desc;
         if (rulesEl) rulesEl.innerHTML = match.rules;
 
-        // Smooth scroll to nutrition section
+        // 4. Smooth scroll to nutrition section
         const target = document.getElementById('nutrition');
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Pulse animation
+        // 5. Highlight Pulse animation
         if (card) {
           card.classList.remove('highlight-pulse');
           void card.offsetWidth;
@@ -2541,7 +3170,7 @@
         }
       };
 
-      // Handle Enter key on search inputs
+            // Handle Enter key on search inputs
       const heroSearchInp = document.getElementById('demoFoodInput');
       if (heroSearchInp) {
         heroSearchInp.addEventListener('keydown', function(e) {
