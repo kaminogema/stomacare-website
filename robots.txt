@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stomacare.app/sitemap.xml
