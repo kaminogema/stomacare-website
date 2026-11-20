@@ -75,15 +75,25 @@
     }
 
     /* Ambient Radial Glows */
+    .ambient-glow-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
     .ambient-glow {
       position: absolute;
-      width: 700px;
-      height: 700px;
+      width: min(700px, 90vw);
+      height: min(700px, 90vw);
       border-radius: 50%;
       background: radial-gradient(circle, rgba(111, 112, 233, 0.12) 0%, rgba(11, 11, 29, 0) 70%);
       pointer-events: none;
-      z-index: 0;
       filter: blur(80px);
+      max-width: 100vw;
     }
     .glow-hero { top: -100px; left: 50%; transform: translateX(-50%); }
     .glow-mid { top: 1400px; right: -150px; }
@@ -524,18 +534,24 @@
     /* Interactive AI Search Demo Bar */
     .search-demo-container {
       max-width: 560px;
+      width: 100%;
       margin: 0 auto 36px auto;
+      padding: 0 8px;
+      box-sizing: border-box;
     }
     .search-demo-pill {
-      background: rgba(18, 18, 38, 0.85);
+      background: rgba(18, 18, 38, 0.92);
       border: 1px solid var(--border-hairline);
       border-radius: var(--radius-pill);
-      padding: 7px 8px 7px 20px;
+      padding: 5px 6px 5px 16px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 8px;
       box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.6);
       transition: all 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
     }
     .search-demo-pill:focus-within {
       border-color: var(--border-focus);
@@ -543,6 +559,10 @@
     }
     .search-demo-icon {
       font-size: 1.25rem;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .search-demo-input {
       background: transparent;
@@ -550,31 +570,216 @@
       outline: none;
       color: #ffffff;
       font-family: inherit;
-      font-size: 0.95rem;
-      flex-grow: 1;
+      font-size: 0.92rem;
+      flex: 1 1 auto;
+      min-width: 0 !important;
+      width: 100%;
+      box-sizing: border-box;
     }
     .search-demo-input::placeholder {
       color: var(--text-dim);
+      text-overflow: ellipsis;
     }
     .search-demo-btn {
       background: var(--accent-lavender);
       border: none;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      color: var(--text-dark);
+      color: #0b0b1d;
       font-size: 1.1rem;
       font-weight: 700;
       transition: all 0.2s;
-      flex-shrink: 0;
+      flex-shrink: 0 !important;
+      box-shadow: 0 4px 12px rgba(193, 194, 250, 0.35);
     }
     .search-demo-btn:hover {
       transform: scale(1.05);
       background: #ffffff;
+      color: #0b0b1d;
+    }
+    .search-demo-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Food AI Live Interactive Card */
+    .food-ai-live-card {
+      margin: 22px 0 26px 0;
+      background: rgba(18, 18, 38, 0.96) !important;
+      border: 1.5px solid var(--accent-lavender) !important;
+      border-radius: 18px !important;
+      padding: 20px !important;
+      box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.8), 0 0 25px rgba(193, 194, 250, 0.2) !important;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: left;
+    }
+
+    .food-ai-live-card.highlight-pulse {
+      animation: cardPulse 1.2s ease-in-out;
+    }
+
+    @keyframes cardPulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(193, 194, 250, 0.7); border-color: #ffffff; }
+      50% { transform: scale(1.02); box-shadow: 0 0 35px 8px rgba(193, 194, 250, 0.5); border-color: var(--accent-lavender); }
+      100% { transform: scale(1); box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.8); }
+    }
+
+    .food-ai-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .food-ai-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .food-ai-icon-bubble {
+      font-size: 1.35rem;
+      background: rgba(255, 255, 255, 0.08);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .food-ai-query-title {
+      font-size: 1.05rem;
+      color: #ffffff;
+    }
+
+    .food-ai-badge {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-high-risk {
+      background: rgba(239, 68, 68, 0.22) !important;
+      color: #f87171 !important;
+      border: 1px solid rgba(239, 68, 68, 0.5) !important;
+    }
+
+    .badge-caution {
+      background: rgba(245, 158, 11, 0.22) !important;
+      color: #fbbf24 !important;
+      border: 1px solid rgba(245, 158, 11, 0.5) !important;
+    }
+
+    .badge-safe {
+      background: rgba(52, 211, 153, 0.22) !important;
+      color: #34d399 !important;
+      border: 1px solid rgba(52, 211, 153, 0.5) !important;
+    }
+
+    .badge-protocol {
+      background: rgba(193, 194, 250, 0.22) !important;
+      color: var(--accent-lavender) !important;
+      border: 1px solid rgba(193, 194, 250, 0.5) !important;
+    }
+
+    .food-ai-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .food-ai-rules-box {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border-hairline);
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .food-ai-rules-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-lavender);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .food-ai-rules-body {
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .food-ai-search-again {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .food-ai-mini-input {
+      flex: 1;
+      min-width: 0;
+      background: rgba(11, 11, 29, 0.85);
+      border: 1px solid var(--border-hairline);
+      border-radius: 10px;
+      padding: 9px 12px;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.86rem;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .food-ai-mini-input:focus {
+      border-color: var(--border-focus);
+    }
+
+    .food-ai-mini-btn {
+      background: var(--accent-lavender);
+      border: none;
+      border-radius: 10px;
+      padding: 9px 15px;
+      color: #0b0b1d;
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .food-ai-mini-btn:hover {
+      background: #ffffff;
+    }
+
+    @media (max-width: 600px) {
+      .food-ai-search-again {
+        flex-direction: column;
+      }
+      .food-ai-mini-btn {
+        width: 100%;
+      }
     }
 
     /* Suggestion Chips */
@@ -1323,9 +1528,11 @@
   </div>
 
   <!-- Ambient Glows -->
-  <div class="ambient-glow glow-hero"></div>
-  <div class="ambient-glow glow-mid"></div>
-  <div class="ambient-glow glow-bottom"></div>
+  <div class="ambient-glow-wrapper">
+    <div class="ambient-glow glow-hero"></div>
+    <div class="ambient-glow glow-mid"></div>
+    <div class="ambient-glow glow-bottom"></div>
+  </div>
 
   <!-- Floating Capsule Navbar -->
   <div class="navbar-wrapper">
@@ -1376,10 +1583,10 @@
     <div class="drawer-header-bar">
       <div class="drawer-header-left">
         <img src="/assets/icon.png" alt="StomaCare" class="drawer-logo-img">
-        <span class="drawer-title">Navigation</span>
+        <span class="drawer-title" data-i18n="drawerNavTitle">Navigation</span>
       </div>
       <button class="drawer-close-btn" onclick="closeMobileMenu()" aria-label="Close navigation">
-        <span>✕</span> <span>Close</span>
+        <span>✕</span> <span data-i18n="drawerCloseBtn">Close</span>
       </button>
     </div>
     <div class="drawer-body">
@@ -1390,7 +1597,7 @@
       <a href="#toilets" class="mob-link" data-i18n="navToilets" onclick="closeMobileMenu()">Restroom Radar</a>
       <a href="/privacy" class="mob-link" data-i18n="navPrivacy" onclick="closeMobileMenu()">Privacy Policy</a>
       <div style="margin-top: 14px;">
-        <span style="font-size:0.82rem; font-weight:700; color:var(--accent-lavender); text-transform:uppercase; letter-spacing:0.05em;">Languages:</span>
+        <span style="font-size:0.82rem; font-weight:700; color:var(--accent-lavender); text-transform:uppercase; letter-spacing:0.05em;" data-i18n="drawerLangTitle">Languages:</span>
         <div id="mobileLangGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;"></div>
       </div>
       <a href="StomaCare.apk" class="btn-pill-lavender" download style="margin-top:16px; justify-content:center; display:flex;" data-i18n="btnDownloadApk">
@@ -1419,14 +1626,19 @@
       <div class="search-demo-container">
         <div class="search-demo-pill">
           <span class="search-demo-icon">🥑</span>
-          <input type="text" id="demoFoodInput" class="search-demo-input" placeholder="Ask: Can I eat sweetcorn 3 weeks post-surgery?" aria-label="Ostomy food blockage search">
-          <button class="search-demo-btn" onclick="demoAskAI()" aria-label="Analyze food with AI">→</button>
+          <input type="text" id="demoFoodInput" class="search-demo-input" placeholder="Ask: Can I eat sweetcorn 3 weeks post-surgery?" aria-label="Ostomy food blockage search" data-i18n-placeholder="searchPlaceholder">
+          <button class="search-demo-btn" onclick="demoAskAI()" aria-label="Search food with AI" title="Search food blockage risk">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
         </div>
         <div class="chips-row">
-          <button class="demo-chip" onclick="setDemoQuery('Can I eat mushrooms?')">🍄 Can I eat mushrooms?</button>
-          <button class="demo-chip" onclick="setDemoQuery('Popcorn blockage risk')">🍿 Popcorn blockage risk</button>
-          <button class="demo-chip" onclick="setDemoQuery('Prevent wafer leaks')">🩹 Prevent wafer leaks</button>
-          <button class="demo-chip" onclick="setDemoQuery('Stage 2 diet tips')">🥗 Stage 2 diet tips</button>
+          <button class="demo-chip" onclick="setDemoQuery('Can I eat mushrooms?')" data-i18n="quickPrompt1">🍄 Can I eat mushrooms?</button>
+          <button class="demo-chip" onclick="setDemoQuery('Popcorn blockage risk')" data-i18n="quickPrompt2">🍿 Popcorn blockage risk</button>
+          <button class="demo-chip" onclick="setDemoQuery('Prevent wafer leaks')" data-i18n="quickPrompt3">🩹 Prevent wafer leaks</button>
+          <button class="demo-chip" onclick="setDemoQuery('Stage 2 diet tips')" data-i18n="quickPrompt4">🥗 Stage 2 diet tips</button>
         </div>
       </div>
 
@@ -1553,7 +1765,7 @@
   <section style="background: rgba(18, 18, 38, 0.4); border-top: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline);">
     <div class="container">
       <div class="section-head-center">
-        <span class="section-label-pill">Clinical Workflow</span>
+        <span class="section-label-pill" data-i18n="stepLabel">Clinical Workflow</span>
         <h2 class="section-h2-large" data-i18n="stepsTitle">From Hospital Discharge to Active Living</h2>
         <p class="section-p-sub" data-i18n="stepsSubtitle">Three synchronized steps to protect peristomal skin, optimize digestive transit, and eliminate anxiety.</p>
       </div>
@@ -1706,6 +1918,36 @@
           <span class="spotlight-badge" style="background:rgba(111,112,233,0.12); color:#c1c2fa; border:1px solid rgba(111,112,233,0.3);" data-i18n="spot3Badge">Clinical Nutrition</span>
           <h2 class="spotlight-h2" data-i18n="spot3Heading">Ostomy Blockage Hazard Food AI</h2>
           <p class="spotlight-p" data-i18n="spot3Desc">Ileostomates and colostomates cannot safely digest certain fibrous foods (mushrooms, corn, nuts, raw celery) during early recovery. Ask questions in natural language and receive clinical verdicts: safe, caution, or avoid, with chewing recommendations.</p>
+
+          <!-- Interactive Live Food AI Result Card -->
+          <div id="foodAiLiveCard" class="food-ai-live-card">
+            <div class="food-ai-card-top">
+              <div class="food-ai-card-header">
+                <span class="food-ai-icon-bubble">🥑</span>
+                <div>
+                  <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-dim); font-weight:700;">Analyzed Query</div>
+                  <strong id="foodAiResultQuery" class="food-ai-query-title">Can I eat mushrooms?</strong>
+                </div>
+              </div>
+              <span id="foodAiResultBadge" class="food-ai-badge badge-high-risk">⚠️ High Obstruction Risk (Stage 1)</span>
+            </div>
+            <p id="foodAiResultDesc" class="food-ai-desc">
+              Mushrooms contain dense insoluble chitin fibers that gastric acid cannot break down. They pass whole and can cluster at the narrow stoma lumen, forming an acute mechanical blockage (bezoar). Avoid completely during early recovery weeks 1–6.
+            </p>
+            <div class="food-ai-rules-box">
+              <div class="food-ai-rules-title">Clinical Preparation & Safety Guidelines</div>
+              <div id="foodAiResultRules" class="food-ai-rules-body">
+                • Puree in soups or dice into micro-pieces &lt; 4mm<br>
+                • Cook thoroughly until soft and tender<br>
+                • Chew each mouthful at least 30 times
+              </div>
+            </div>
+            <div class="food-ai-search-again">
+              <input type="text" id="foodAiSectionInput" class="food-ai-mini-input" placeholder="Ask about another food (e.g. popcorn, celery, nuts)...">
+              <button class="food-ai-mini-btn" onclick="demoAskAIFromSection()">Check Food AI →</button>
+            </div>
+          </div>
+
           <ul class="spotlight-checklist">
             <li><span class="check-bullet">✓</span> <span data-i18n="spot3Check1">Instant AI risk classification for bowel obstruction hazards</span></li>
             <li><span class="check-bullet">✓</span> <span data-i18n="spot3Check2">Stage-by-stage diet progressions (Stage 1 soft to Stage 3 normal)</span></li>
@@ -2109,6 +2351,12 @@
             el.innerHTML = dict[key];
           }
         });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+          const key = el.getAttribute('data-i18n-placeholder');
+          if (dict[key]) {
+            el.placeholder = dict[key];
+          }
+        });
 
         buildLangMenus();
         langDropdown.classList.remove('active');
@@ -2153,17 +2401,165 @@
         icon.style.transform = isOpen ? 'none' : 'rotate(180deg)';
       };
 
+      // ----------------------------------------------------------------------
+      // Food AI Knowledge Engine & Interactive Search Experience
+      // ----------------------------------------------------------------------
+      const FOOD_AI_KNOWLEDGE = {
+        "mushroom": {
+          query: "Mushrooms (All Varieties)",
+          badge: "⚠️ High Obstruction Risk (Stage 1)",
+          badgeClass: "badge-high-risk",
+          desc: "Mushrooms contain dense insoluble chitin fibers that gastric acid cannot break down. They pass whole and can cluster at the narrow stoma lumen, forming an acute mechanical blockage (bezoar). Avoid completely during recovery weeks 1–6.",
+          rules: "• Puree in soups or dice into micro-pieces &lt; 4mm<br>• Cook thoroughly until soft and tender<br>• Chew each mouthful at least 30 times"
+        },
+        "popcorn": {
+          query: "Popcorn & Corn Kernels",
+          badge: "🚫 Severe Emergency Hazard",
+          badgeClass: "badge-high-risk",
+          desc: "Popcorn is the #1 leading cause of emergency hospital admissions for ileostomy food blockages. Tough outer hulls and unpopped seeds do not digest and form a solid plug behind the stoma base.",
+          rules: "• Strictly avoid during recovery Stages 1 & 2<br>• Never swallow unpopped kernels<br>• Try hull-less puffed corn snacks as a safe alternative"
+        },
+        "sweetcorn": {
+          query: "Sweetcorn & Maize",
+          badge: "🚫 High Blockage Hazard",
+          badgeClass: "badge-high-risk",
+          desc: "The cellulose outer skin of sweetcorn cannot be digested by human digestive enzymes. Kernels pass completely intact through the small bowel and pack tightly against the abdominal wall.",
+          rules: "• Avoid on the cob and whole-kernel sweetcorn<br>• If craving corn flavor, use strained corn soup or creamed corn blended smooth"
+        },
+        "corn": {
+          query: "Sweetcorn & Maize",
+          badge: "🚫 High Blockage Hazard",
+          badgeClass: "badge-high-risk",
+          desc: "The cellulose outer skin of sweetcorn cannot be digested by human digestive enzymes. Kernels pass completely intact through the small bowel and pack tightly against the abdominal wall.",
+          rules: "• Avoid on the cob and whole-kernel sweetcorn<br>• If craving corn flavor, use strained corn soup or creamed corn blended smooth"
+        },
+        "leak": {
+          query: "Wafer Leak Prevention",
+          badge: "🛡️ Clinical Adhesive Protocol",
+          badgeClass: "badge-protocol",
+          desc: "Peristomal skin burns occur when acidic stoma output leaks beneath an oversized wafer aperture. Weekly millimeter measurement with concentric guides prevents tissue erosion.",
+          rules: "• Leave only +1.5mm to 2mm clearance from stoma base<br>• Warm hydrocolloid adhesive with palms for 60 seconds before applying<br>• Empty pouch when 1/3 full to reduce gravitational peel"
+        },
+        "wafer": {
+          query: "Wafer Leak Prevention",
+          badge: "🛡️ Clinical Adhesive Protocol",
+          badgeClass: "badge-protocol",
+          desc: "Peristomal skin burns occur when acidic stoma output leaks beneath an oversized wafer aperture. Weekly millimeter measurement with concentric guides prevents tissue erosion.",
+          rules: "• Leave only +1.5mm to 2mm clearance from stoma base<br>• Warm hydrocolloid adhesive with palms for 60 seconds before applying<br>• Empty pouch when 1/3 full to reduce gravitational peel"
+        },
+        "stage 2": {
+          query: "Stage 2 Post-Op Diet Progression",
+          badge: "🥗 Weeks 4–8 Expansion Phase",
+          badgeClass: "badge-safe",
+          desc: "Transitioning from Stage 1 soft foods to everyday nutrition. Focus on gently widening digestive tolerance while keeping stool output thick and predictable.",
+          rules: "• Introduce only ONE new food every 48 hours to assess tolerance<br>• Peel all fruits and root vegetables<br>• Drink 2.0L–2.5L fluids daily with oral rehydration salts (ORS)"
+        },
+        "diet": {
+          query: "Stage 2 Post-Op Diet Progression",
+          badge: "🥗 Weeks 4–8 Expansion Phase",
+          badgeClass: "badge-safe",
+          desc: "Transitioning from Stage 1 soft foods to everyday nutrition. Focus on gently widening digestive tolerance while keeping stool output thick and predictable.",
+          rules: "• Introduce only ONE new food every 48 hours to assess tolerance<br>• Peel all fruits and root vegetables<br>• Drink 2.0L–2.5L fluids daily with oral rehydration salts (ORS)"
+        },
+        "nut": {
+          query: "Nuts & Whole Seeds",
+          badge: "⚠️ High Mechanical Obstruction Hazard",
+          badgeClass: "badge-high-risk",
+          desc: "Whole almonds, walnuts, peanuts, and seeds do not dissolve in the small intestine. Swallowed chunks create acute blockage points.",
+          rules: "• Replace whole nuts with creamy smooth nut butters (peanut butter, almond butter)<br>• Avoid seeded breads and granola"
+        },
+        "celery": {
+          query: "Raw Celery & Stringy Vegetables",
+          badge: "⚠️ Stringy Fiber Obstruction Hazard",
+          badgeClass: "badge-caution",
+          desc: "Tough longitudinal fiber strings act like thread, wrapping around bowel contents and snagging on the stoma aperture.",
+          rules: "• De-string celery completely before consumption<br>• Finely chop or cook in stocks and stews until soft"
+        }
+      };
+
       window.setDemoQuery = function(q) {
         const inp = document.getElementById('demoFoodInput');
         if (inp) inp.value = q;
+        demoAskAI(q);
       };
 
-      window.demoAskAI = function() {
-        const inp = document.getElementById('demoFoodInput');
+      window.demoAskAIFromSection = function() {
+        const inp = document.getElementById('foodAiSectionInput');
         const q = inp ? inp.value.trim() : '';
-        if (!q) return;
-        window.location.href = '#nutrition';
+        if (q) demoAskAI(q);
       };
+
+      window.demoAskAI = function(customQuery) {
+        const inp = document.getElementById('demoFoodInput');
+        const q = (customQuery || (inp ? inp.value.trim() : '')) || 'Can I eat mushrooms?';
+        if (inp) inp.value = q;
+
+        const qLower = q.toLowerCase();
+        let match = null;
+        for (const [key, val] of Object.entries(FOOD_AI_KNOWLEDGE)) {
+          if (qLower.includes(key)) {
+            match = val;
+            break;
+          }
+        }
+
+        if (!match) {
+          match = {
+            query: q,
+            badge: "ℹ️ Clinical Dietary Guidance",
+            badgeClass: "badge-caution",
+            desc: "For newly introduced foods during post-operative recovery, evaluate fibrous residue, transit speed, and gas potential. Ileostomates should avoid large fibrous boluses; colostomates should ensure progressive fiber adaptation.",
+            rules: "• Chew thoroughly into smooth paste before swallowing<br>• Test tolerance with small sample (2–3 bites) first<br>• Wait 24–48 hours before consuming full portions"
+          };
+        }
+
+        const card = document.getElementById('foodAiLiveCard');
+        const titleEl = document.getElementById('foodAiResultQuery');
+        const badgeEl = document.getElementById('foodAiResultBadge');
+        const descEl = document.getElementById('foodAiResultDesc');
+        const rulesEl = document.getElementById('foodAiResultRules');
+
+        if (titleEl) titleEl.textContent = match.query;
+        if (badgeEl) {
+          badgeEl.textContent = match.badge;
+          badgeEl.className = 'food-ai-badge ' + (match.badgeClass || 'badge-high-risk');
+        }
+        if (descEl) descEl.innerHTML = match.desc;
+        if (rulesEl) rulesEl.innerHTML = match.rules;
+
+        // Smooth scroll to nutrition section
+        const target = document.getElementById('nutrition');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Pulse animation
+        if (card) {
+          card.classList.remove('highlight-pulse');
+          void card.offsetWidth;
+          card.classList.add('highlight-pulse');
+        }
+      };
+
+      // Handle Enter key on search inputs
+      const heroSearchInp = document.getElementById('demoFoodInput');
+      if (heroSearchInp) {
+        heroSearchInp.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            demoAskAI();
+          }
+        });
+      }
+      const secSearchInp = document.getElementById('foodAiSectionInput');
+      if (secSearchInp) {
+        secSearchInp.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            demoAskAIFromSection();
+          }
+        });
+      }
 
       // ----------------------------------------------------------------------
       // Mobile Mockup Carousel Controls (Dots + Arrows)
