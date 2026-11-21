@@ -7,8 +7,14 @@
   <meta name="description" content="StomaCare is the world's most comprehensive medical companion app for colostomy, ileostomy, and urostomy patients. 100% on-device privacy, wafer sizing ruler, blockage prevention AI, and emergency restroom access pass.">
   <meta name="keywords" content="ostomy app, colostomy companion, ileostomy care, stoma wafer sizing, stoma nutrition, stoma blockage prevention, restroom pass, peristomal skin care">
   
-  <link rel="icon" type="image/png" href="/assets/icon.png">
-  <link rel="apple-touch-icon" href="/assets/icon.png">
+  <!-- Favicons for Google Search & All Browsers -->
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/icon-48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icon-96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,19 +124,26 @@
           },
           {
             "@type": "Question",
-            "name": "Can I use StomaCare on iPhone or PC?",
+            "name": "Will StomaCare come to PC or iPhone?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes! In addition to the native Android APK, StomaCare is a Progressive Web App (PWA). You can open it in Safari on iOS, click 'Share' -> 'Add to Home Screen', and use it just like a native app with full offline support."
+              "text": "StomaCare is an independent startup project created and maintained by a small team of just one developer. For now, all development focus is dedicated to finalizing and publishing the Android application on Google Play Store. In the future, we plan to launch a community support program where users can help gather funds to bring the app to the Apple App Store for iOS and develop PC versions."
             }
           }
         ]
       },
       {
         "@type": "Organization",
-        "name": "StomaCare",
+        "name": "StomaCare™",
+        "alternateName": "StomaCare",
         "url": "https://stomacare.app/",
-        "logo": "https://stomacare.app/assets/icon.png",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://stomacare.app/assets/icon.png",
+          "width": 512,
+          "height": 512,
+          "caption": "StomaCare Logo"
+        },
         "sameAs": []
       }
     ]
@@ -971,7 +984,7 @@
     }
 
     .device-mockup {
-      width: 255px;
+      width: 245px;
       height: 520px;
       background: #000000;
       border-radius: 42px;
@@ -1017,7 +1030,7 @@
     .device-screen-img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: top center;
       background: #0b0b1d !important;
       display: block;
@@ -1665,7 +1678,7 @@
     <header class="siteheader">
       <a href="/" class="brand">
         <img src="/assets/icon.png" alt="StomaCare" class="brand-logo-img">
-        <span class="brand-text">StomaCare</span>
+        <span class="brand-text">StomaCare<span style="font-size: 0.6em; vertical-align: super; margin-left: 2px; color: var(--accent-lavender); font-weight: 700;">™</span></span>
         <span class="brand-pill">v1.0</span>
       </a>
 
@@ -1998,7 +2011,7 @@
           <a href="#download" class="btn-pill-lavender" data-i18n="spot1Btn">Get The Emergency Pass</a>
         </div>
         <div class="spotlight-img-col">
-          <div class="device-mockup" style="border-color: #f43f5e; width: 280px; max-width: 85vw; height: 560px;">
+          <div class="device-mockup" style="border-color: #f43f5e; width: 260px; max-width: 85vw; height: 560px;">
             <div class="device-camera-hole"></div>
             <div class="device-screen-wrap">
               <img src="/assets/screen-pass.png" alt="Medical Pass Screen" class="device-screen-img">
@@ -2025,7 +2038,7 @@
           <a href="#download" class="btn-pill-lavender" data-i18n="spot2Btn">Protect Your Skin Today</a>
         </div>
         <div class="spotlight-img-col">
-          <div class="device-mockup" style="border-color: var(--accent-lavender); width: 280px; max-width: 85vw; height: 560px;">
+          <div class="device-mockup" style="border-color: var(--accent-lavender); width: 260px; max-width: 85vw; height: 560px;">
             <div class="device-camera-hole"></div>
             <div class="device-screen-wrap">
               <img src="/assets/screen-care.png" alt="Stoma Sizing Ruler Dashboard" class="device-screen-img">
@@ -2082,7 +2095,7 @@
           <a href="#download" class="btn-pill-lavender" data-i18n="spot3Btn">Explore Nutrition Guide</a>
         </div>
         <div class="spotlight-img-col">
-          <div class="device-mockup" style="border-color: var(--accent-blue-lotus); width: 280px; max-width: 85vw; height: 560px;">
+          <div class="device-mockup" style="border-color: var(--accent-blue-lotus); width: 260px; max-width: 85vw; height: 560px;">
             <div class="device-camera-hole"></div>
             <div class="device-screen-wrap">
               <img src="/assets/screen-food.png" alt="Nutrition AI Screen" class="device-screen-img">
@@ -2109,7 +2122,7 @@
           <a href="#download" class="btn-pill-lavender" data-i18n="spot4Btn">Locate Restrooms Anywhere</a>
         </div>
         <div class="spotlight-img-col">
-          <div class="device-mockup" style="border-color: var(--accent-lavender); width: 280px; max-width: 85vw; height: 560px;">
+          <div class="device-mockup" style="border-color: var(--accent-lavender); width: 260px; max-width: 85vw; height: 560px;">
             <div class="device-camera-hole"></div>
             <div class="device-screen-wrap">
               <img src="/assets/screen-toilets.png" alt="Emergency Restroom Radar Screen" class="device-screen-img">
@@ -2137,7 +2150,7 @@
           <a href="#download" class="btn-pill-lavender" data-i18n="spot5Btn">Explore Emergency Guides</a>
         </div>
         <div class="spotlight-img-col">
-          <div class="device-mockup" style="border-color: #38bdf8; width: 280px; max-width: 85vw; height: 560px;">
+          <div class="device-mockup" style="border-color: #38bdf8; width: 260px; max-width: 85vw; height: 560px;">
             <div class="device-camera-hole"></div>
             <div class="device-screen-wrap">
               <img src="/assets/screen-guides.png" alt="Clinical Emergency Guides Screen" class="device-screen-img">
@@ -2165,7 +2178,7 @@
           <a href="#download" class="btn-pill-lavender" data-i18n="spot6Btn">Start Daily Diary</a>
         </div>
         <div class="spotlight-img-col">
-          <div class="device-mockup" style="border-color: #a855f7; width: 280px; max-width: 85vw; height: 560px;">
+          <div class="device-mockup" style="border-color: #a855f7; width: 260px; max-width: 85vw; height: 560px;">
             <div class="device-camera-hole"></div>
             <div class="device-screen-wrap">
               <img src="/assets/screen-diary.png" alt="Stoma Healing Diary Screen" class="device-screen-img">
@@ -2353,11 +2366,11 @@
         <!-- Q4 -->
         <div class="faq-item">
           <button class="faq-question-btn" onclick="toggleFaq(this)">
-            <span data-i18n="faqQ4">Can I use StomaCare on iPhone or PC?</span>
+            <span data-i18n="faqQ4">Will StomaCare come to PC or iPhone?</span>
             <span class="faq-icon-toggle">+</span>
           </button>
           <div class="faq-answer-panel" style="display: none;">
-            <p data-i18n="faqA4">Yes! In addition to the native Android APK, StomaCare is a Progressive Web App (PWA). You can open it in Safari on iOS, click "Share" → "Add to Home Screen", and use it just like a native app with full offline support.</p>
+            <p data-i18n="faqA4">StomaCare is an independent startup project created and maintained by a small team of just one developer. For now, all development focus is dedicated to finalizing and publishing the Android application on Google Play Store. In the future, we plan to launch a community support program where users can help gather funds to bring the app to the Apple App Store for iOS and develop PC versions.</p>
           </div>
         </div>
       </div>
@@ -2370,7 +2383,7 @@
       <div class="footer-top-row">
         <div class="brand">
           <img src="/assets/icon.png" alt="StomaCare" class="brand-logo-img" style="width: 28px; height: 28px;">
-          <span class="brand-text" style="font-size: 1.1rem;">StomaCare</span>
+          <span class="brand-text" style="font-size: 1.1rem;">StomaCare<span style="font-size: 0.6em; vertical-align: super; margin-left: 2px; color: var(--accent-lavender); font-weight: 700;">™</span></span>
         </div>
 
         <ul class="footer-links-list">
@@ -2384,6 +2397,9 @@
       <div class="footer-disclaimer-text">
         <p data-i18n="footerDisclaimer">
           Medical Disclaimer: StomaCare is designed for informational and daily self-management support. It is not a certified medical device and does not diagnose, treat, or replace professional medical care. In case of suspected bowel obstruction, stoma necrosis, persistent bleeding, or severe abdominal pain, seek emergency medical services immediately.
+        </p>
+        <p style="margin-top: 8px; font-size: 0.78rem; opacity: 0.9;" data-i18n="footerNonAffiliation">
+          StomaCare is an independent mobile application and website. It is not affiliated with, sponsored by, or endorsed by Coloplast A/S, ConvaTec, Hollister Inc., or B. Braun.
         </p>
         <p style="margin-top: 10px;" data-i18n="footerCopy">
           &copy; 2026 StomaCare. All rights reserved. Hosted securely on stomacare.app.

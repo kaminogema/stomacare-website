@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Export Concept 01 Icons</title>
+</head>
+<body style="background: #0b0b1d; color: #fff; font-family: sans-serif; padding: 20px;">
+  <h2>Generating Concept 01 Icons...</h2>
+  <div id="status">Starting...</div>
+
+  <script>
+    const svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" fill="none">
+      <defs>
+        <linearGradient id="bgGrad1" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#0e1726"/>
+          <stop offset="1" stop-color="#070c14"/>
+        </linearGradient>
+        <linearGradient id="ringGrad1" x1="20" y1="20" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#2dd4bf"/>
+          <stop offset="1" stop-color="#06b6d4"/>
+        </linearGradient>
+        <radialGradient id="crossGlow1" cx="60" cy="60" r="30" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#14b8a6" stop-opacity="0.45"/>
+          <stop offset="1" stop-color="#14b8a6" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="120" height="120" rx="28" fill="url(#bgGrad1)"/>
+      <rect x="0.5" y="0.5" width="119" height="119" rx="27.5" stroke="rgba(255,255,255,0.12)"/>
+      <circle cx="60" cy="60" r="35" fill="url(#crossGlow1)"/>
+      <circle cx="60" cy="60" r="38" stroke="url(#ringGrad1)" stroke-width="3" stroke-dasharray="4 2"/>
+      <circle cx="60" cy="60" r="32" stroke="rgba(45, 212, 191, 0.35)" stroke-width="1.5"/>
+      <path d="M54 44C54 40.6863 56.6863 38 60 38C63.3137 38 66 40.6863 66 44V54H76C79.3137 54 82 56.6863 82 60C82 63.3137 79.3137 66 76 66H66V76C66 79.3137 63.3137 82 60 82C56.6863 82 54 79.3137 54 76V66H44C40.6863 66 38 63.3137 38 60C38 56.6863 40.6863 54 44 54H54V44Z" fill="#ffffff"/>
+      <circle cx="60" cy="60" r="3.2" fill="#14b8a6"/>
+    </svg>`;
+
+    const notificationSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+      <path d="M10 5C10 3.9 10.9 3 12 3C13.1 3 14 3.9 14 5V10H19C20.1 10 21 10.9 21 12C21 13.1 20.1 14 19 14H14V19C14 20.1 13.1 21 12 21C10.9 21 10 20.1 10 19V14H5C3.9 14 3 13.1 3 12C3 10.9 3.9 10 5 10H10V5Z" fill="#ffffff"/>
+      <circle cx="12" cy="12" r="1.5" fill="#000000"/>
+    </svg>`;
+
+    async function run() {
+      const status = document.getElementById('status');
+      
+      const targets = [
+        { size: 512, path: 'website/assets/icon.png' },
+        { size: 192, path: 'android/res/mipmap-xxxhdpi/ic_launcher.png' },
+        { size: 144, path: 'android/res/mipmap-xxhdpi/ic_launcher.png' },
+        { size: 96,  path: 'android/res/mipmap-xhdpi/ic_launcher.png' },
+        { size: 72,  path: 'android/res/mipmap-hdpi/ic_launcher.png' },
+        { size: 48,  path: 'android/res/mipmap-mdpi/ic_launcher.png' }
+      ];
+
+      const img = new Image();
+      const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(svgBlob);
+
+      await new Promise(resolve => {
+        img.onload = resolve;
+        img.src = url;
+      });
+
+      for (const t of targets) {
+        const canvas = document.createElement('canvas');
+        canvas.width = t.size;
+        canvas.height = t.size;
+        const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, 0, 0, t.size, t.size);
+        const base64 = canvas.toDataURL('image/png');
+
+        await fetch('/api/save-icon', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: t.path, base64 })
+        });
+        status.innerText += `\nExported: ${t.path} (${t.size}x${t.size})`;
+      }
+
+      // Notification icon (24x24 white cross stencil)
+      const notifImg = new Image();
+      const notifBlob = new Blob([notificationSvg], { type: 'image/svg+xml;charset=utf-8' });
+      const notifUrl = URL.createObjectURL(notifBlob);
+      await new Promise(resolve => {
+        notifImg.onload = resolve;
+        notifImg.src = notifUrl;
+      });
+
+      const notifCanvas = document.createElement('canvas');
+      notifCanvas.width = 24;
+      notifCanvas.height = 24;
+      const notifCtx = notifCanvas.getContext('2d');
+      notifCtx.drawImage(notifImg, 0, 0, 24, 24);
+      const notifBase64 = notifCanvas.toDataURL('image/png');
+
+      await fetch('/api/save-icon', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path: 'android/res/drawable/ic_notification.png', base64: notifBase64 })
+      });
+      status.innerText += `\nExported: android/res/drawable/ic_notification.png (24x24)`;
+      status.innerText += `\n\nALL ICONS SUCCESSFULLY SAVED!`;
+    }
+
+    run();
+  </script>
+</body>
+</html>
